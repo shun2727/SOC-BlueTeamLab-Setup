@@ -1,0 +1,53 @@
+19/06/2026 22:32:39 INFO: Starting Wazuh installation assistant. Wazuh version: 4.14.5
+19/06/2026 22:32:39 INFO: Verbose logging redirected to /var/log/wazuh-install.log
+19/06/2026 22:32:57 INFO: Verifying that your system meets the recommended minimum hardware requirements.
+19/06/2026 22:32:57 INFO: Wazuh web interface port will be 443.
+19/06/2026 22:33:14 INFO: Wazuh repository added.
+19/06/2026 22:33:14 INFO: --- Configuration files ---
+19/06/2026 22:33:14 INFO: Generating configuration files.
+19/06/2026 22:33:14 INFO: Generating the root certificate.
+19/06/2026 22:33:15 INFO: Generating Admin certificates.
+19/06/2026 22:33:15 INFO: Generating Wazuh indexer certificates.
+19/06/2026 22:33:15 INFO: Generating Filebeat certificates.
+19/06/2026 22:33:16 INFO: Generating Wazuh dashboard certificates.
+19/06/2026 22:33:17 INFO: Created wazuh-install-files.tar. It contains the Wazuh cluster key, certificates, and passwords necessary for installation.
+19/06/2026 22:33:17 INFO: --- Wazuh indexer ---
+19/06/2026 22:33:17 INFO: Starting Wazuh indexer installation.
+19/06/2026 22:33:46 INFO: Wazuh indexer installation finished.
+19/06/2026 22:33:46 INFO: Wazuh indexer post-install configuration finished.
+19/06/2026 22:33:46 INFO: Starting service wazuh-indexer.
+19/06/2026 22:34:14 INFO: wazuh-indexer service started.
+19/06/2026 22:34:14 INFO: Initializing Wazuh indexer cluster security settings.
+19/06/2026 22:34:23 INFO: Wazuh indexer cluster security configuration initialized.
+19/06/2026 22:34:23 INFO: Wazuh indexer cluster initialized.
+19/06/2026 22:34:23 INFO: --- Wazuh server ---
+19/06/2026 22:34:23 INFO: Starting the Wazuh manager installation.
+19/06/2026 22:37:24 INFO: Wazuh manager installation finished.
+19/06/2026 22:37:24 INFO: Wazuh manager vulnerability detection configuration finished.
+19/06/2026 22:37:24 INFO: Starting service wazuh-manager.
+19/06/2026 22:37:46 INFO: wazuh-manager service started.
+19/06/2026 22:37:46 INFO: Starting Filebeat installation.
+19/06/2026 22:38:23 INFO: Filebeat installation finished.
+19/06/2026 22:38:26 INFO: Filebeat post-install configuration finished.
+19/06/2026 22:38:26 INFO: Starting service filebeat.
+19/06/2026 22:38:28 INFO: filebeat service started.
+19/06/2026 22:38:28 INFO: --- Wazuh dashboard ---
+19/06/2026 22:38:28 INFO: Starting Wazuh dashboard installation.
+19/06/2026 22:47:35 INFO: Wazuh dashboard installation finished.
+19/06/2026 22:47:35 INFO: Wazuh dashboard post-install configuration finished.
+19/06/2026 22:47:35 INFO: Starting service wazuh-dashboard.
+19/06/2026 22:47:36 INFO: wazuh-dashboard service started.
+19/06/2026 22:47:39 INFO: Updating the internal users.
+19/06/2026 22:47:46 INFO: A backup of the internal users has been saved in the /etc/wazuh-indexer/internalusers-backup folder.
+19/06/2026 22:48:07 INFO: The filebeat.yml file has been updated to use the Filebeat Keystore username and password.
+19/06/2026 22:48:54 INFO: Initializing Wazuh dashboard web application.
+19/06/2026 22:48:55 INFO: Wazuh dashboard web application not yet initialized. Waiting...
+19/06/2026 22:49:11 INFO: Wazuh dashboard web application not yet initialized. Waiting...
+19/06/2026 22:49:26 INFO: Wazuh dashboard web application initialized.
+19/06/2026 22:49:26 INFO: --- Summary ---
+19/06/2026 22:49:26 INFO: You can access the web interface https://<wazuh-dashboard-ip>:443
+    User: admin
+    Password: n*QH4zpz?nt9Te0SdV5?J5nJGEm+5zKP
+19/06/2026 22:49:26 INFO: Installation finished.
+
+ip address shows : 10.0.2.15/24, https://10.0.2.15:443
