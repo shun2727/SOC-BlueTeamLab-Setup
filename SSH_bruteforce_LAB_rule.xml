@@ -1,0 +1,26 @@
+<group name="lab,">
+
+  <!-- SCENARIO 1: SSH Brute Force -->
+  <rule id="100001" level="10">
+    <if_sid>5760</if_sid>
+    <description>[LAB SCENARIO 1] SSH Failed Login Attempt</description>
+    <group>ssh,brute_force,</group>
+    <mitre>
+      <id>T1110.001</id>
+    </mitre>
+  </rule>
+
+  <rule id="100002" level="15" frequency="5" timeframe="60">
+    <if_matched_sid>100001</if_matched_sid>
+    <same_source_ip/>
+    <description>[LAB SCENARIO 1 - CRITICAL] SSH Brute Force CONFIRMED</description>
+    <group>ssh,brute_force,</group>
+    <mitre>
+      <id>T1110</id>
+    </mitre>
+  </rule>
+
+</group>
+
+//to add another rule where if there is a succesfull brute force attempt (due to succesful login) followed after so many failed login attempts
+//quesiton, how are rules even created, becus now its all generated, what if there is a real life case ? 

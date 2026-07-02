@@ -70,3 +70,30 @@ devices
 
 decoders : different os have different ways of writing logs, therefore decoders ar eneeded to standardise them
 rules : 
+
+
+"scripting" 
+- XML rule creation 
+- 
+
+adding wazuh rule:
+- navigate to /var/ossec/etc/rules
+- be root usser (change to root via sudo -i)
+- will show an .xml file within
+- 
+
+The ossec.conf file is the main configuration file on the Wazuh manager, and it also plays an important role on the agents. It is located at /var/ossec/etc/ossec.conf both in the manager and agent on Linux machines. On Windows agents, we can find it at C:\Program Files (x86)\ossec-agent\ossec.conf. It is recommended to back up this file before making changes to it. A configuration error may prevent Wazuh services from starting up.
+
+The ossec.conf file is in XML format, and all of its configuration options are nested in their appropriate section of the file. In this file, the outermost XML tag is <ossec_config>. There can be more than one <ossec_config> tag.
+
+
+An alert threshold is the minimum severity level that must be exceeded for an alert to be triggered. The Wazuh manager assigns a severity level to each event from monitored endpoints based on the matching rule from the ruleset. By default, it only triggers alerts with a severity level of 3 or higher.
+
+plan :
+- import the damn shit
+- setup the victim
+- craete kali to run 
+(est time 3 hours)
+
+- in the meantime (even at home) create documentaiton and rules for 2 - 3 cases and test
+- privelage excelation also can (one by one)

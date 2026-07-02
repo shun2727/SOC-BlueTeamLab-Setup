@@ -325,7 +325,7 @@ Planned scenario given online resources :
 ### 25 June 2026 
 ---
 - clear up ossec to reduce amount of logs being seen 
--  to navigate to teh ossec file within wazuh manager 
+-  to navigate to the ossec file within wazuh manager 
 	- hamburgermenu > server management > settings 
 	- summary of cleared events : 
 		- log_alert_level: 3 → 7 | Biggest change, cuts most low-level noise
@@ -333,6 +333,8 @@ Planned scenario given online resources :
 		- alert_new_files: yes → no | No alerts for every new file
 		- Command frequency: 360s → 3600s | Runs hourly not every 6 mins
 		- journald localfile: enabled → commented out | Stops system journal flooding
+
+resource to updae wazuh custom rules : https://documentation.wazuh.com/current/user-manual/ruleset/rules/custom.html
 
 #### Creating scenario 1 (brute force ssh login)
 setup :
@@ -353,13 +355,24 @@ faced issue :
 
 ### 28 June 2026 
 ---
-1. tes for bruteforce attack 
-- test connectivity by sending pngs 
+1. test for bruteforce attack 
+- test connectivity by sending pings 
 - enable the root login for the agent device
+
 - To do :
-	- create a procedural guide on how to add rules
-	- provide a breif explanation on how it works 
-- ssh scenario succeeded , sg mr murugan 
+	- create a procedural guide on how to add rules : can refer to the link
+	
+
+- ssh scenario :
+	1. prerequisites, ssh server has to be installed on both devices
+		- configuration on the victim device 
+		``` bash
+		sudo nano /etc/ssh/sshd_config
+		``
+	2. on the "attacker" device attempt to login as root onto the vcitim device
+	```bash
+	ssh root@victim-ip
+	```
 
 ### 29 June 2026
 ---
@@ -385,9 +398,13 @@ faced issue :
 	- set up web server, test some cases on rules 
 	- 
 
+2. Issue with moving the vm to proxmox due to impot not showing, cmd to chec status
+	```bash
+	watch -n 1 "du -h /var/lib/vz/import/SEED_Ubuntu.ova"
+	```
+	- replace SEED_Ubuntu.ova to another name
 
-
-2. Migrate the vms to proxmox
+3. Migrate the vms to proxmox
 	- change the ip address of the wazuh manager on the wazuh agent devices 
 		```bash
 		sudo nano /var/ossec/etc/ossec.conf
@@ -431,4 +448,32 @@ goal :
 		```
 	- proceed to www.seed-server.com for the employee login page 
 
-2. 
+2. Completed all possible attack scearios for sqlinjection lab
+
+### 2 July 2026
+1. Setup wazuh manager and wazuh agent for lab scneario 1 for 
+2. import the seedlabs lab into proxmox
+3. setup connectiviy between devices
+4. update custom rules
+5. (taking the attacks created in sql injeciton lab, attempt to )
+6. set up the HIVE 
+
+#### Moving didsks to the correct location
+- Steps
+	1. shut down machine
+	2. select hard disk
+	3. disk action
+	4. move disk
+	5. (within this lab environemnet move to local-lvm)
+	6. it will be converted to raw format and source is deleted 
+
+2. Ensure connectivity between wazuh manager and sql server
+	- 
+
+3. Setting up rules for attack scenario
+	- do the 3 atackscenarios from homepage first
+	- issue : another device is unlikely to connect to the webpage due to it using the docker network 
+	
+
+4. Setting up playbook based on NIST framweork
+	- 

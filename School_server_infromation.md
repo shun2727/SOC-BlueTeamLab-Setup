@@ -14,3 +14,4 @@ Password : Y0uDunnoAh?
 ##Resources :
 1. [creating & uploading .ova files to proxmox](https://4sysops.com/archives/ova-import-in-proxmox-83/)
 
+Current storage and RAM usage 
