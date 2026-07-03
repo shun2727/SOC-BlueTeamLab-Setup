@@ -534,12 +534,55 @@ Password: secret
 
 2. intergraitng wazuh and the hive  follwoing https://wazuh.com/blog/using-wazuh-and-thehive-for-threat-protection-and-incident-response/
 	Steps : 
-	- create a new organization on TheHive web interface and with an administrator account.
-	- An organizaiton under SOCBlueTeamLab is created
-	- under SOCBlueTeamLab a new user with organization admin privelages is created
-	- the guide provided is for the oder version of theHIVE, current version is at theHIVE 5
-		- this guide https://medium.com/@devkotasuprim832/home-lab-chronicles-part-09-integration-between-wazuh-siem-and-thehive-1424b3d71d44 , has a slightly more updated version 
-		- SOCBlueTeamLab@wazuh.com
+	1. User managemen & API key creation :
+		- create a new organization on TheHive web interface and with an administrator account.
+		- An organizaiton under SOCBlueTeamLab is created
+		- under SOCBlueTeamLab a new user with organization admin privelages is created
+		- the guide provided is for the oder version of theHIVE, current version is at theHIVE 5
+			- this guide https://medium.com/@devkotasuprim832/home-lab-chronicles-part-09-integration-between-wazuh-siem-and-thehive-1424b3d71d44 , has a slightly more updated version 
+			- SOCBlueTeamLab@wazuh.com | type : service | profile : org-admin | 
+				- Create a password for this user so that we can log in to view the dashboard and manage cases. This is done by clicking on “New password” beside the user account and entering the desired password.
+		- To get the API key 
+			1. under the organization click preview (eye icon)
+			2. hover on the user and clck preview (eye icon) 
+			3. scroll down and click create API key
+
+	2. configureig wazuh server for the hive 
+		- install the hive python module 
+		``` bash
+		sudo /var/ossec/framework/python/bin/pip3 install thehive4py==1.8.1
+		```
+		- check the pytho3 version via :
+		```bash
+		python3 --version
+		```
+		- paste the python code provided within the guide into `/var/ossec/integrations/custom-w2thive.py`
+			- editing is done for the line for the treshold to lvl10 and above
+			```
+			#threshold for wazuh rules level
+			lvl_threshold=10
+			```
+		- create the bash script `/var/ossec/integrations/custom-w2thive` , with the code provided within the guide , to executethe .py script created in the previous step
+		- change the ownsership with : (!note : current version of wazuh is 4.x and above therefore group is changed to wazuh, follow the following commands instead)
+		```bash
+		sudo chmod 755 /var/ossec/integrations/custom-w2thive.py
+		sudo chmod 755 /var/ossec/integrations/custom-w2thive
+		sudo chown root:wazuh /var/ossec/integrations/custom-w2thive.py
+		sudo chown root:wazuh /var/ossec/integrations/custom-w2thive
+		```
+		- add the following lines  the manager configuration file located at `/var/ossec/etc/ossec.conf`. We insert the IP address for TheHive server along with the API key that was generated earlier, its important to knwo the archictecure to nsure that the conneciton is achived:
+		```
+		  <integration>
+				<name>SOCBlueTeam_wazuh_to_thive</name>
+				<hook_url>https://localhost:9443</hook_url>
+				<api_key>KAY/MkhwY7DP/7pMHJXD+NJwAFNFAf7y</api_key>
+				<alert_format>json</alert_format>
+			</integration>
+		```
+
+
+
+
  install the python script 
  sudo /var/ossec/framework/python/bin/pip3 install thehive4py==1.8.1
 
