@@ -526,10 +526,26 @@ Password: secret
  - intergrade wazuh and the hive and ensure that alerts can be seen
  - create a case and steps for the bruteforce atack
 
+1. provide theHIVE account with the community lisence
+	-following the guide for first login :  https://docs.strangebee.com/thehive/administration/perform-initial-setup-as-admin/#step-1-log-in-with-the-default-credentials
+	- after creating an account we need to activate the lisence following this guide : https://docs.strangebee.com/thehive/installation/licenses/license/
+		- warning !
+		community lisence only lasts for a year, therefore after my term using 0135347@student.uow.edu.my, a solution must be made in order to update or have a full plan 
+
+2. intergraitng wazuh and the hive  follwoing https://wazuh.com/blog/using-wazuh-and-thehive-for-threat-protection-and-incident-response/
+	Steps : 
+	- create a new organization on TheHive web interface and with an administrator account.
+	- An organizaiton under SOCBlueTeamLab is created
+	- under SOCBlueTeamLab a new user with organization admin privelages is created
+	- the guide provided is for the oder version of theHIVE, current version is at theHIVE 5
+		- this guide https://medium.com/@devkotasuprim832/home-lab-chronicles-part-09-integration-between-wazuh-siem-and-thehive-1424b3d71d44 , has a slightly more updated version 
+		- SOCBlueTeamLab@wazuh.com
  install the python script 
  sudo /var/ossec/framework/python/bin/pip3 install thehive4py==1.8.1
 
- We create the custom integration script by pasting the following python code in /var/ossec/integrations/custom-w2thive.py. The lvl_threshold variable in the script indicates the minimum alert level that will be forwarded to TheHive. The variable can be customized so that only relevant alerts are forwarded to TheHive:
+
+
+
 
  ### 4 July 2026
  ---
