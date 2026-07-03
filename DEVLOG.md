@@ -3,7 +3,7 @@
 ### Basic To do list
 - [x] wazuh manager installation
 - [x] wazuh agent installaiton (1 node)
-- [ ] The HIVE installaiton
+- [ ] The HIVE installaiton - 2nd July on 
 - [ ] CLAM AV installation
 - [	] Manager node hardening according to CIS benchmark
 - [ ] intergration of all components
@@ -451,12 +451,37 @@ goal :
 2. Completed all possible attack scearios for sqlinjection lab
 
 ### 2 July 2026
+---
 1. Setup wazuh manager and wazuh agent for lab scneario 1 for 
 2. import the seedlabs lab into proxmox
 3. setup connectiviy between devices
 4. update custom rules
 5. (taking the attacks created in sql injeciton lab, attempt to )
 6. set up the HIVE 
+	- following the steps listed on 20th June
+
+#### Setting up the hive
+- following the rules and things listed on 20th June
+- however resceived conflict due to port :443 being used by wazuh manager
+`error respponse from faemon`
+- solution : 
+	- configure the port on docker-compose.yml 
+	- based on resources online the better change will be 
+	Common alternative HTTPS ports include:Port 8443: The most common alternative. Often referred to as "https-alt," it is the default port for secure access in applications like Apache Tomcat.Port 9443: Frequently utilized by enterprise management interfaces, cloud-based applications, and secure APIs.Port 10443: Used as an additional secure alternative for web services, APIs, and microservices.Port 2083: The secure port designated for cPanel logins.Port 2087: The secure port used for Web Host Manager (WHM) administrative access.
+	- withint the docker-compose.yml file for the pod1-thehive folder ports are changed from '443:443' to '9443:443'
+		- explanation : That left-hand number (9443) is just "which host port Docker forwards to the container's internal port 443." 
+
+Upon starting access : localhost:9443
+#### Total amount of storage and reousrces needed 
+- Wazuh :
+- theHive : 
+After succesful login : 
+	https://docs.strangebee.com/thehive/administration/perform-initial-setup-as-admin/#step-1-log-in-with-the-default-credentials
+
+Login: admin@thehive.local
+Password: secret
+- TheHIVE requires users to create an account in order to fully use thier utilities, a community lisence will be requsted 
+- blueteamsoc123
 
 #### Moving didsks to the correct location
 - Steps
@@ -468,7 +493,7 @@ goal :
 	6. it will be converted to raw format and source is deleted 
 
 2. Ensure connectivity between wazuh manager and sql server
-	- 
+	- f
 
 3. Setting up rules for attack scenario
 	- do the 3 atackscenarios from homepage first
@@ -477,3 +502,37 @@ goal :
 
 4. Setting up playbook based on NIST framweork
 	- 
+
+	https://hackercoolmagazine.com/thehive-for-beginners-managing-security-incidents-the-smart-way/
+	
+	
+### 3 July 2026
+---
+	guide on how to create theHIVE case template : https://github.com/StrangeBeeCorp/thehive-templates
+ 
+ In order to create a case, need to follow an indsustry template source :  https://csrc.nist.gov/pubs/sp/800/61/r2/final
+ https://csrc.nist.gov/pubs/sp/800/61/r3/final
+ OWSAP for the SQL injection guide 
+ https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html?utm_source=chatgpt.com
+ incident response playbook workflow 
+ https://blog.n8n.io/automated-incident-response-workflow/
+ guide on case creation for theHIVE
+ https://www.youtube.com/watch?v=niuf8nGTzBw&t=79s 11:56 mark
+ there is a room on tryhack me to use the hive unfortunately it is a oremium room therefore follow guide instead
+ https://tryhackme.com/room/thehiveproject
+ [guide](https://rahulcyberx.medium.com/thehive-project-complete-tryhackme-walkthrough-ca816e766e6f)
+
+ To do for today :
+ - intergrade wazuh and the hive and ensure that alerts can be seen
+ - create a case and steps for the bruteforce atack
+
+ install the python script 
+ sudo /var/ossec/framework/python/bin/pip3 install thehive4py==1.8.1
+
+ We create the custom integration script by pasting the following python code in /var/ossec/integrations/custom-w2thive.py. The lvl_threshold variable in the script indicates the minimum alert level that will be forwarded to TheHive. The variable can be customized so that only relevant alerts are forwarded to TheHive:
+
+ ### 4 July 2026
+ ---
+ To do :
+ - create rules to detect SQL injection attacks on 
+
