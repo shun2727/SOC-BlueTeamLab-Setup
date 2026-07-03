@@ -536,12 +536,15 @@ Password: secret
 	Steps : 
 	1. User managemen & API key creation :
 		- create a new organization on TheHive web interface and with an administrator account.
-		- An organizaiton under SOCBlueTeamLab is created
-		- under SOCBlueTeamLab a new user with organization admin privelages is created
+		- An organizaiton under `SOCBlueTeamLab` is created
+		- under `SOCBlueTeamLab` a new user with organization org-admin privelages is created
 		- the guide provided is for the oder version of theHIVE, current version is at theHIVE 5
 			- this guide https://medium.com/@devkotasuprim832/home-lab-chronicles-part-09-integration-between-wazuh-siem-and-thehive-1424b3d71d44 , has a slightly more updated version 
-			- SOCBlueTeamLab@wazuh.com | type : service | profile : org-admin | 
-				- Create a password for this user so that we can log in to view the dashboard and manage cases. This is done by clicking on “New password” beside the user account and entering the desired password.
+			- LabUser@wazuh.com | type : normal | profile : org-admin | ( !note : within the guide it asks to create a service account, howver that account would nto be able to grant access)
+				- Create a password for this user so that we can log in to view the dashboard and manage cases. This is done by clicking on “New password” 
+					1. under the organization click preview (eye icon)
+					2. hover on the user and clck preview (eye icon) 
+					3. scroll down and click create password
 		- To get the API key 
 			1. under the organization click preview (eye icon)
 			2. hover on the user and clck preview (eye icon) 
@@ -573,14 +576,34 @@ Password: secret
 		- add the following lines  the manager configuration file located at `/var/ossec/etc/ossec.conf`. We insert the IP address for TheHive server along with the API key that was generated earlier, its important to knwo the archictecure to nsure that the conneciton is achived:
 		```
 		  <integration>
-				<name>SOCBlueTeam_wazuh_to_thive</name>
+				<name>custom-w2thive</name>
 				<hook_url>https://localhost:9443</hook_url>
-				<api_key>KAY/MkhwY7DP/7pMHJXD+NJwAFNFAf7y</api_key>
+				<api_key>59zLXJvvEfECJW3IeKs/mYxgO5CENIqv</api_key>
 				<alert_format>json</alert_format>
 			</integration>
 		```
 
-
+	3. refreshing theHIVE and show alrerts
+	!note : important distinciton, theHIVE creates alerts and not cases 
+	- issue (1): no alerts are being received despite the steps being followed
+		- User used : LabUser@wazuh.com pw:Y0uDunnoAH?
+		- debugging steps :
+			`sudo tail -n 50 /var/ossec/logs/integrations.log`
+			^ This is the log the custom script itself writes to. Trigger the critical alert again (or check the timestamp of the last one) and see what shows up right around that time. You're looking for one of these patterns:
+			^ IF Nothing at all appears → the integration isn't even being invoked. Points to ossec.conf config issue (integration block not loaded, or manager not restarted after editing).
+		- cause :  
+			-nothing was showing up therefore there was an issue with the ossec file 
+			- <\name> feild was set wrongly thus causing the error
+		- solution :
+			- fix <\name> field
+			- upon refreshing, contetns on the log showed up
+	- issue (2) : SSL certificate verification failure 
+			- cause : The script's HTTP client (requests library, used internally by thehive4py) refuses to trust that cert by default, so every API call fails before it even reaches TheHive.
+			- solution : tell script to skip SSL verification
+				- `sudo nano /var/ossec/integrations/custom-w2thive.py`
+				- Find where TheHiveApi(...) is initialized 
+				- You need to pass a cert=False (v1) or equivalent verify-disable flag. This depends on which thehive4py version you actually have installed — can you run this so I give you the exact right syntax instead of guessing:
+				- sudo /var/ossec/framework/python/bin/pip3 show thehive4py
 
 
  install the python script 
