@@ -1,0 +1,99 @@
+optimizaiton on manegment node is imporatnt
+what required use cases 
+- sitem required use cases for monitoring 
+- wazuh use case coverage /rule have unique ids 
+- use case or rule is ery important for reporting 
+
+in industry practice : baseline 
+- go check the companey , see the 
+- what can siem coverage
+
+configure and MISP/OPENCTI
+MISP : A threat management platform
+OPENCTI : threat enrichment
+
+
+
+WIth SIEM :
+- must have use case management 
+- number of rules
+- effectiveness of rule 
+
+CTEF (continuois  threat expozure management)
+- this has to read up 
+- look up on rules 
+
+playbook is based on usecase 
+- if there is phising, NIST framweork for playbook 
+
+Current todo :
+Phase 1, setup the vms : 
+	- settle management node : WAZUH manager
+		- hardening based on benchmark will not be a big issue
+	- create more than one assets (within the industry, teams survey the assets of companies and create a baseline)
+		- 1 endpoint
+		- 1 server
+	Q : what if there are more devices in the furture, how do i manage that
+Phase 2, Optimizing a SIEM (important), set up the use cases  
+	- With SIEM , use case management is very important
+	- system requires use cases for monitoring (wihtout usecases, what we get are just logs)
+	- wazuh use case coverage /rule have unique ids (map use cases to wazuh rules)
+<< 1 and 2 are harder to setup >>
+Phase 3, configure MISP/OpenCTI (optional but good for)
+	- MISP is a threat management platform
+	- OpenCTI is a threat enrichment ...
+4. theHIVE
+	- case creatiion
+5. playbook	
+	- serach up NIST fremework for exisitng playbooks
+	- 
+6. response
+	- 
+
+
+-rules creation : go to server managment 
+
+to do :
+- finish databse notes
+- setup windows as secondary boot (either on hard disk)
+	- install postgresql
+- fucking start reseraching dawg
+
+https://medium.com/@lokeshacharya/building-a-home-soc-lab-with-wazuh-c088af84ac95
+- I have 16GB of DDR4 RAM, and I allocated 3GB to the victim machine and 4GB each to the Kali and Ubuntu machines running the Wazuh stack.
+https://www.youtube.com/watch?v=lEgb4f3Y7_Q
+
+
+devices 
+- server  webserver : dvwa
+- normal user 
+
+decoders : different os have different ways of writing logs, therefore decoders ar eneeded to standardise them
+rules : 
+
+
+"scripting" 
+- XML rule creation 
+- 
+
+adding wazuh rule:
+- navigate to /var/ossec/etc/rules
+- be root usser (change to root via sudo -i)
+- will show an .xml file within
+- 
+
+The ossec.conf file is the main configuration file on the Wazuh manager, and it also plays an important role on the agents. It is located at /var/ossec/etc/ossec.conf both in the manager and agent on Linux machines. On Windows agents, we can find it at C:\Program Files (x86)\ossec-agent\ossec.conf. It is recommended to back up this file before making changes to it. A configuration error may prevent Wazuh services from starting up.
+
+The ossec.conf file is in XML format, and all of its configuration options are nested in their appropriate section of the file. In this file, the outermost XML tag is <ossec_config>. There can be more than one <ossec_config> tag.
+
+
+An alert threshold is the minimum severity level that must be exceeded for an alert to be triggered. The Wazuh manager assigns a severity level to each event from monitored endpoints based on the matching rule from the ruleset. By default, it only triggers alerts with a severity level of 3 or higher.
+
+plan :
+- import the damn shit
+- setup the victim
+- craete kali to run 
+(est time 3 hours)
+
+- in the meantime (even at home) create documentaiton and rules for 2 - 3 cases and test
+- privelage excelation also can (one by one)

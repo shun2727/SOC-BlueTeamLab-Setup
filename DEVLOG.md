@@ -598,22 +598,21 @@ Password: secret
 			- fix <\name> field
 			- upon refreshing, contetns on the log showed up
 	- issue (2) : SSL certificate verification failure 
-			- cause : The script's HTTP client (requests library, used internally by thehive4py) refuses to trust that cert by default, so every API call fails before it even reaches TheHive.
-			- solution : tell script to skip SSL verification
-				- `sudo nano /var/ossec/integrations/custom-w2thive.py`
-				- Find where TheHiveApi(...) is initialized 
-				- You need to pass a cert=False (v1) or equivalent verify-disable flag. This depends on which thehive4py version you actually have installed — can you run this so I give you the exact right syntax instead of guessing:
-				- sudo /var/ossec/framework/python/bin/pip3 show thehive4py
+		- cause : The script's HTTP client (requests library, used internally by thehive4py) refuses to trust that cert by default, so every API call fails before it even reaches TheHive.
+		- solution : tell script to skip SSL verification
+			- `sudo nano /var/ossec/integrations/custom-w2thive.py`
+			- Find where TheHiveApi(...) is initialized 
+			- You need to pass a cert=False (v1) or equivalent verify-disable flag. This depends on which thehive4py version you actually have installed — can you run this so I give you the exact right syntax instead of guessing:
+			- `sudo /var/ossec/framework/python/bin/pip3 show thehive4py`
+			- change
+			`thive_api = TheHiveApi(thive, thive_api_key )` to `thive_api = TheHiveApi(thive, thive_api_key, cert=False)`
+		- upon solving, it now works 
 
+3. create a case for the bruteforce attack following this guide https://docs.strangebee.com/thehive/user-guides/organization/configure-organization/manage-templates/case-templates/create-a-case-template/
+	- 
+	
 
- install the python script 
- sudo /var/ossec/framework/python/bin/pip3 install thehive4py==1.8.1
-
-
-
-
-
- ### 4 July 2026
+ ### 5 July 2026
  ---
  To do :
  - create rules to detect SQL injection attacks on 
