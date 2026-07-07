@@ -1,0 +1,25 @@
+Incident Summary
+
+Multiple failed SSH authentication attempts were detected against a Linux server. The volume and frequency of login failures indicate a potential brute-force attack targeting user credentials.
+
+The purpose of this investigation is to:
+
+Identify the source IP address(es).
+Determine the targeted user account(s).
+Verify whether any authentication attempts were successful.
+Assess whether the attacker established persistence or performed additional malicious activities after login.
+Recommend appropriate containment and remediation actions.
+
+Affected Service
+
+SSH (Port 22)
+
+Primary Log Sources
+
+/var/log/auth.log
+Wazuh alerts
+Firewall logs (if available)
+
+MITRE ATT&CK
+
+T1110 – Brute Force
