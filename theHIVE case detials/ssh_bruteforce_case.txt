@@ -1,0 +1,63 @@
+MITRE ATT&CK : T1110 – Brute Force
+
+Reference : https://jenny-p.medium.com/security-lab-simulation-project-part-18-following-brute-force-playbook-df9f2654988b
+Complementary resources : https://www.paloaltonetworks.com/cyberpedia/brute-force
+
+Prefix        : L1-SSH-BF
+Name          : Lab1_SSH_brute_force_attack
+Display name  : Lab1_SSH_brute_force_attack
+TLP           : Amber
+PAP           : Green
+Severity      : Medium (escalate to High if login succeeds)
+Tags          : type:bruteforce, protocol:ssh, vector:network,
+                source:external, mitre:t1110, lab:l1
+Description   : Repeated failed SSH authentication attempts detected
+                against a host, indicating a potential brute force
+                attack. Escalate to High severity if a successful
+                login is confirmed.
+
+L3 / playbook creator cretes specific playbook scenairos
+Task (based on NIST CSF 2.0 / SP 800-61 Rev. 3 )	: 
+
+[Detect] Task 1 — Validate the alert
+Description: "Pull raw auth logs (/var/log/auth.log or SIEM sourcetype sshd) for the alerting host. Confirm the volume/pattern of failed logins genuinely matches brute force behavior (multiple rapid failures from one or few source IPs) rather than a misconfigured script, monitoring tool, or legitimate user error. Log findings before proceeding."
+
+[Detect] Task 2 — Identify source IP(s)
+Description: "List all distinct source IPs generating failed SSH attempts against the host."
+
+[Detect] Task 3 — Determine scope
+Description: "Check whether this is isolated to one host or spread across multiple hosts (credential spray pattern). List all affected hostnames/IPs. Update the case severity if multiple hosts are involved."
+
+[Respond] Task 4 — Check for successful authentication (critical pivot point)
+Description: "Search auth logs for any 'Accepted password' or 'Accepted publickey' entries from the same source IP(s) during or shortly after the attempt window. If found: escalate case severity to High immediately and notify L2. This single check determines whether this stays a routine closure or becomes a full incident."
+
+[Respond] Task 5 — Identify targeted account(s)
+Description: "List which usernames were attempted. Note whether they are default/common usernames (root, admin, ubuntu) or real employee usernames — the latter suggests a more targeted attack, not opportunistic scanning."
+
+[Respond] Task 6 — Check for lateral movement (mandatory if Task 4 confirms success)
+Description: "If a login succeeded, review session activity: commands executed, new SSH keys added to ~/.ssh/authorized_keys, new user accounts created, sudo/privilege escalation attempts, and any outbound connections initiated from the host."
+
+[Respond] Task 7 — Check for persistence mechanisms
+Description: "Review cron jobs, systemd timers, newly added SSH keys, modified sshd_config, and any new/altered services on the host that could allow the attacker to regain access after remediation."
+
+[Respond] Task 8 — Contain: block source IP(s)
+Description: "Block the identified source IP(s) at firewall/security group/WAF level. If a responder is configured, trigger it here. Log the rule/action taken and timestamp."
+
+[Respond] Task 9 — Contain: reset compromised account(s) (mandatory if compromise confirmed)
+Description: "Force password reset, revoke SSH keys, and kill active sessions for any compromised account. If host compromise is confirmed, isolate the host from the network pending forensic review."
+
+[Recover] Task 10 — Harden and restore service
+Description: "Apply hardening: enforce key-based authentication only, disable root login over SSH, enable fail2ban or equivalent rate-limiting, restrict SSH exposure to VPN/bastion access only. Restore the service to normal operation once hardening is validated."
+
+[Recover] Task 11 — Validate remediation
+Description: "Confirm the IP block is active, confirm no persistence mechanisms remain, confirm the service is functioning normally, and confirm no further failed/successful attempts are occurring from the same source."
+
+[Improvement] Task 12 — Write closing summary and recommend follow-ups (mandatory)
+Description: "Complete the Incident Report page. Recommend any detection rule tuning (e.g., lower alert threshold, add correlation rule) or broader fixes."
+
+
+Pages 	      :
+
+
+
+

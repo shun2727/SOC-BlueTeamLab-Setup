@@ -608,12 +608,57 @@ Password: secret
 			`thive_api = TheHiveApi(thive, thive_api_key )` to `thive_api = TheHiveApi(thive, thive_api_key, cert=False)`
 		- upon solving, it now works 
 
-3. create a case for the bruteforce attack following this guide https://docs.strangebee.com/thehive/user-guides/organization/configure-organization/manage-templates/case-templates/create-a-case-template/
-	- 
-	
+
 
  ### 5 July 2026
  ---
  To do :
  - create rules to detect SQL injection attacks on 
+
+### 7 July 2026
+---
+TO do : continue off task form 3rd july 
+1. created reaserch doc on what to expect in L1 to L3 working in SOC, narrow down scope unsder "SOC Level.txt"
+
+3. create a CASE TEMPLATE for the bruteforce attack following this guide https://docs.strangebee.com/thehive/user-guides/organization/configure-organization/manage-templates/case-templates/create-a-case-template/
+ (to be stored on the .txt files )
+
+Filling up the feild for the current SSH brute force attack 
+Prefix : L1-SSH-BF
+Name : Lab1_SSH_brute_force_attack
+Display name : Lab1_SSH_brute_force_attack
+TLP (traffic ligth protocol) //Defines who you can share incident information with. : Amber
+PAP (Permissible Actions Protocol) //Defines what you are allowed to do with the shared information: green (Analysts are allowed to investigate and share internally)
+Severity : Medium (Brute force attempts are common but still important. If the login succeeds, raise to High.)
+Tags (created based on own standard):
+
+Description : 
+4. FIlling up Task (one or more tasks for cases):
+- essentially this is the thing that get mapped to nist ? 
+
+Pages (a page template to documet cases) : 
+
+5. CREATING A CASE
+
+### 8 July 2026
+---
+
+To do (focus on getting the base down, do not care about accuracy then map it to the requirements and justify so that it may be presented ):
+1. finish creating the case template for the ssh brute force attack
+- add more templates as necessary
+- update into .xml
+- double check the rules and stuff
+
+2. create rules for sql injeciton lab 
+- add the rules into wazuh
+
+
+3. test the rules against the attack
+
+4. create the hive templates 
+
+Additional :
+- find mr khoo and ask... if its just like this is this ok ?
+	- technically it matches the requirements already, therefore can just add 1 or 2 more labs?
+
 

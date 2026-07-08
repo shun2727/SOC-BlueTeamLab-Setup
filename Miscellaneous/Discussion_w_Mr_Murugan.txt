@@ -19,7 +19,7 @@ WIth SIEM :
 - number of rules
 - effectiveness of rule 
 
-CTEF (continuois  threat expozure management)
+CTEM (continuois  threat expozure management)
 - this has to read up 
 - look up on rules 
 

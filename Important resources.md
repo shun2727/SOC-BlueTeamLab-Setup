@@ -26,6 +26,7 @@
 - [TheHive Case Template Creation Guide](https://docs.strangebee.com/thehive/user-guides/organization/configure-organization/manage-templates/case-templates/create-a-case-template/)
 - [TheHive Case Creation Guide (YouTube, 11:56)](https://www.youtube.com/watch?v=niuf8nGTzBw&t=79s)
 - [TheHive for Beginners – Managing Security Incidents](https://hackercoolmagazine.com/thehive-for-beginners-managing-security-incidents-the-smart-way/)
+- [TheHive creating a case page](https://docs.strangebee.com/thehive/user-guides/knowledge-base/create-a-case-page/)
 
 # Wazuh + TheHive Integration
 
@@ -45,6 +46,26 @@
 # Frameworks & Standards (NIST / OWASP)
 
 - [NIST SP 800-61 Revision 2 – Incident Handling Guide](https://csrc.nist.gov/pubs/sp/800/61/r2/final)
+	- reparation → Detection & Analysis → Containment/Eradication/Recovery → Post-Incident Activity. 
 - [NIST SP 800-61 Revision 3 – Incident Handling Guide](https://csrc.nist.gov/pubs/sp/800/61/r3/final)
+	- Govern, Identify, Protect, Detect, Respond, and Recover.
 - [OWASP SQL Injection Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html?utm_source=chatgpt.com)
 - [n8n Automated Incident Response Workflow (Playbook Reference)](https://blog.n8n.io/automated-incident-response-workflow/)
+
+# Basic knowledge on SOC workflow 
+
+- [SOC roles](https://www.youtube.com/watch?v=9pv6wjL7lZo&t=316s)
+
+# MITRE Att&K
+- [mitre-T1110 bruteforce](https://attack.mitre.org/techniques/T1110/)
+
+
+# Unsorted 
+- [Open source playbook](https://github.com/LudusLibrum/awesome-playbooks)
+
+Terminology :
+DFIR : digitial forensics, indient response
+SOAR (Security Orchestration, Automation, and Response), the hive is a SIRP (Security Incident Response Platform), subset of SOAR
+
+NIST acts as a framework and does not give full guidance. It gives phases, activities, and best practices, not specific, ready‑to‑run playbooks for each attack type.
+

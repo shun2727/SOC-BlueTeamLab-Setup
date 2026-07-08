@@ -1,0 +1,36 @@
+L1 Triaging (the process of sorting and prioritizing problems, tasks, or patients based on their severity and urgency) 
+Basically : monitor , tirgae , escalate
+Tasks : 
+- Pass on alerts to someone (triaging)
+- Ensure that the tickets and alerts are properly managed 
+- Goal : reduce alert fatigue by identifying falase positives and resolving low level issues 
+Requirements : 
+- Must learn how to read logs, need to read and come up with a resolution 
+- Must learn how to navigate around SIEM , and get around using SPL (search processing language)
+- Focuses : 
+	- vulnerability 
+	- GRC organization  industry and government regulaitons
+
+L2 Investigation and incident repsonse 
+Basiclaly : Inveatigate, contain, recoever
+- handle L1
+- build logic around the alert and determine actions 
+- Aside form detection and investigation , must learn how to recover form an incident & look into steps to prevent it form happneing again 
+
+
+L3 Threat hunting and advanced detection 
+- handle L1 & L2
+- relying less on the team
+- conduct threat hunting - hunting for potential threat vectors , security gaps, vulnerabilities and research on potential vendors to provide solutions for it 
+- Consume external threat intelligence feeds (e.g., VirusTotal, OTX, vendor feeds), curate relevant IOCs, store and share them through MISP, and integrate MISP with the SIEM for automated enrichment and detection.
+- Collect Indicators of Compromise (IOCs)
+- Research IOCs using:
+	- VirusTotal
+	- AbuseIPDB
+	- AlienVault OTX
+	- MISP
+- Import threat feeds into MISP.
+- Integrate MISP with SIEM to enrich alerts automatically.
+
+
+Therefore in the context of my blue team SOC lab 
