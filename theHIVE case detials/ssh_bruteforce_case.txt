@@ -191,3 +191,89 @@ Task 12
 	Recommend broader fixes: enforce MFA on critical systems, centralize logging to SIEM, standardize SSH hardening fleet-wide.
 
 	Store report in IR platform/knowledge base for future reference.
+
+[Template reference](www.cynet.com/security-foundations/incident-response/incident-response-template-presenting-incident-response-activity-to-management/)
+
+Page : 
+# INCIDENT INVESTIGATION REPORT
+Analyst Assigned: 
+
+---
+
+## Description of System
+Type: 
+Operating System: 
+System Name: 
+System IP Address (victim/target): 
+Other Hosts Involved: 
+
+---
+
+## User Information
+User(s) Involved in Incident: 
+Other User(s)/Alias Involved: 
+
+---
+
+## MITRE ATT&CK Information
+Tactic: Credential Access, Discovery
+
+Technique ID:
+- T1110 – Brute Force
+- T1110.001 – Brute Force: Password Guessing
+- T1110.003 – Password Spraying
+- T1046 – Network Service Discovery
+
+Primary MITRE Groups: Heavily associated with script kiddies, financially motivated actors, or initial access brokers
+
+---
+
+## Investigation Details
+Investigation Objective: Determine if the brute-force attack on SSH was successful
+
+Key Evidence Sources:
+- SSH Authentication Logs: `/var/log/auth.log`
+- System Configuration: `/etc/ssh/sshd_config`
+
+---
+
+## Additional Artifacts
+Method: Password guessing and/or password spraying
+Hostname(s): 
+Attacker IP Address(es): 
+URL(s): N/A
+File(s): N/A
+
+---
+
+## NIST CSF 2.0 Function Mapping
+Detect: 
+
+Respond: 
+
+Recover: 
+
+Improvement: 
+
+---
+
+## Final Analysis
+(One-paragraph plain-language summary of the incident)
+
+
+
+Who: 
+What: 
+When: 
+Where: 
+Why: 
+
+---
+
+## Recommendations / Lessons Learned
+- 
+- 
+
+---
+
+## Follow-up / Exposure Tracking
