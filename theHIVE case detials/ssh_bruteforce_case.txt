@@ -17,47 +17,177 @@ Description   : Repeated failed SSH authentication attempts detected
                 login is confirmed.
 
 L3 / playbook creator cretes specific playbook scenairos
+Ainsible playbook can be used to automate these playbook acitons 
 Task (based on NIST CSF 2.0 / SP 800-61 Rev. 3 )	: 
 
-[Detect] Task 1 — Validate the alert
-Description: "Pull raw auth logs (/var/log/auth.log or SIEM sourcetype sshd) for the alerting host. Confirm the volume/pattern of failed logins genuinely matches brute force behavior (multiple rapid failures from one or few source IPs) rather than a misconfigured script, monitoring tool, or legitimate user error. Log findings before proceeding."
+Task 1
 
-[Detect] Task 2 — Identify source IP(s)
-Description: "List all distinct source IPs generating failed SSH attempts against the host."
+	Title: Validate the alert
+	Task group: Detect
+	Description:
 
-[Detect] Task 3 — Determine scope
-Description: "Check whether this is isolated to one host or spread across multiple hosts (credential spray pattern). List all affected hostnames/IPs. Update the case severity if multiple hosts are involved."
+	Pull raw SSH auth logs for the alerting host: /var/log/auth.log (Debian/Ubuntu) or /var/log/secure (RHEL/CentOS), or SIEM sourcetype sshd/auth.
 
-[Respond] Task 4 — Check for successful authentication (critical pivot point)
-Description: "Search auth logs for any 'Accepted password' or 'Accepted publickey' entries from the same source IP(s) during or shortly after the attempt window. If found: escalate case severity to High immediately and notify L2. This single check determines whether this stays a routine closure or becomes a full incident."
+	Filter for failed logins in the alert window:
+	sudo grep -E "Failed password|Invalid user" /var/log/auth.log | grep -E "<date>"
 
-[Respond] Task 5 — Identify targeted account(s)
-Description: "List which usernames were attempted. Note whether they are default/common usernames (root, admin, ubuntu) or real employee usernames — the latter suggests a more targeted attack, not opportunistic scanning."
+	Confirm brute-force pattern: many rapid failures from one/few source IPs, multiple usernames from same IP, high frequency (e.g. >10 attempts in 1-2 min).
 
-[Respond] Task 6 — Check for lateral movement (mandatory if Task 4 confirms success)
-Description: "If a login succeeded, review session activity: commands executed, new SSH keys added to ~/.ssh/authorized_keys, new user accounts created, sudo/privilege escalation attempts, and any outbound connections initiated from the host."
+	Rule out false positives: monitoring/backup scripts, misconfigured clients, isolated user typos.
 
-[Respond] Task 7 — Check for persistence mechanisms
-Description: "Review cron jobs, systemd timers, newly added SSH keys, modified sshd_config, and any new/altered services on the host that could allow the attacker to regain access after remediation."
+	Log finding in the case: "Alert validated as brute force" or "False positive — close." If false positive, close case here.
 
-[Respond] Task 8 — Contain: block source IP(s)
-Description: "Block the identified source IP(s) at firewall/security group/WAF level. If a responder is configured, trigger it here. Log the rule/action taken and timestamp."
+Task 2
 
-[Respond] Task 9 — Contain: reset compromised account(s) (mandatory if compromise confirmed)
-Description: "Force password reset, revoke SSH keys, and kill active sessions for any compromised account. If host compromise is confirmed, isolate the host from the network pending forensic review."
+	Title: Identify source IP(s)
+	Task group: Detect
+	Description:
 
-[Recover] Task 10 — Harden and restore service
-Description: "Apply hardening: enforce key-based authentication only, disable root login over SSH, enable fail2ban or equivalent rate-limiting, restrict SSH exposure to VPN/bastion access only. Restore the service to normal operation once hardening is validated."
+	Extract distinct attacker IPs:
+	sudo grep "Failed password" /var/log/auth.log | awk '{for(i=1;i<=NF;i++) if($i=="from") print $(i+1)}' | sort -u
 
-[Recover] Task 11 — Validate remediation
-Description: "Confirm the IP block is active, confirm no persistence mechanisms remain, confirm the service is functioning normally, and confirm no further failed/successful attempts are occurring from the same source."
+	SIEM equivalent: sourcetype=sshd failed_login=true | stats count by src_ip
 
-[Improvement] Task 12 — Write closing summary and recommend follow-ups (mandatory)
-Description: "Complete the Incident Report page. Recommend any detection rule tuning (e.g., lower alert threshold, add correlation rule) or broader fixes."
+	Check reputation (AbuseIPDB/GreyNoise/VirusTotal). Document IP list, attempt counts, time range.
 
+Task 3
 
-Pages 	      :
+	Title: Determine scope
+	Task group: Detect
+	Description:
 
+	Check whether other hosts show failed logins from the same source IP(s):
+	SIEM query: sourcetype=sshd failed_login=true src_ip=<ip> | stats count by host
 
+	List all affected hostnames/IPs. If multiple hosts are hit (credential spray), raise case severity from Medium to High.
 
+Task 4
 
+	Title: Check for successful authentication (critical pivot point)
+	Task group: Respond
+	Description:
+
+	Search for successful logins from the attacker IP(s):
+	sudo grep -E "Accepted password|Accepted publickey" /var/log/auth.log | grep -E "<attacker_ip>"
+
+	Also check session opens:
+	sudo grep "session opened for user" /var/log/auth.log | grep -E "<attacker_ip>"
+
+	If ANY success is found: escalate severity to High immediately, notify L2, and proceed to Tasks 6-7 as a full incident. If no success: proceed to routine closure after hardening (Tasks 10-12).
+
+Task 5
+
+	Title: Identify targeted account(s)
+	Task group: Respond
+	Description:
+
+	Extract attempted usernames:
+	sudo grep "Failed password" /var/log/auth.log | grep -E "<attacker_ip>" | awk '{for(i=1;i<=NF;i++) if($i=="user") print $(i+1)}' | sort | uniq -c | sort -rn
+
+	Categorize as default/common (root, admin, ubuntu, user) vs. real employee usernames — the latter suggests a targeted attack, not opportunistic scanning. Document list with frequency.
+
+Task 6
+
+	Title: Check for lateral movement (mandatory if Task 4 confirms success)
+	Task group: Respond
+	Description:
+
+	Identify session start time, then review:
+	- Command history: ~/.bash_history, /root/.bash_history
+	- If auditd enabled: ausearch -i --start <time> --end <time>
+	- New SSH keys: ls -la ~/.ssh/authorized_keys
+	- New accounts: cat /etc/passwd or getent passwd | cut -d: -f1
+	- Privilege escalation: grep sudo /var/log/auth.log
+	- Outbound connections: sudo netstat -tupn or sudo ss -tupn
+
+	Document all findings in the case.
+
+Task 7
+
+	Title: Check for persistence mechanisms
+	Task group: Respond
+	Description:
+
+	Check the following for attacker-planted persistence:
+	- Cron: cat /etc/crontab, ls -la /etc/cron.*, and per-user: for user in $(cut -d: -f1 /etc/passwd); do crontab -u $user -l 2>/dev/null; done
+	- systemd timers: systemctl list-timers --all
+	- SSH keys: review ~/.ssh/authorized_keys for unknown entries
+	- sshd_config: sudo cat /etc/ssh/sshd_config — check AllowUsers, PermitRootLogin
+	- Running services: systemctl list-units --type=service --state=running
+
+	Remove any suspicious cron jobs, timers, keys, or services found. Log what was removed.
+
+Task 8
+
+	Title: Contain — block source IP(s)
+	Task group: Respond
+	Description:
+
+	Block at firewall/security group/WAF, e.g.:
+	sudo iptables -A INPUT -s <attacker_ip> -j DROP
+
+	If Fail2Ban available, confirm running:
+	sudo systemctl enable fail2ban && sudo systemctl start fail2ban
+	sudo fail2ban-client status sshd
+
+	Log the rule/action taken, IP, and timestamp.
+
+Task 9
+
+	Title: Contain — reset compromised account(s) (mandatory if compromise confirmed)
+	Task group: Respond
+	Description:
+
+	Force password reset: sudo passwd -e <username>
+	Revoke/rotate SSH keys in ~/.ssh/authorized_keys
+	Kill active sessions: sudo pkill -u <username>
+
+	If host compromise is confirmed: isolate the host from the network and initiate forensic review before further use.
+
+Task 10
+
+	Title: Harden and restore service
+	Task group: Recover
+	Description:
+
+	Edit /etc/ssh/sshd_config:
+	- PermitRootLogin no
+	- PasswordAuthentication no / PubkeyAuthentication yes
+	- AllowUsers <known users>
+
+	Configure Fail2Ban jail (/etc/fail2ban/jail.conf):
+	[sshd]
+	enabled = true
+	port = ssh
+	filter = sshd
+	logpath = /var/log/auth.log
+	maxretry = 5
+	bantime = 600
+
+	Restrict SSH exposure to VPN/bastion only via security group rules. Restart: sudo systemctl restart sshd
+
+Task 11
+
+	Title: Validate remediation
+	Task group: Recover
+	Description:
+
+	Confirm IP block is active: iptables -L or SIEM block status
+	Confirm no persistence remains: re-check cron, systemd, SSH keys, sshd_config
+	Confirm service healthy: sudo systemctl status sshd
+	Monitor for further attempts via SIEM dashboard / Fail2Ban logs.
+	Document validation results in the case.
+
+Task 12
+
+	Title: Write closing summary and recommend follow-ups (mandatory)
+	Task group: Improvement
+	Description:
+
+	Complete the Incident Report page: timeline, source IPs/usernames/techniques, impact (compromise Y/N), actions taken.
+
+	Recommend detection improvements: lower failed-SSH alert threshold, add correlation rule (failed SSH followed by success), tune SIEM based on observed pattern.
+
+	Recommend broader fixes: enforce MFA on critical systems, centralize logging to SIEM, standardize SSH hardening fleet-wide.
+
+	Store report in IR platform/knowledge base for future reference.
