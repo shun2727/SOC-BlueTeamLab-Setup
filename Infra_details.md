@@ -37,3 +37,7 @@ tailscale status
 ubuntu check amt of cores : nproc
 docker engine : like stdlib
 docker compose : like libft (depends on stdlib)
+
+## Vlan tagging :
+VLAN range for manager : 172.29.1.10–100 | VLAN tag : 901
+VLAN range for victim : 172.29.11.10–200 | VLAN tag : 911

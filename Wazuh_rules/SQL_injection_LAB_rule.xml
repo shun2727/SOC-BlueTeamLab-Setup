@@ -35,6 +35,7 @@ inflictted and sent towards the hive to reduce amount of noise
        ============================================================  -->
 
 <!-- rule id 50 onwards -->
+<group name="local,sql_injection,mysql_querylog,">
 
   <rule id="100050" level="10">
     <decoded_as>mysql-querylog</decoded_as>
@@ -44,4 +45,4 @@ inflictted and sent towards the hive to reduce amount of noise
     <mitre><id>T1190</id></mitre>
   </rule>
 
-
+</group>
