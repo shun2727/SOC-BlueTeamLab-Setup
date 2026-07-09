@@ -3,8 +3,7 @@
 ### Basic To do list
 - [x] wazuh manager installation
 - [x] wazuh agent installaiton (1 node)
-- [ ] The HIVE installaiton - 2nd July on 
-- [ ] CLAM AV installation
+- [x] The HIVE installaiton - 2nd July on 
 - [	] Manager node hardening according to CIS benchmark
 - [ ] intergration of all components
 
@@ -185,7 +184,7 @@ Additional requirements:
 		<details>
 		<summary> Issue : docker compose corrupt </summary>
 		
-		- during  installation , several attempta of installing the hive with docker failed and the issues narrowed down to 
+		- during  installation , several attempts of installing the hive with docker failed and the issues narrowed down to 
 		</details>
 
 
@@ -493,7 +492,7 @@ Password: secret
 	6. it will be converted to raw format and source is deleted 
 
 2. Ensure connectivity between wazuh manager and sql server
-	- f
+
 
 3. Setting up rules for attack scenario
 	- do the 3 atackscenarios from homepage first
@@ -501,7 +500,6 @@ Password: secret
 	
 
 4. Setting up playbook based on NIST framweork
-	- 
 
 	https://hackercoolmagazine.com/thehive-for-beginners-managing-security-incidents-the-smart-way/
 	
@@ -643,11 +641,17 @@ Pages (a page template to documet cases) :
 ### 8 July 2026
 ---
 
+VLAN range for manager : 172.29.1.10–100 | VLAN tag : 901
+VLAN range for victim : 172.29.11.10–200 | VLAN tag : 911
+
 To do (focus on getting the base down, do not care about accuracy then map it to the requirements and justify so that it may be presented ):
 1. finish creating the case template for the ssh brute force attack
 - add more templates as necessary
 - update into .xml
 - double check the rules and stuff
+
+2. set up the seedlabs vm on proxmox 
+- (lab setup file seems to be lost ?)
 
 2. create rules for sql injeciton lab 
 - add the rules into wazuh
@@ -661,4 +665,80 @@ Additional :
 - find mr khoo and ask... if its just like this is this ok ?
 	- technically it matches the requirements already, therefore can just add 1 or 2 more labs?
 
+Additonal thing needed to be done : 
+- create a guide on how to mdo it step by step
+- create a guide on how to create a 
 
+### 9 JUly 2026
+--- 
+Ip for seedlabs device : 
+Maybe create a script to run the lab as up whenever the device is switched on 
+- wazuh agent is set but the ip is different, settle th eip conflict the same way with the ssh lab ass before by going into te ossec config file 
+
+- the apache2 is inside the docker, and not the local device, therefore it must be configures to retriev the logs from apache hosted within docker 
+```bash
+docksh <id>
+ls -la /var/log/apache2/ #to confirm is within docker
+```
+- Add a bind mount so the host (and OSSEC) can read it
+Open the lab's docker-compose.yml and find the service block for the 10.9.0.5 container (likely named something like web or hostA). Add a volumes entry:
+- take /var/log/apache2 inside the container, and make it literally the same folder as ./apache-logs on host (it is stoed within the Labsetup folder)
+
+inside seedlabs\docker-compose.yml : (DO NOT USE TABS FOR YAML files )
+```yaml
+services:
+  www:
+		build: ./image_www
+		volumes: #must be under the same indentation of build
+			- ./apache-logs:/var/log/apache2
+		image: seed-image-www-sqli
+		ports:
+			-"80:80"
+    ...
+```
+
+- restart the docker
+```bash
+dcdown
+dcup
+```
+- run the command to check its success
+
+```bash
+ls -la apache-logs/
+```
+
+- update the `/var/ossec/etc/ossec.conf", details written in the sql_injecition file 
+- restart the wazuh agent 
+`sudo systemctl restart wazuh-agent`
+
+!! level treshold is set to 10, only will it be fowarded , rules will be sepereated by the 100s to prevent overlap and in case rules are added in the furue
+given all the possible attacks, the issue is that they do not reach the server, the logs do not fire alerts, therefore moew htings need to be done to ensure the logs will show up and provide alerts
+
+currently :
+- apache access log is checked
+- include 
+
+To check : 
+```bash
+docker exec -it mysql-10.9.0.6 bash
+ls -la /var/log/mysql/
+```
+
+Create a place to put the log into  by first logging into the mysql shell
+```bash
+docker exec -it mysql-10.9.0.6 bash
+mysql -u root -p
+```
+
+Once logged in , enable logging and direct the logs into a file called query.log 
+```bash
+SET GLOBAL general_log_file = '/var/log/mysql/query.log';
+SET GLOBAL general_log = 'ON';
+```
+
+go into docker-compose.yml to create an entry to foward a log from the docker to the host device just as the apache logs under volume 
+```yml
+volumes :
+	- ./mysql-logs:/var/log/mysql 
+```

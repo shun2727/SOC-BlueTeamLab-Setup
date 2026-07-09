@@ -1,0 +1,47 @@
+<!-- lab source: 
+
+! update the docker.yml before proceeding 
+acces logs may not be sufficient 
+-->
+
+<localfiles>
+	<log_format>apache</log_format>
+	<location>/home/seed/Downloads/Labsetup/apache-logs/access.logs</location>
+</localfile>
+
+<localfile>
+  <log_format>syslog</log_format>
+  <location>/home/seed/Downloads/Labsetup/mysql_logs/query.log</location>
+</localfile>
+
+<!--
+Without custom rules, sql injeciton will rely on exisitng wazuh rules 
+/var/ossec/ruleset/rules/0245-web_rules.xml helps to detect sqlinjeciton 
+
+There aleady exists these rules, however upon looking at thier contents, 
+they fire on issues that are minimal, therefore the purpose of custom rules 
+here are to correlate and chain them so that only high severity alerts are 
+inflictted and sent towards the hive to reduce amount of noise 
+-->
+
+
+  <!-- ============================================================
+       4.1.1 / 4.1.2 — Auth bypass via comment injection
+       Payload shape: "...WHERE name = 'Admin' #' AND Password=..."
+       Catches a single quote immediately followed by a comment
+       marker (# or - -), inside a WHERE clause on the credential
+       table. This is the ONLY way to catch 4.1.1/4.1.2, since the
+       payload itself contains no SQL keywords like UNION/SELECT.
+       ============================================================  -->
+
+<!-- rule id 50 onwards -->
+
+  <rule id="100050" level="10">
+    <decoded_as>mysql-querylog</decoded_as>
+    <field name="data" type="pcre2">(?i)WHERE\s+name\s*=\s*'[^']*'\s*(#|--)</field>
+    <description>Auth bypass via comment injection (4.1.1/4.1.2 pattern): $(data)</description>
+    <group>sql_injection,attack,auth_bypass,</group>
+    <mitre><id>T1190</id></mitre>
+  </rule>
+
+
