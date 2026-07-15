@@ -75,7 +75,7 @@ firefox /var/log/scap/report-pre.html
 ```bash
 oscap xccdf generate fix \
   --profile xccdf_org.ssgproject.content_profile_cis_level1_server \
-  --output fix-script.sh \
+  --output --output ~/openscap-results/fix-script.sh \
   ssg-ubuntu2204-ds.xml
 ```
 
