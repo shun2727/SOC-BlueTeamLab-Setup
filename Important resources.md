@@ -59,9 +59,12 @@
 # MITRE Att&K
 - [mitre-T1110 bruteforce](https://attack.mitre.org/techniques/T1110/)
 
+# CIS benchmark hardening
+- https://0x2asecurity.com/siem-engineering/2025/hardening-ubuntu-24-04-lynis-audits-mfa-and-fail2ban-in-action/
 
 # Unsorted 
 - [Open source playbook](https://github.com/LudusLibrum/awesome-playbooks)
+
 
 Terminology :
 DFIR : digitial forensics, indient response

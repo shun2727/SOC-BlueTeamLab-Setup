@@ -41,3 +41,20 @@ docker compose : like libft (depends on stdlib)
 ## Vlan tagging :
 VLAN range for manager : 172.29.1.10–100 | VLAN tag : 901
 VLAN range for victim : 172.29.11.10–200 | VLAN tag : 911
+
+## Device open ports
+1) Wazuh Manager
+	1514/TCP
+	Wazuh agent to manager communication port.
+	443/TCP
+	Used by the Wazuh Dashboard.
+	9443/TCP
+	Reassigned for TheHive access after the 443 conflict.
+2) SSH Victim
+	22/TCP
+	SSH service was installed and enabled.
+	This is the main port used for the brute-force lab scenario.
+3) SeedLabs
+	80/TCP
+	Exposed for the web container in the SeedLabs Docker setup.
+	This was used for the lab web application.

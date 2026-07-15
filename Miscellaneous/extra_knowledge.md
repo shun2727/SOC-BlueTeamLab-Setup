@@ -9,3 +9,9 @@ In cybersecurity, CERT stands for Computer Emergency Response Team.
 * If the destination is reachable and ICMP is allowed, it responds with an **ICMP Echo Reply**.
 * ICMP packets are processed directly by the **operating system's kernel**, so no application or service listens on a specific port for ping requests.
 * Ping is primarily used to **verify network connectivity** and measure the round-trip time between two hosts.
+
+Cmd : 
+`Wget` :  a free, command-line software utility used to download files and content from web servers. 
+`curl` : 
+`nmap` :
+`netstat` : 

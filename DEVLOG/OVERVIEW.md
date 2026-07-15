@@ -3,7 +3,8 @@
 # Planned to do list
 - [x] wazuh manager installation
 - [x] wazuh agent installaitons
-- [x] The HIVE installaiton 
+- [x] The HIVE installaiton
+- [ ] CIS benchmark hardening
 - [	] Manager node hardening according to CIS benchmark
 - [ ] Have a complete flow 
 
