@@ -53,8 +53,8 @@ oscap info ssg-ubuntu2204-ds.xml
 ```bash
 sudo oscap xccdf eval \
   --profile xccdf_org.ssgproject.content_profile_cis_level1_server \
-  --results /openscap-results/results-pre.xml \
-  --report /openscap-results/report-pre.html \
+  --results ~/openscap-results/results-pre.xml \
+  --report ~/openscap-results/report-pre.html \
   ssg-ubuntu2204-ds.xml
 ```
 - `oscap xccdf eval` — the core command: "evaluate this system against an XCCDF checklist"
@@ -64,6 +64,8 @@ sudo oscap xccdf eval \
 ssg-ubuntu2204-ds.xml — the actual checklist file being evaluated against
 
 4. Open the report and check the results 
+- Error : file access was denied because its owned by root and firefox can't access it
+- Fix : `sudo chown bluteamlab:blueteamlab x.htl`
 ```bash
 firefox /var/log/scap/report-pre.html
 ```
@@ -78,6 +80,44 @@ oscap xccdf generate fix \
 ```
 
 6. Create a snapshot on the proxmox server, then change the .sh 
+
+	Phase 1 :
+	1. extract secitons related to things that may affect out operations 
+	 - cat fix_script.sh | grep -n -i -A 10 "firewall\|iptables\|ufw\|nftables" fix-script.sh
+	 - cat 
+
+	2. find and replace ip_foward section using `sed` (this part is guided with AI), then do your own verification 
+	
+	```bash
+	sed -i '/# BEGIN fix (152 \/ 398) for/,/# END fix for .*ip_forward/ s/^/#/' fix-script.sh
+	```
+
+	Phase 2 : executing the script 
+	1. run the edited script
+	2. confirm ip_foward wasnt touched
+		`sysctl net.ipv4.ip_forward`
+	3. check if the port survived
+		`sudo ss -tulnp`
+	4. confirm if the actual services are healthy andnot just the ports
+		`sudo systemctl status wazuh-manager`
+		`docker ps`
+	5. re-run the script to check after status 
+		```bash
+			sudo oscap xccdf eval \
+		--profile xccdf_org.ssgproject.content_profile_cis_level1_server \
+		--results ~/openscap-results/results-post.xml \
+		--report ~/openscap-results/report-post.html \
+		ssg-ubuntu2204-ds.xml
+		```
+		`oscap xccdf generate stats /var/log/scap/results-post.xml`
+	6. 
+sudo oscap xccdf eval \
+  --profile xccdf_org.ssgproject.content_profile_cis_level1_server \
+  ssg-ubuntu2204-ds.xml | grep -B 3 "Result.*fail" | grep -E "Rule|Result|Title"
+where would this output to ? the terminal ?
+
+
+
 
 	1. Run the (edited) fix script
 	— This applies only the fixes you chose to keep, based on what you reviewed beforehand.
