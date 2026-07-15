@@ -12,7 +12,7 @@ step by step guide on how to setup the CIS benchamark using USG: https://www.you
 - openscap will be used here to speed up the process, otherwise manual hardening requires me to read the benchmark and configure the system myself
 - unfortunateley, for ubuntu 22.04 openscap is not installable via apt therefore i have to manually get the packages from the source instead. The version of oscap is 1.2.17
 
-1. Run ss -tulnp and dump the output to a file — this is your "as-is" baseline. Then save into this github repo
+1. Run `sudo ss -tulnp` and dump the output to a file — this is your "as-is" baseline. Then save into this github repo
 	
 2. For each listening port, note: process, bind address (0.0.0.0 vs 127.0.0.1)
 
@@ -55,14 +55,14 @@ oscap info ssg-ubuntu2204-ds.xml
 ```bash
 sudo oscap xccdf eval \
   --profile xccdf_org.ssgproject.content_profile_cis_level1_server \
-  --results /var/log/scap/results-pre.xml \
-  --report /var/log/scap/report-pre.html \
+  --results /openscap-results/results-pre.xml \
+  --report /openscap-results/report-pre.html \
   ssg-ubuntu2204-ds.xml
 ```
-- oscap xccdf eval — the core command: "evaluate this system against an XCCDF checklist"
-- --profile xccdf_org.ssgproject.content_profile_cis_level1_server — tells oscap which rule-set to use, since the file contains multiple profiles (CIS Level 1 Server, Level 2, Workstation, STIG, etc.)
-- --results /var/log/scap/results-pre.xml — saves raw machine-readable pass/fail results (used later for stats/comparison)
-- --report /var/log/scap/report-pre.html — saves a human-readable HTML report you can open in a browser
+- `oscap xccdf eval` — the core command: "evaluate this system against an XCCDF checklist"
+- `--profile xccdf_org.ssgproject.content_profile_cis_level1_server` — tells oscap which rule-set to use, since the file contains multiple profiles (CIS Level 1 Server, Level 2, Workstation, STIG, etc.)
+- `--results /openscap-results/results-pre.xml` — saves raw machine-readable pass/fail results (used later for stats/comparison)
+- `--report /openscap-results/report-pre.html` — saves a human-readable HTML report you can open in a browser
 ssg-ubuntu2204-ds.xml — the actual checklist file being evaluated against
 
 4. Open the report and check the results 
@@ -113,6 +113,13 @@ Solve : `sudo mkdir -p /var/log/scap`
 
 7. Review results — oscap xccdf generate stats on the post-remediation results to see pass/fail summary
 
+Error : insufficient space on hard disk 
+Solution : extand disk size on proxmox
+Steps : 
+	- on Proxmox 
+	hardware > disks > disk actio > resize > 5Gib
+	- on VM 
+	lsblk (check size) > (seems ok dy idk )
 
 
 ## 15 July 2026 (wed)
