@@ -25,3 +25,14 @@
   <regex type="pcre2">^(\d+)\s+(\w+)\s+(.*)$</regex>
   <order>id, _action, data</order>
 </decoder>
+
+<!-- decoder output 2-->
+**Messages:
+	INFO: (7202): Session initialized with token '071df60c'
+
+**Phase 1: Completed pre-decoding.
+	full event: '2026-07-20T05:32:51.891173Z    8 Query    SELECT id, name, eid, salary, birth, ssn, phoneNumber, address, email, nickname, Password FROM credential WHERE name='admin' and Password='da39a3ee5e6b4b0d3255bfef95681890afd80709''
+	timestamp: '2026-07-20T05:32:51.891173Z    '
+
+**Phase 2: Completed decoding.
+	No decoder matched.
