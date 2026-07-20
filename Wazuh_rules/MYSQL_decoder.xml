@@ -1,4 +1,4 @@
-<!--claude decoder example-->
+<!--claude decoder example 1-->
 <decoder name="mysql-querylog">
   <prematch>^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}</prematch>
   <regex offset="after_prematch">^\.\d+Z\s+\d+\s+(\w+)\s+(.*)$</regex>
@@ -18,3 +18,10 @@
 
 **Phase 2: Completed decoding.
 	No decoder matched.
+
+<!--claude decoder example 2-->
+<decoder name="mysql-querylog">
+  <prematch>^\d+\s+\w+</prematch>
+  <regex type="pcre2">^(\d+)\s+(\w+)\s+(.*)$</regex>
+  <order>id, _action, data</order>
+</decoder>
