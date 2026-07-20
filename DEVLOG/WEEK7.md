@@ -111,10 +111,11 @@ oscap xccdf generate fix \
 		```
 		`oscap xccdf generate stats /var/log/scap/results-post.xml`
 	6. 
-sudo oscap xccdf eval \
+	```
+	sudo oscap xccdf eval \
   --profile xccdf_org.ssgproject.content_profile_cis_level1_server \
   ssg-ubuntu2204-ds.xml | grep -B 3 "Result.*fail" | grep -E "Rule|Result|Title"
-where would this output to ? the terminal ?
+	```
 
 
 
@@ -176,4 +177,59 @@ Steps :
 
 ## 17 July 2026 (fri)
 ---
+1. creating rules and testing logs 
+- rules are being written based on the apache queries
 
+Problem : the logs are not showing up on apache or on mysql even when it first worked
+Issue found : 
+SET GLOBAL general_log_file = '/var/log/mysql/query.log';
+SET GLOBAL general_log = 'ON';
+- the global varibale : is set to OFF after every restrt 
+Reason : 
+This is a runtime-only setting. It's not written to any config file — it lives only in MySQL's in-memory session state. The moment the MySQL container restarts (which dcdown / dcup does, since it recreates the container), that setting resets back to its default (OFF). Your first test worked because you'd just set it moments before. Every attack since a restart has been going into a MySQL instance that's silently not logging queries at all anymore.
+
+ rerun this command  :
+ SET GLOBAL general_log_file = '/var/log/mysql/query.log';
+SET GLOBAL general_log = 'ON';
+
+- Now this part works.
+
+create a file that mounts to the contianer and check 
+[mysqld]
+general_log = 1
+general_log_file = /var/log/mysql/query.log
+
+volumes:
+  - ./mysql-logs:/var/log/mysql
+  - ./my-custom.cnf:/etc/mysql/conf.d/custom.cnf
+
+Then, in the future make the docker consistent ot not go down after every shut down or auto restart 
+- 
+
+Apache logging config :
+-
+
+https://dev.to/pgradot/resizing-partitions-on-linux-408o
+
+left off :
+
+- 
+
+- create a script to delete the mysql logs and data, as well as delete the contents inside wazuh manager
+
+
+- then refine the response plan based on what mr murugan sent
+- update mr khoo on progess and do some work on veciloraptor
+- create scripts to auto delete stuff after every lab
+- crete scripts / bm setup for them to deploy to the front
+- have students do the lab to see if they understood wwhat sogin on ...
+
+
+
+
+1. checking the status of the file and cheanging the permission to it
+	`ls -l filename`
+2. sample output :
+	`-rw-r--r-- 1 root root 1234 Jul 20 10:00 docker-compose.yml`
+3. change owner 
+	chown  x;x 

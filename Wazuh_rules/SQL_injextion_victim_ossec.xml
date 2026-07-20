@@ -1,0 +1,41 @@
+<!-- lab source: 
+
+! update the docker.yml before proceeding 
+acces logs may not be sufficient 
+
+locate the file at : 
+/var/ossec/etc/ossec.conf
+
+files to log :
+apache
+	- access.log
+	- error.log
+	- other_vhosts_access.log
+	
+sql (mysql_logs)
+	- query.log 
+-->
+
+
+<localfile>
+    <log_format>apache</log_format>
+    <location>/home/seed/Downloads/Labsetup/apache-logs/other_vhosts_access.log</location>
+</localfile>
+
+<localfile>
+    <log_format>apache-errorlog</log_format>
+    <location>/home/seed/Downloads/Labsetup/apache-logs/error.log</location>
+</localfile>
+
+<localfile>
+	<log_format>apache</log_format>
+	<location>/home/seed/Downloads/Labsetup/apache-logs/access.log</location>
+</localfile>
+
+<localfile>
+  <log_format>syslog</log_format>
+  <location>/home/seed/Downloads/Labsetup/mysql_logs/query.log</location>
+</localfile>
+
+<!-- ensuere that the locaitons that are metioned her ear ecorrect 
+-->

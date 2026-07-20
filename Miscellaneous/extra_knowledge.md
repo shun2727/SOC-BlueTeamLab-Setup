@@ -15,3 +15,4 @@ Cmd :
 `curl` : 
 `nmap` :
 `netstat` : 
+`sed` : find and replace 

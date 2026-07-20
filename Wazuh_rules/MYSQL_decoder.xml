@@ -1,0 +1,11 @@
+<!--claude decoder example-->
+<decoder name="mysql-querylog">
+  <prematch>^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}</prematch>
+  <regex offset="after_prematch">^\.\d+Z\s+\d+\s+(\w+)\s+(.*)$</regex>
+  <order>_action, data</order>
+</decoder>
+
+<!--sample decoder code --> 
+```mysql
+2026-07-20T05:32:51.891173Z    8 Query    SELECT id, name, eid, salary, birth, ssn, phoneNumber, address, email, nickname, Password FROM credential WHERE name='admin' and Password='da39a3ee5e6b4b0d3255bfef95681890afd80709'
+```
