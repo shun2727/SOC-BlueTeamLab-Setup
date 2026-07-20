@@ -6,6 +6,15 @@
 </decoder>
 
 <!--sample decoder code --> 
-```mysql
 2026-07-20T05:32:51.891173Z    8 Query    SELECT id, name, eid, salary, birth, ssn, phoneNumber, address, email, nickname, Password FROM credential WHERE name='admin' and Password='da39a3ee5e6b4b0d3255bfef95681890afd80709'
-```
+
+<!--decoder output-->
+**Messages:
+	INFO: (7202): Session initialized with token '126d2867'
+
+**Phase 1: Completed pre-decoding.
+	full event: '2026-07-20T05:32:51.891173Z    8 Query    SELECT id, name, eid, salary, birth, ssn, phoneNumber, address, email, nickname, Password FROM credential WHERE name='admin' and Password='da39a3ee5e6b4b0d3255bfef95681890afd80709''
+	timestamp: '2026-07-20T05:32:51.891173Z    '
+
+**Phase 2: Completed decoding.
+	No decoder matched.
