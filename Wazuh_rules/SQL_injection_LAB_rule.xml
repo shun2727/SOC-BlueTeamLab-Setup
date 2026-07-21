@@ -13,7 +13,7 @@ inflictted and sent towards the hive to reduce amount of noise
 <!-- for naming use rule id 50 onwards -->
 <group name="local,sql_injection,mysql_querylog,">
 
-
+<!-- i dont remember this ouf -->
   <rule id="100050" level="10">
     <decoded_as>mysql-querylog</decoded_as>
     <field name="data" type="pcre2">(?i)WHERE\s+name\s*=\s*'[^']*'\s*(#|--)</field>
@@ -24,77 +24,72 @@ inflictted and sent towards the hive to reduce amount of noise
 
 <!-- the indeixng like 4.1.1 is based on the seedlabs injection guides -->
 <!-- 4.1.1 / 4.1.2: Admin' # (comment-only bypass, no OR/UNION keyword) -->
-<!-- 4.1.1 / 4.1.2: Admin' # (comment-only bypass, no OR/UNION keyword) -->
-<rule id="100051" level="10">
-	<if_sid>31108</if_sid>
-	<url>(?i)('|%27)(\s|%20|\+)*(#|--|%23|%2d%2d)</url>
-	<description>SQL Injection Attempt: quote directly followed by comment (auth bypass via truncation)</description>
-	<mitre>
-		<id>T1190</id>
-	</mitre>
-</rule>
+  <rule id="100051" level="10">
+    <if_sid>31100</if_sid>
+    <url>(?i)('|%27)(\s|%20|\+)*(#|--|%23|%2d%2d)</url>
+    <description>SQL Injection Attempt: quote directly followed by comment (auth bypass via truncation)</description>
+    <mitre>
+      <id>T1190</id>
+    </mitre>
+  </rule>
 
  <!-- 4.1.3: Admin'; UPDATE ... / Admin'; DELETE ... (stacked query)-->
-<rule id="100052" level="14">
-	<if_sid>31108</if_sid>
-	<url>(?i)(;|%3B)(\s|%20|\+)*(drop|delete|update|insert|alter)(\s|%20|\+)+</url>
-	<description>SQL Injection Attempt: stacked query with Data Manipulation Language/Data Definition Language keyword</description>
-	<mitre>
-		<id>T1190</id>
-	</mitre>
-</rule>
+  <rule id="100052" level="14">
+    <if_sid>31100</if_sid>
+    <url>(?i)(;|%3B)(\s|%20|\+)*(drop|delete|update|insert|alter)(\s|%20|\+)+</url>
+    <description>SQL Injection Attempt: stacked query with Data Manipulaiton Language/Data Definition Lanuage keyword</description>
+    <mitre>
+      <id>T1190</id>
+    </mitre>
+  </rule>
 
-<!-- 5.1.1 / 5.1.2 / 5.1.3: 123', salary = 800000 WHERE name = 'Alice' #  (no semicolon needed) -->
-<rule id="100053" level="12">
-	<if_sid>31108</if_sid>
-	<url>(?i)('|%27)(\s|%20|\+|,|%2c)*[\w.]+(\s|%20|\+)*(=|%3D)(\s|%20|\+)*[\w.'%27]+(\s|%20|\+)+(where|%77here)(\s|%20|\+)+</url>
-	<description>SQL Injection Attempt: injected assignment + WHERE clause (UPDATE hijack, no stacking required)</description>
-	<mitre>
-		<id>T1190</id>
-	</mitre>
-</rule>
+  <!-- 5.1.1 / 5.1.2 / 5.1.3: 123', salary = 800000 WHERE name = 'Alice' #  (no semicolon needed) -->
+  <rule id="100053" level="12">
+    <if_sid>31100</if_sid>
+    <url>(?i)('|%27)(\s|%20|\+|,|%2c)*[\w.]+(\s|%20|\+)*(=|%3D)(\s|%20|\+)*[\w.'%27]+(\s|%20|\+)+(where|%77here)(\s|%20|\+)+</url>
+    <description>SQL Injection Attempt: injected assignment + WHERE clause (UPDATE hijack, no stacking required)</description>
+    <mitre>
+      <id>T1190</id>
+    </mitre>
+  </rule>
 
-<!-- 5.1.3 specifically: SQL function call injected as a value, e.g. SHA1('amongus') -->
-<rule id="100054" level="12">
-	<if_sid>31108</if_sid>
-	<url>(?i)('|%27).*(sha1|md5|concat|substring|benchmark|sleep)(\(|%28)</url>
-	<description>SQL Injection Attempt: SQL function call injected via user input</description>
-	<mitre>
-		<id>T1190</id>
-	</mitre>
-</rule>
+  <!-- 5.1.3 specifically: SQL function call injected as a value, e.g. SHA1('amongus') -->
+  <rule id="100054" level="12">
+    <if_sid>31100</if_sid>
+    <url>(?i)('|%27).*(sha1|md5|concat|substring|benchmark|sleep)(\(|%28)</url>
+    <description>SQL Injection Attempt: SQL function call injected via user input</description>
+    <mitre>
+      <id>T1190</id>
+    </mitre>
+  </rule>
 
-<rule id="100055" level="10">
-	<if_sid>31108</if_sid>
-	<url>(?i)(\bor\b|\band\b)(\s|%20|\+)*[\d'"]+(\s|%20|\+)*(=|%3D)(\s|%20|\+)*[\d'"]+</url>
-	<description>SQL Injection Attempt: tautology/boolean bypass (OR 1=1 style)</description>
-	<mitre>
-		<id>T1190</id>
-	</mitre>
-</rule>
+  <!-- existing rules, encoding-fixed -->
+  <rule id="100055" level="10">
+    <if_sid>31100</if_sid>
+    <url>(?i)(\bor\b|\band\b)(\s|%20|\+)*[\d'"]+(\s|%20|\+)*(=|%3D)(\s|%20|\+)*[\d'"]+</url>
+    <description>SQL Injection Attempt: tautology/boolean bypass (OR 1=1 style)</description>
+    <mitre>
+      <id>T1190</id>
+    </mitre>
+  </rule>
 
-<rule id="100056" level="12">
-	<if_sid>31108</if_sid>
-	<url>(?i)union(\s|%20|\+)+select</url>
-	<description>SQL Injection Attempt: UNION SELECT</description>
-	<mitre>
-		<id>T1190</id>
-	</mitre>
-</rule>
+  <rule id="100056" level="12">
+    <if_sid>31100</if_sid>
+    <url>(?i)union(\s|%20|\+)+select</url>
+    <description>SQL Injection Attempt: UNION SELECT</description>
+    <mitre>
+      <id>T1190</id>
+    </mitre>
+  </rule>
 
-<rule id="100057" level="10">
-	<if_sid>31108</if_sid>
-	<url>(?i)('|%27)(\s|%20|\+)*(or|and|union|select)</url>
-	<description>SQL Injection Attempt: quote followed by SQL keyword</description>
-	<mitre>
-		<id>T1190</id>
-	</mitre>
-</rule>
+  <rule id="100057" level="10">
+    <if_sid>31100</if_sid>
+    <url>(?i)('|%27)(\s|%20|\+)*(or|and|union|select)</url>
+    <description>SQL Injection Attempt: quote followed by SQL keyword</description>
+    <mitre>
+      <id>T1190</id>
+    </mitre>
+  </rule>
+
 
 </group>
-
-<!-- temp log test for apache-->
-www.seed-server.com:80 10.9.0.1 - - [21/Jul/2026:08:49:16 +0000] "GET /index.html HTTP/1.1" 200 1245 "http://www.seed-server.com/" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:83.0) Gecko/20100101 Firefox/83.0"
-
-
-
