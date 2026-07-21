@@ -1,0 +1,304 @@
+2026 Jul 21 16:28:31 blueteammanager-VirtualBox->rootcheck Starting rootcheck scan.
+2026 Jul 21 16:28:34 blueteammanager-VirtualBox->df -P ossec: output: 'df -P': Filesystem     1024-blocks     Used Available Capacity Mounted on
+2026 Jul 21 16:28:34 blueteammanager-VirtualBox->df -P ossec: output: 'df -P': tmpfs              1999624     2464   1997160       1% /run
+2026 Jul 21 16:28:34 blueteammanager-VirtualBox->df -P ossec: output: 'df -P': /dev/sda3         40584544 33299112   5408220      87% /
+2026 Jul 21 16:28:34 blueteammanager-VirtualBox->df -P ossec: output: 'df -P': tmpfs                 5120        0      5120       0% /run/lock
+2026 Jul 21 16:28:34 blueteammanager-VirtualBox->df -P ossec: output: 'df -P': tmpfs              9998116       80   9998036       1% /dev/shm
+2026 Jul 21 16:28:34 blueteammanager-VirtualBox->df -P ossec: output: 'df -P': tmpfs              1999620     1648   1997972       1% /run/user/1000
+2026 Jul 21 16:28:34 blueteammanager-VirtualBox->df -P ossec: output: 'df -P': /dev/sda2           524252     6232    518020       2% /boot/efi
+2026 Jul 21 16:28:34 blueteammanager-VirtualBox->df -P ossec: output: 'df -P': overlay           40584544 33299112   5408220      87% /var/lib/docker/rootfs/overlayfs/48e29758258800a593f324f89fbe45c9ac0b3f2a10e9685ad7298526df8f7665
+2026 Jul 21 16:28:34 blueteammanager-VirtualBox->df -P ossec: output: 'df -P': overlay           40584544 33299112   5408220      87% /var/lib/docker/rootfs/overlayfs/2899c105a1329ee1d680d0293725fd43387d53998e24d33c1d9a8d5531306f9b
+2026 Jul 21 16:28:34 blueteammanager-VirtualBox->df -P ossec: output: 'df -P': overlay           40584544 33299112   5408220      87% /var/lib/docker/rootfs/overlayfs/ee63ab163267c1cad4cd545af5d5934204e31068b7db6d67e540b7a1233ec476
+2026 Jul 21 16:28:34 blueteammanager-VirtualBox->df -P ossec: output: 'df -P': overlay           40584544 33299112   5408220      87% /var/lib/docker/rootfs/overlayfs/93ab2e19f32a76357baf8dc50a86d8583785912dd98c199c8fc97f916474e020
+2026 Jul 21 16:28:34 blueteammanager-VirtualBox->last -n 20 ossec: output: 'last -n 20':
+blueteam :0           :0               Tue Jul 21 14:58   still logged in
+reboot   system boot  6.8.0-124-generi Tue Jul 21 14:58   still running
+blueteam :0           :0               Tue Jul 21 14:54 - crash  (00:04)
+reboot   system boot  6.8.0-124-generi Tue Jul 21 14:54   still running
+blueteam :0           :0               Tue Jul 21 11:54 - crash  (02:59)
+reboot   system boot  6.8.0-124-generi Tue Jul 21 11:54   still running
+blueteam :0           :0               Mon Jul 20 16:31 - crash  (19:23)
+reboot   system boot  6.8.0-124-generi Mon Jul 20 16:30   still running
+blueteam :0           :0               Mon Jul 20 13:07 - down   (03:23)
+reboot   system boot  6.8.0-124-generi Mon Jul 20 13:07 - 16:30  (03:23)
+blueteam :0           :0               Fri Jul 17 18:00 - crash (2+19:06)
+reboot   system boot  6.8.0-124-generi Fri Jul 17 18:00 - 16:30 (2+22:30)
+blueteam :0           :0               Fri Jul 17 15:38 - crash  (02:22)
+reboot   system boot  6.8.0-124-generi Fri Jul 17 15:38 - 16:30 (3+00:52)
+blueteam :0           :0               Thu Jul 16 18:02 - crash  (21:35)
+reboot   system boot  6.8.0-124-generi Thu Jul 16 18:02 - 16:30 (3+22:28)
+blueteam :0           :0               Thu Jul 16 17:34 - crash  (00:27)
+reboot   system boot  6.8.0-124-generi Thu Jul 16 17:34 - 16:30 (3+22:56)
+blueteam :0           :0               Thu Jul 16 15:30 - crash  (02:04)
+reboot   system boot  6.8.0-124-generi Thu Jul 16 15:30 - 16:30 (4+01:00)
+wtmp begins Thu Jun 18 23:44:19 2026
+2026 Jul 21 16:28:36 blueteammanager-VirtualBox->journald Jul 21 08:28:35 blueteammanager-VirtualBox env[143146]: Started wazuh-modulesd...
+2026 Jul 21 16:28:38 blueteammanager-VirtualBox->journald Jul 21 08:28:37 blueteammanager-VirtualBox systemd[1]: Started Wazuh manager.
+2026 Jul 21 16:28:38 blueteammanager-VirtualBox->journald Jul 21 08:28:37 blueteammanager-VirtualBox sudo[143038]: pam_unix(sudo:session): session closed for user root
+2026 Jul 21 16:28:38 blueteammanager-VirtualBox->journald Jul 21 08:28:37 blueteammanager-VirtualBox env[143146]: Completed.
+2026 Jul 21 16:28:39 blueteammanager-VirtualBox->sca {"type":"summary","scan_id":8682127,"name":"CIS Ubuntu Linux 22.04 LTS Benchmark v2.0.0.","policy_id":"cis_ubuntu22-04","file":"cis_ubuntu22-04.yml","description":"This document provides prescriptive guidance for establishing a secure configuration posture for Ubuntu Linux 22.04 LTS based on CIS benchmark for Ubuntu Linux 22.04 LTS.","references":"https://www.cisecurity.org/cis-benchmarks/","passed":99,"failed":78,"invalid":30,"total_checks":207,"score":55.932205200195312,"start_time":1784622514,"end_time":1784622516,"hash":"fbb131884f253c71ae50b0c7bbe6fe4f219372728f2d984bede12a1d0acc6a65","hash_file":"2d2bd09c7c2c3e83f1bcc674f8ee8a77fe21a8ab6141445f5cf494f36d28e3c7","first_scan":1}
+2026 Jul 21 16:28:39 blueteammanager-VirtualBox->sca {"type":"policies","policies":["cis_ubuntu22-04"]}
+2026 Jul 21 16:28:43 blueteammanager-VirtualBox->wazuh-monitord ossec: Manager started.
+2026 Jul 21 16:30:02 blueteammanager-VirtualBox->journald Jul 21 08:30:01 blueteammanager-VirtualBox CRON[149261]: pam_unix(cron:session): session opened for user root(uid=0) by (uid=0)
+2026 Jul 21 16:30:02 blueteammanager-VirtualBox->journald Jul 21 08:30:01 blueteammanager-VirtualBox CRON[149261]: pam_unix(cron:session): session closed for user root
+2026 Jul 21 16:30:02 blueteammanager-VirtualBox->journald Jul 21 08:30:01 blueteammanager-VirtualBox CRON[149262]: (root) CMD ([ -x /etc/init.d/anacron ] && if [ ! -d /run/systemd/system ]; then /usr/sbin/invoke-rc.d anacron start >/dev/null; fi)
+2026 Jul 21 16:30:02 blueteammanager-VirtualBox->journald Jul 21 08:30:01 blueteammanager-VirtualBox opensearch-dashboards[546]: {"type":"log","@timestamp":"2026-07-21T08:30:01Z","tags":["info","plugins","wazuh","monitoring"],"pid":546,"message":"Bulk data to index wazuh-monitoring-2026.30w for 2 agents completed"}
+2026 Jul 21 16:30:02 blueteammanager-VirtualBox->journald Jul 21 08:30:01 blueteammanager-VirtualBox opensearch-dashboards[546]: {"type":"log","@timestamp":"2026-07-21T08:30:01Z","tags":["info","plugins","wazuh","monitoring"],"pid":546,"message":"Settings added to wazuh-monitoring-2026.30w index"}
+2026 Jul 21 16:30:23 blueteammanager-VirtualBox->rootcheck Ending rootcheck scan.
+2026 Jul 21 16:30:37 blueteammanager-VirtualBox->journald Jul 21 08:30:35 blueteammanager-VirtualBox sudo[150454]: pam_unix(sudo:session): session closed for user root
+2026 Jul 21 16:30:37 blueteammanager-VirtualBox->journald Jul 21 08:30:35 blueteammanager-VirtualBox sudo[150454]: pam_unix(sudo:session): session opened for user root(uid=0) by (uid=1000)
+2026 Jul 21 16:30:37 blueteammanager-VirtualBox->journald Jul 21 08:30:35 blueteammanager-VirtualBox sudo[150454]: blueteammanager : TTY=pts/0 ; PWD=/home/blueteammanager ; USER=root ; COMMAND=/usr/bin/tail -20 /var/ossec/logs/archives/archives/log
+2026 Jul 21 16:30:54 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/apache-logs/other_vhosts_access.log www.seed-server.com:80 10.9.0.1 - - [21/Jul/2026:08:30:53 +0000] "GET /unsafe_home.php?username=admin%27+%23&Password= HTTP/1.1" 200 1797 "http://www.seed-server.com/" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:83.0) Gecko/20100101 Firefox/83.0"
+2026 Jul 21 16:30:54 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/apache-logs/error.log [Tue Jul 21 08:30:53.943698 2026] [php7:notice] [pid 38] [client 10.9.0.1:33310] PHP Notice:  Undefined index: Password in /var/www/SQL_Injection/unsafe_home.php on line 242, referer: http://www.seed-server.com/
+2026 Jul 21 16:30:54 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/apache-logs/other_vhosts_access.log www.seed-server.com:80 10.9.0.1 - - [21/Jul/2026:08:30:53 +0000] "GET /css/bootstrap.min.css HTTP/1.1" 403 500 "http://www.seed-server.com/unsafe_home.php?username=admin%27+%23&Password=" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:83.0) Gecko/20100101 Firefox/83.0"
+2026 Jul 21 16:30:54 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/apache-logs/error.log [Tue Jul 21 08:30:53.942350 2026] [php7:notice] [pid 38] [client 10.9.0.1:33310] PHP Notice:  session_start(): A session had already been started - ignoring in /var/www/SQL_Injection/unsafe_home.php on line 124, referer: http://www.seed-server.com/
+2026 Jul 21 16:30:54 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/apache-logs/error.log [Tue Jul 21 08:30:53.943718 2026] [php7:notice] [pid 38] [client 10.9.0.1:33310] PHP Notice:  Undefined index: Password in /var/www/SQL_Injection/unsafe_home.php on line 242, referer: http://www.seed-server.com/
+2026 Jul 21 16:30:54 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/apache-logs/other_vhosts_access.log www.seed-server.com:80 10.9.0.1 - - [21/Jul/2026:08:30:53 +0000] "GET /css/style_home.css HTTP/1.1" 403 500 "http://www.seed-server.com/unsafe_home.php?username=admin%27+%23&Password=" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:83.0) Gecko/20100101 Firefox/83.0"
+2026 Jul 21 16:30:55 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/apache-logs/error.log [Tue Jul 21 08:30:53.943731 2026] [php7:notice] [pid 38] [client 10.9.0.1:33310] PHP Notice:  Undefined index: Password in /var/www/SQL_Injection/unsafe_home.php on line 242, referer: http://www.seed-server.com/
+2026 Jul 21 16:30:55 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/apache-logs/error.log [Tue Jul 21 08:30:53.943743 2026] [php7:notice] [pid 38] [client 10.9.0.1:33310] PHP Notice:  Undefined index: Password in /var/www/SQL_Injection/unsafe_home.php on line 242, referer: http://www.seed-server.com/
+2026 Jul 21 16:30:55 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/apache-logs/error.log [Tue Jul 21 08:30:53.943764 2026] [php7:notice] [pid 38] [client 10.9.0.1:33310] PHP Notice:  Undefined index: Password in /var/www/SQL_Injection/unsafe_home.php on line 242, referer: http://www.seed-server.com/
+2026 Jul 21 16:30:55 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/apache-logs/error.log [Tue Jul 21 08:30:53.995674 2026] [core:error] [pid 38] (13)Permission denied: [client 10.9.0.1:33310] AH00035: access to /css/bootstrap.min.css denied (filesystem path '/var/www/SQL_Injection/css/bootstrap.min.css') because search permissions are missing on a component of the path, referer: http://www.seed-server.com/unsafe_home.php?username=admin%27+%23&Password=
+2026 Jul 21 16:30:55 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/apache-logs/error.log [Tue Jul 21 08:30:53.943753 2026] [php7:notice] [pid 38] [client 10.9.0.1:33310] PHP Notice:  Undefined index: Password in /var/www/SQL_Injection/unsafe_home.php on line 242, referer: http://www.seed-server.com/
+2026 Jul 21 16:30:55 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/mysql_logs/query.log mysqllog: 2026-07-21T08:30:53.941157Z	   11 Query	SELECT id, name, eid, salary, birth, ssn, phoneNumber, address, email,nickname,Password
+2026 Jul 21 16:30:55 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/mysql_logs/query.log mysqllog:       FROM credential
+2026 Jul 21 16:30:55 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/mysql_logs/query.log mysqllog: 2026-07-21T08:30:53.940391Z	   11 Connect	seed@10.9.0.5 on sqllab_users using TCP/IP
+2026 Jul 21 16:30:55 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/apache-logs/error.log [Tue Jul 21 08:30:53.996478 2026] [core:error] [pid 38] (13)Permission denied: [client 10.9.0.1:33310] AH00035: access to /css/style_home.css denied (filesystem path '/var/www/SQL_Injection/css/style_home.css') because search permissions are missing on a component of the path, referer: http://www.seed-server.com/unsafe_home.php?username=admin%27+%23&Password=
+2026 Jul 21 16:30:55 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/mysql_logs/query.log mysqllog:       WHERE name= 'admin' #' and Password='da39a3ee5e6b4b0d3255bfef95601890afd80709'
+2026 Jul 21 16:30:55 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/mysql_logs/query.log mysqllog: 2026-07-21T08:30:53.942941Z	   12 Connect	seed@10.9.0.5 on sqllab_users using TCP/IP
+2026 Jul 21 16:30:55 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/mysql_logs/query.log mysqllog: 2026-07-21T08:30:53.943249Z	   12 Query	SELECT id, name, eid, salary, birth, ssn, password, nickname, email, address, phoneNumber
+2026 Jul 21 16:30:55 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/mysql_logs/query.log mysqllog:           FROM credential
+2026 Jul 21 16:30:55 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/mysql_logs/query.log mysqllog: 2026-07-21T08:30:53.943667Z	   12 Quit	
+2026 Jul 21 16:30:55 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/mysql_logs/query.log mysqllog: 2026-07-21T08:30:53.944489Z	   11 Quit	
+2026 Jul 21 16:31:06 (SeedLabs_SQLInjection) any->df -P ossec: output: 'df -P': Filesystem     1024-blocks     Used Available Capacity Mounted on
+2026 Jul 21 16:31:07 (SeedLabs_SQLInjection) any->df -P ossec: output: 'df -P': udev               1986896        0   1986896       0% /dev
+2026 Jul 21 16:31:07 (SeedLabs_SQLInjection) any->df -P ossec: output: 'df -P': tmpfs              2015296        0   2015296       0% /sys/fs/cgroup
+2026 Jul 21 16:31:07 (SeedLabs_SQLInjection) any->df -P ossec: output: 'df -P': /dev/loop0             128      128         0     100% /snap/bare/5
+2026 Jul 21 16:31:07 (SeedLabs_SQLInjection) any->df -P ossec: output: 'df -P': tmpfs              2015296     9472   2005824       1% /dev/shm
+2026 Jul 21 16:31:07 (SeedLabs_SQLInjection) any->df -P ossec: output: 'df -P': /dev/loop1           30720    30720         0     100% /snap/snapd/8542
+2026 Jul 21 16:31:07 (SeedLabs_SQLInjection) any->df -P ossec: output: 'df -P': tmpfs                 5120        0      5120       0% /run/lock
+2026 Jul 21 16:31:07 (SeedLabs_SQLInjection) any->df -P ossec: output: 'df -P': tmpfs               403060     1476    401584       1% /run
+2026 Jul 21 16:31:07 (SeedLabs_SQLInjection) any->df -P ossec: output: 'df -P': /dev/loop2           56320    56320         0     100% /snap/core18/1880
+2026 Jul 21 16:31:07 (SeedLabs_SQLInjection) any->df -P ossec: output: 'df -P': /dev/loop5          223744   223744         0     100% /snap/gnome-3-34-1804/93
+2026 Jul 21 16:31:07 (SeedLabs_SQLInjection) any->df -P ossec: output: 'df -P': /dev/loop3           63616    63616         0     100% /snap/gtk-common-themes/1506
+2026 Jul 21 16:31:07 (SeedLabs_SQLInjection) any->df -P ossec: output: 'df -P': /dev/sda5         81526200 10300896  67040984      14% /
+2026 Jul 21 16:31:07 (SeedLabs_SQLInjection) any->df -P ossec: output: 'df -P': /dev/loop6          261760   261760         0     100% /snap/gnome-3-34-1804/36
+2026 Jul 21 16:31:07 (SeedLabs_SQLInjection) any->df -P ossec: output: 'df -P': /dev/loop4           93952    93952         0     100% /snap/gtk-common-themes/1535
+2026 Jul 21 16:31:07 (SeedLabs_SQLInjection) any->df -P ossec: output: 'df -P': tmpfs               403056       12    403044       1% /run/user/125
+2026 Jul 21 16:31:07 (SeedLabs_SQLInjection) any->df -P ossec: output: 'df -P': /dev/loop7           51072    51072         0     100% /snap/snap-store/467
+2026 Jul 21 16:31:07 (SeedLabs_SQLInjection) any->df -P ossec: output: 'df -P': overlay           81526200 10300896  67040984      14% /var/lib/docker/overlay2/ece447f9c2ced7e634ce4461b81e44b8f96791628ab6c6a279bdbe5dff7774bc/merged
+2026 Jul 21 16:31:07 (SeedLabs_SQLInjection) any->df -P ossec: output: 'df -P': tmpfs               403056       24    403032       1% /run/user/1000
+2026 Jul 21 16:31:07 (SeedLabs_SQLInjection) any->df -P ossec: output: 'df -P': overlay           81526200 10300896  67040984      14% /var/lib/docker/overlay2/505f5347f9eeabe792f9fe05fdbfc5cae4ff960b4b5dea2fe62622254bb9c233/merged
+2026 Jul 21 16:31:07 (SeedLabs_SQLInjection) any->df -P ossec: output: 'df -P': /dev/sda1           523248        4    523244       1% /boot/efi
+2026 Jul 21 16:31:07 (SeedLabs_SQLInjection) any->last -n 20 ossec: output: 'last -n 20':
+seed     :0           :0               Tue Jul 21 03:24   still logged in
+reboot   system boot  5.4.0-54-generic Tue Jul 21 03:24   still running
+seed     :0           :0               Mon Jul 20 01:31 - crash (1+01:52)
+reboot   system boot  5.4.0-54-generic Mon Jul 20 01:31   still running
+seed     :0           :0               Mon Jul 20 01:08 - down   (00:22)
+reboot   system boot  5.4.0-54-generic Mon Jul 20 01:07 - 01:30  (00:23)
+seed     :0           :0               Fri Jul 17 03:51 - down   (03:11)
+reboot   system boot  5.4.0-54-generic Fri Jul 17 03:39 - 07:03  (03:23)
+seed     :0           :0               Thu Jul 16 03:45 - crash  (23:54)
+reboot   system boot  5.4.0-54-generic Thu Jul 16 03:32 - 07:03 (1+03:30)
+reboot   system boot  5.4.0-54-generic Wed Jul 15 01:10 - 06:30  (05:19)
+seed     :0           :0               Tue Jul 14 03:27 - crash  (21:43)
+reboot   system boot  5.4.0-54-generic Tue Jul 14 03:18 - 06:30 (1+03:11)
+seed     :0           :0               Thu Jul  9 06:50 - crash (4+20:28)
+reboot   system boot  5.4.0-54-generic Thu Jul  9 06:50 - 06:30 (5+23:39)
+seed     :0           :0               Thu Jul  9 00:23 - down   (06:20)
+reboot   system boot  5.4.0-54-generic Thu Jul  9 00:22 - 06:43  (06:20)
+reboot   system boot  5.4.0-54-generic Wed Jul  8 07:00 - 07:01  (00:01)
+seed     :0           :0               Wed Jul  8 06:33 - down   (00:26)
+reboot   system boot  5.4.0-54-generic Wed Jul  8 06:33 - 07:00  (00:26)
+wtmp begins Tue Nov 24 10:38:27 2020
+2026 Jul 21 16:31:07 (SeedLabs_SQLInjection) any->netstat listening ports ossec: output: 'netstat listening ports':
+tcp6 :::21 :::* 683/vsftpd
+tcp 0.0.0.0:22 0.0.0.0:* /usr
+tcp6 :::22 :::* /usr
+tcp 0.0.0.0:23 0.0.0.0:* 911/inetd
+tcp 127.0.0.53:53 0.0.0.0:* 420/systemd-resolve
+udp 127.0.0.53:53 0.0.0.0:* 420/systemd-resolve
+tcp6 :::80 :::* 1760/docker-proxy
+tcp 127.0.0.1:631 0.0.0.0:* 559/cupsd
+tcp6 ::1:631 :::* 559/cupsd
+udp 0.0.0.0:631 0.0.0.0:* 565/cups-browsed
+udp 0.0.0.0:5353 0.0.0.0:* 453/avahi-daemon
+udp6 :::5353 :::* 453/avahi-daemon
+udp6 :::33607 :::* 453/avahi-daemon
+tcp 127.0.0.1:42981 0.0.0.0:* 681/containerd
+udp 0.0.0.0:50331 0.0.0.0:* 453/avahi-daemon
+2026 Jul 21 16:31:15 blueteammanager-VirtualBox->journald Jul 21 08:31:13 blueteammanager-VirtualBox sudo[151393]: blueteammanager : TTY=pts/0 ; PWD=/home/blueteammanager ; USER=root ; COMMAND=/usr/bin/tail -20 /var/ossec/logs/archives/archives.log
+2026 Jul 21 16:31:15 blueteammanager-VirtualBox->journald Jul 21 08:31:13 blueteammanager-VirtualBox sudo[151393]: pam_unix(sudo:session): session opened for user root(uid=0) by (uid=1000)
+2026 Jul 21 16:31:15 blueteammanager-VirtualBox->journald Jul 21 08:31:13 blueteammanager-VirtualBox sudo[151393]: pam_unix(sudo:session): session closed for user root
+2026 Jul 21 16:31:17 (SeedLabs_SQLInjection) any->journald Jul 21 08:31:16 VM NetworkManager[457]: <info>  [1784622676.9414] dhcp4 (ens18): option dhcp_lease_time      => '4000'
+2026 Jul 21 16:31:17 (SeedLabs_SQLInjection) any->journald Jul 21 08:31:16 VM NetworkManager[457]: <info>  [1784622676.9414] dhcp4 (ens18): option domain_name          => 'internal'
+2026 Jul 21 16:31:17 (SeedLabs_SQLInjection) any->journald Jul 21 08:31:16 VM dbus-daemon[456]: [system] Activating via systemd: service name='org.freedesktop.nm_dispatcher' unit='dbus-org.freedesktop.nm-dispatcher.service' requested by ':1.11' (uid=0 pid=457 comm="/usr/sbin/NetworkManager --no-daemon " label="unconfined")
+2026 Jul 21 16:31:17 (SeedLabs_SQLInjection) any->journald Jul 21 08:31:16 VM NetworkManager[457]: <info>  [1784622676.9414] dhcp4 (ens18): option domain_name_servers  => '8.8.8.8'
+2026 Jul 21 16:31:17 (SeedLabs_SQLInjection) any->journald Jul 21 08:31:16 VM NetworkManager[457]: <info>  [1784622676.9415] dhcp4 (ens18): option expiry               => '1784626676'
+2026 Jul 21 16:31:17 (SeedLabs_SQLInjection) any->journald Jul 21 08:31:16 VM NetworkManager[457]: <info>  [1784622676.9415] dhcp4 (ens18): option host_name            => 'vm'
+2026 Jul 21 16:31:17 (SeedLabs_SQLInjection) any->journald Jul 21 08:31:16 VM NetworkManager[457]: <info>  [1784622676.9415] dhcp4 (ens18): option ip_address           => '172.29.11.105'
+2026 Jul 21 16:31:17 (SeedLabs_SQLInjection) any->journald Jul 21 08:31:16 VM NetworkManager[457]: <info>  [1784622676.9415] dhcp4 (ens18): option requested_broadcast_address => '1'
+2026 Jul 21 16:31:17 (SeedLabs_SQLInjection) any->journald Jul 21 08:31:16 VM NetworkManager[457]: <info>  [1784622676.9415] dhcp4 (ens18): option requested_domain_name => '1'
+2026 Jul 21 16:31:17 (SeedLabs_SQLInjection) any->journald Jul 21 08:31:16 VM NetworkManager[457]: <info>  [1784622676.9415] dhcp4 (ens18): option requested_domain_name_servers => '1'
+2026 Jul 21 16:31:17 (SeedLabs_SQLInjection) any->journald Jul 21 08:31:16 VM NetworkManager[457]: <info>  [1784622676.9415] dhcp4 (ens18): option requested_domain_search => '1'
+2026 Jul 21 16:31:17 (SeedLabs_SQLInjection) any->journald Jul 21 08:31:16 VM NetworkManager[457]: <info>  [1784622676.9415] dhcp4 (ens18): option requested_host_name  => '1'
+2026 Jul 21 16:31:17 (SeedLabs_SQLInjection) any->journald Jul 21 08:31:16 VM NetworkManager[457]: <info>  [1784622676.9415] dhcp4 (ens18): option requested_interface_mtu => '1'
+2026 Jul 21 16:31:17 (SeedLabs_SQLInjection) any->journald Jul 21 08:31:16 VM NetworkManager[457]: <info>  [1784622676.9416] dhcp4 (ens18): option requested_ms_classless_static_routes => '1'
+2026 Jul 21 16:31:17 (SeedLabs_SQLInjection) any->journald Jul 21 08:31:16 VM NetworkManager[457]: <info>  [1784622676.9416] dhcp4 (ens18): option requested_nis_domain => '1'
+2026 Jul 21 16:31:17 (SeedLabs_SQLInjection) any->journald Jul 21 08:31:16 VM NetworkManager[457]: <info>  [1784622676.9416] dhcp4 (ens18): option requested_nis_servers => '1'
+2026 Jul 21 16:31:17 (SeedLabs_SQLInjection) any->journald Jul 21 08:31:16 VM NetworkManager[457]: <info>  [1784622676.9416] dhcp4 (ens18): option requested_ntp_servers => '1'
+2026 Jul 21 16:31:17 (SeedLabs_SQLInjection) any->journald Jul 21 08:31:16 VM NetworkManager[457]: <info>  [1784622676.9416] dhcp4 (ens18): option requested_rfc3442_classless_static_routes => '1'
+2026 Jul 21 16:31:17 (SeedLabs_SQLInjection) any->journald Jul 21 08:31:16 VM NetworkManager[457]: <info>  [1784622676.9416] dhcp4 (ens18): option requested_root_path  => '1'
+2026 Jul 21 16:31:17 (SeedLabs_SQLInjection) any->journald Jul 21 08:31:16 VM NetworkManager[457]: <info>  [1784622676.9416] dhcp4 (ens18): option requested_routers    => '1'
+2026 Jul 21 16:31:17 (SeedLabs_SQLInjection) any->journald Jul 21 08:31:16 VM NetworkManager[457]: <info>  [1784622676.9416] dhcp4 (ens18): option requested_static_routes => '1'
+2026 Jul 21 16:31:17 (SeedLabs_SQLInjection) any->journald Jul 21 08:31:16 VM NetworkManager[457]: <info>  [1784622676.9417] dhcp4 (ens18): option requested_subnet_mask => '1'
+2026 Jul 21 16:31:17 (SeedLabs_SQLInjection) any->journald Jul 21 08:31:16 VM NetworkManager[457]: <info>  [1784622676.9417] dhcp4 (ens18): option requested_time_offset => '1'
+2026 Jul 21 16:31:17 (SeedLabs_SQLInjection) any->journald Jul 21 08:31:16 VM NetworkManager[457]: <info>  [1784622676.9417] dhcp4 (ens18): option requested_wpad       => '1'
+2026 Jul 21 16:31:17 (SeedLabs_SQLInjection) any->journald Jul 21 08:31:16 VM NetworkManager[457]: <info>  [1784622676.9417] dhcp4 (ens18): option routers              => '172.29.11.1'
+2026 Jul 21 16:31:17 (SeedLabs_SQLInjection) any->journald Jul 21 08:31:16 VM NetworkManager[457]: <info>  [1784622676.9417] dhcp4 (ens18): option subnet_mask          => '255.255.255.0'
+2026 Jul 21 16:31:17 (SeedLabs_SQLInjection) any->journald Jul 21 08:31:16 VM NetworkManager[457]: <info>  [1784622676.9417] dhcp4 (ens18): state changed extended -> extended
+2026 Jul 21 16:31:17 (SeedLabs_SQLInjection) any->journald Jul 21 08:31:16 VM systemd[1]: Starting Network Manager Script Dispatcher Service...
+2026 Jul 21 16:31:17 (SeedLabs_SQLInjection) any->journald Jul 21 08:31:16 VM dbus-daemon[456]: [system] Successfully activated service 'org.freedesktop.nm_dispatcher'
+2026 Jul 21 16:31:17 (SeedLabs_SQLInjection) any->journald Jul 21 08:31:16 VM systemd[1]: Started Network Manager Script Dispatcher Service.
+2026 Jul 21 16:31:27 (SeedLabs_SQLInjection) any->journald Jul 21 08:31:27 VM systemd[1]: NetworkManager-dispatcher.service: Succeeded.
+2026 Jul 21 16:31:41 blueteammanager-VirtualBox->journald Jul 21 08:31:40 blueteammanager-VirtualBox sudo[152056]: pam_unix(sudo:session): session opened for user root(uid=0) by (uid=1000)
+2026 Jul 21 16:31:41 blueteammanager-VirtualBox->journald Jul 21 08:31:40 blueteammanager-VirtualBox sudo[152056]: blueteammanager : TTY=pts/0 ; PWD=/home/blueteammanager ; USER=root ; COMMAND=/usr/bin/grep mysqllog: /var/ossec/logs/archives/archives.log
+2026 Jul 21 16:31:41 blueteammanager-VirtualBox->journald Jul 21 08:31:40 blueteammanager-VirtualBox sudo[152056]: pam_unix(sudo:session): session closed for user root
+2026 Jul 21 16:33:31 blueteammanager-VirtualBox->journald Jul 21 08:33:29 blueteammanager-VirtualBox systemd[1]: Started Run anacron jobs.
+2026 Jul 21 16:33:31 blueteammanager-VirtualBox->journald Jul 21 08:33:29 blueteammanager-VirtualBox anacron[154719]: Normal exit (0 jobs run)
+2026 Jul 21 16:33:31 blueteammanager-VirtualBox->journald Jul 21 08:33:29 blueteammanager-VirtualBox anacron[154719]: Anacron 2.3 started on 2026-07-21
+2026 Jul 21 16:33:31 blueteammanager-VirtualBox->journald Jul 21 08:33:29 blueteammanager-VirtualBox systemd[1]: anacron.service: Deactivated successfully.
+2026 Jul 21 16:34:34 blueteammanager-VirtualBox->df -P ossec: output: 'df -P': Filesystem     1024-blocks     Used Available Capacity Mounted on
+2026 Jul 21 16:34:34 blueteammanager-VirtualBox->df -P ossec: output: 'df -P': tmpfs              1999624     2460   1997164       1% /run
+2026 Jul 21 16:34:34 blueteammanager-VirtualBox->df -P ossec: output: 'df -P': /dev/sda3         40584544 33643792   5063540      87% /
+2026 Jul 21 16:34:34 blueteammanager-VirtualBox->df -P ossec: output: 'df -P': tmpfs              9998116       80   9998036       1% /dev/shm
+2026 Jul 21 16:34:34 blueteammanager-VirtualBox->df -P ossec: output: 'df -P': tmpfs                 5120        0      5120       0% /run/lock
+2026 Jul 21 16:34:34 blueteammanager-VirtualBox->df -P ossec: output: 'df -P': tmpfs              1999620     1648   1997972       1% /run/user/1000
+2026 Jul 21 16:34:34 blueteammanager-VirtualBox->df -P ossec: output: 'df -P': /dev/sda2           524252     6232    518020       2% /boot/efi
+2026 Jul 21 16:34:34 blueteammanager-VirtualBox->df -P ossec: output: 'df -P': overlay           40584544 33643792   5063540      87% /var/lib/docker/rootfs/overlayfs/48e29758258800a593f324f89fbe45c9ac0b3f2a10e9685ad7298526df8f7665
+2026 Jul 21 16:34:34 blueteammanager-VirtualBox->df -P ossec: output: 'df -P': overlay           40584544 33643792   5063540      87% /var/lib/docker/rootfs/overlayfs/2899c105a1329ee1d680d0293725fd43387d53998e24d33c1d9a8d5531306f9b
+2026 Jul 21 16:34:34 blueteammanager-VirtualBox->df -P ossec: output: 'df -P': overlay           40584544 33643792   5063540      87% /var/lib/docker/rootfs/overlayfs/93ab2e19f32a76357baf8dc50a86d8583785912dd98c199c8fc97f916474e020
+2026 Jul 21 16:34:34 blueteammanager-VirtualBox->df -P ossec: output: 'df -P': overlay           40584544 33643792   5063540      87% /var/lib/docker/rootfs/overlayfs/ee63ab163267c1cad4cd545af5d5934204e31068b7db6d67e540b7a1233ec476
+2026 Jul 21 16:34:34 blueteammanager-VirtualBox->last -n 20 ossec: output: 'last -n 20':
+blueteam :0           :0               Tue Jul 21 14:58   still logged in
+reboot   system boot  6.8.0-124-generi Tue Jul 21 14:58   still running
+blueteam :0           :0               Tue Jul 21 14:54 - crash  (00:04)
+reboot   system boot  6.8.0-124-generi Tue Jul 21 14:54   still running
+blueteam :0           :0               Tue Jul 21 11:54 - crash  (02:59)
+reboot   system boot  6.8.0-124-generi Tue Jul 21 11:54   still running
+blueteam :0           :0               Mon Jul 20 16:31 - crash  (19:23)
+reboot   system boot  6.8.0-124-generi Mon Jul 20 16:30   still running
+blueteam :0           :0               Mon Jul 20 13:07 - down   (03:23)
+reboot   system boot  6.8.0-124-generi Mon Jul 20 13:07 - 16:30  (03:23)
+blueteam :0           :0               Fri Jul 17 18:00 - crash (2+19:06)
+reboot   system boot  6.8.0-124-generi Fri Jul 17 18:00 - 16:30 (2+22:30)
+blueteam :0           :0               Fri Jul 17 15:38 - crash  (02:22)
+reboot   system boot  6.8.0-124-generi Fri Jul 17 15:38 - 16:30 (3+00:52)
+blueteam :0           :0               Thu Jul 16 18:02 - crash  (21:35)
+reboot   system boot  6.8.0-124-generi Thu Jul 16 18:02 - 16:30 (3+22:28)
+blueteam :0           :0               Thu Jul 16 17:34 - crash  (00:27)
+reboot   system boot  6.8.0-124-generi Thu Jul 16 17:34 - 16:30 (3+22:56)
+blueteam :0           :0               Thu Jul 16 15:30 - crash  (02:04)
+reboot   system boot  6.8.0-124-generi Thu Jul 16 15:30 - 16:30 (4+01:00)
+wtmp begins Thu Jun 18 23:44:19 2026
+2026 Jul 21 16:37:07 (SeedLabs_SQLInjection) any->df -P ossec: output: 'df -P': Filesystem     1024-blocks     Used Available Capacity Mounted on
+2026 Jul 21 16:37:07 (SeedLabs_SQLInjection) any->df -P ossec: output: 'df -P': udev               1986896        0   1986896       0% /dev
+2026 Jul 21 16:37:07 (SeedLabs_SQLInjection) any->df -P ossec: output: 'df -P': tmpfs              2015296        0   2015296       0% /sys/fs/cgroup
+2026 Jul 21 16:37:07 (SeedLabs_SQLInjection) any->df -P ossec: output: 'df -P': tmpfs              2015296    12776   2002520       1% /dev/shm
+2026 Jul 21 16:37:07 (SeedLabs_SQLInjection) any->df -P ossec: output: 'df -P': /dev/loop1           30720    30720         0     100% /snap/snapd/8542
+2026 Jul 21 16:37:07 (SeedLabs_SQLInjection) any->df -P ossec: output: 'df -P': /dev/sda5         81526200 10300876  67041004      14% /
+2026 Jul 21 16:37:07 (SeedLabs_SQLInjection) any->df -P ossec: output: 'df -P': /dev/loop0             128      128         0     100% /snap/bare/5
+2026 Jul 21 16:37:07 (SeedLabs_SQLInjection) any->df -P ossec: output: 'df -P': /dev/loop2           56320    56320         0     100% /snap/core18/1880
+2026 Jul 21 16:37:07 (SeedLabs_SQLInjection) any->df -P ossec: output: 'df -P': /dev/loop3           63616    63616         0     100% /snap/gtk-common-themes/1506
+2026 Jul 21 16:37:07 (SeedLabs_SQLInjection) any->df -P ossec: output: 'df -P': /dev/loop5          223744   223744         0     100% /snap/gnome-3-34-1804/93
+2026 Jul 21 16:37:07 (SeedLabs_SQLInjection) any->df -P ossec: output: 'df -P': tmpfs               403060     1476    401584       1% /run
+2026 Jul 21 16:37:07 (SeedLabs_SQLInjection) any->df -P ossec: output: 'df -P': tmpfs                 5120        0      5120       0% /run/lock
+2026 Jul 21 16:37:07 (SeedLabs_SQLInjection) any->df -P ossec: output: 'df -P': /dev/loop4           93952    93952         0     100% /snap/gtk-common-themes/1535
+2026 Jul 21 16:37:07 (SeedLabs_SQLInjection) any->df -P ossec: output: 'df -P': tmpfs               403056       12    403044       1% /run/user/125
+2026 Jul 21 16:37:07 (SeedLabs_SQLInjection) any->df -P ossec: output: 'df -P': tmpfs               403056       24    403032       1% /run/user/1000
+2026 Jul 21 16:37:07 (SeedLabs_SQLInjection) any->df -P ossec: output: 'df -P': overlay           81526200 10300876  67041004      14% /var/lib/docker/overlay2/ece447f9c2ced7e634ce4461b81e44b8f96791628ab6c6a279bdbe5dff7774bc/merged
+2026 Jul 21 16:37:07 (SeedLabs_SQLInjection) any->df -P ossec: output: 'df -P': overlay           81526200 10300876  67041004      14% /var/lib/docker/overlay2/505f5347f9eeabe792f9fe05fdbfc5cae4ff960b4b5dea2fe62622254bb9c233/merged
+2026 Jul 21 16:37:07 (SeedLabs_SQLInjection) any->df -P ossec: output: 'df -P': /dev/loop7           51072    51072         0     100% /snap/snap-store/467
+2026 Jul 21 16:37:07 (SeedLabs_SQLInjection) any->df -P ossec: output: 'df -P': /dev/sda1           523248        4    523244       1% /boot/efi
+2026 Jul 21 16:37:07 (SeedLabs_SQLInjection) any->df -P ossec: output: 'df -P': /dev/loop6          261760   261760         0     100% /snap/gnome-3-34-1804/36
+2026 Jul 21 16:37:07 (SeedLabs_SQLInjection) any->last -n 20 ossec: output: 'last -n 20':
+seed     :0           :0               Tue Jul 21 03:24   still logged in
+reboot   system boot  5.4.0-54-generic Tue Jul 21 03:24   still running
+seed     :0           :0               Mon Jul 20 01:31 - crash (1+01:52)
+reboot   system boot  5.4.0-54-generic Mon Jul 20 01:31   still running
+seed     :0           :0               Mon Jul 20 01:08 - down   (00:22)
+reboot   system boot  5.4.0-54-generic Mon Jul 20 01:07 - 01:30  (00:23)
+seed     :0           :0               Fri Jul 17 03:51 - down   (03:11)
+reboot   system boot  5.4.0-54-generic Fri Jul 17 03:39 - 07:03  (03:23)
+seed     :0           :0               Thu Jul 16 03:45 - crash  (23:54)
+reboot   system boot  5.4.0-54-generic Thu Jul 16 03:32 - 07:03 (1+03:30)
+reboot   system boot  5.4.0-54-generic Wed Jul 15 01:10 - 06:30  (05:19)
+seed     :0           :0               Tue Jul 14 03:27 - crash  (21:43)
+reboot   system boot  5.4.0-54-generic Tue Jul 14 03:18 - 06:30 (1+03:11)
+seed     :0           :0               Thu Jul  9 06:50 - crash (4+20:28)
+reboot   system boot  5.4.0-54-generic Thu Jul  9 06:50 - 06:30 (5+23:39)
+seed     :0           :0               Thu Jul  9 00:23 - down   (06:20)
+reboot   system boot  5.4.0-54-generic Thu Jul  9 00:22 - 06:43  (06:20)
+reboot   system boot  5.4.0-54-generic Wed Jul  8 07:00 - 07:01  (00:01)
+seed     :0           :0               Wed Jul  8 06:33 - down   (00:26)
+reboot   system boot  5.4.0-54-generic Wed Jul  8 06:33 - 07:00  (00:26)
+wtmp begins Tue Nov 24 10:38:27 2020
+2026 Jul 21 16:37:07 (SeedLabs_SQLInjection) any->netstat listening ports ossec: output: 'netstat listening ports':
+tcp6 :::21 :::* 683/vsftpd
+tcp 0.0.0.0:22 0.0.0.0:* /usr
+tcp6 :::22 :::* /usr
+tcp 0.0.0.0:23 0.0.0.0:* 911/inetd
+tcp 127.0.0.53:53 0.0.0.0:* 420/systemd-resolve
+udp 127.0.0.53:53 0.0.0.0:* 420/systemd-resolve
+tcp6 :::80 :::* 1760/docker-proxy
+tcp 127.0.0.1:631 0.0.0.0:* 559/cupsd
+tcp6 ::1:631 :::* 559/cupsd
+udp 0.0.0.0:631 0.0.0.0:* 565/cups-browsed
+udp 0.0.0.0:5353 0.0.0.0:* 453/avahi-daemon
+udp6 :::5353 :::* 453/avahi-daemon
+udp6 :::33607 :::* 453/avahi-daemon
+tcp 127.0.0.1:42981 0.0.0.0:* 681/containerd
+udp 0.0.0.0:50331 0.0.0.0:* 453/avahi-daemon
+2026 Jul 21 16:37:37 blueteammanager-VirtualBox->journald Jul 21 08:37:36 blueteammanager-VirtualBox sudo[160643]: pam_unix(sudo:session): session opened for user root(uid=0) by (uid=1000)
+2026 Jul 21 16:37:37 blueteammanager-VirtualBox->journald Jul 21 08:37:36 blueteammanager-VirtualBox sudo[160643]: blueteammanager : TTY=pts/0 ; PWD=/home/blueteammanager ; USER=root ; COMMAND=/usr/bin/grep GET /var/ossec/logs/archives/archives.log
+2026 Jul 21 16:37:37 blueteammanager-VirtualBox->journald Jul 21 08:37:36 blueteammanager-VirtualBox sudo[160643]: pam_unix(sudo:session): session closed for user root
+2026 Jul 21 16:37:49 blueteammanager-VirtualBox->journald Jul 21 08:37:48 blueteammanager-VirtualBox sudo[160967]: pam_unix(sudo:session): session opened for user root(uid=0) by (uid=1000)
+2026 Jul 21 16:37:49 blueteammanager-VirtualBox->journald Jul 21 08:37:48 blueteammanager-VirtualBox sudo[160967]: blueteammanager : TTY=pts/0 ; PWD=/home/blueteammanager ; USER=root ; COMMAND=/usr/bin/nano /var/ossec/etc/ossec.conf
+2026 Jul 21 16:37:59 blueteammanager-VirtualBox->journald Jul 21 08:37:58 blueteammanager-VirtualBox sudo[160967]: pam_unix(sudo:session): session closed for user root
+2026 Jul 21 16:40:35 blueteammanager-VirtualBox->df -P ossec: output: 'df -P': Filesystem     1024-blocks     Used Available Capacity Mounted on
+2026 Jul 21 16:40:35 blueteammanager-VirtualBox->df -P ossec: output: 'df -P': tmpfs              1999624     2460   1997164       1% /run
+2026 Jul 21 16:40:35 blueteammanager-VirtualBox->df -P ossec: output: 'df -P': tmpfs              9998116       80   9998036       1% /dev/shm
+2026 Jul 21 16:40:35 blueteammanager-VirtualBox->df -P ossec: output: 'df -P': tmpfs              1999620     1648   1997972       1% /run/user/1000
+2026 Jul 21 16:40:35 blueteammanager-VirtualBox->df -P ossec: output: 'df -P': /dev/sda2           524252     6232    518020       2% /boot/efi
+2026 Jul 21 16:40:35 blueteammanager-VirtualBox->df -P ossec: output: 'df -P': overlay           40584544 33645052   5062280      87% /var/lib/docker/rootfs/overlayfs/2899c105a1329ee1d680d0293725fd43387d53998e24d33c1d9a8d5531306f9b
+2026 Jul 21 16:40:35 blueteammanager-VirtualBox->df -P ossec: output: 'df -P': overlay           40584544 33645052   5062280      87% /var/lib/docker/rootfs/overlayfs/ee63ab163267c1cad4cd545af5d5934204e31068b7db6d67e540b7a1233ec476
+2026 Jul 21 16:40:35 blueteammanager-VirtualBox->df -P ossec: output: 'df -P': tmpfs                 5120        0      5120       0% /run/lock
+2026 Jul 21 16:40:35 blueteammanager-VirtualBox->df -P ossec: output: 'df -P': /dev/sda3         40584544 33645052   5062280      87% /
+2026 Jul 21 16:40:35 blueteammanager-VirtualBox->df -P ossec: output: 'df -P': overlay           40584544 33645052   5062280      87% /var/lib/docker/rootfs/overlayfs/48e29758258800a593f324f89fbe45c9ac0b3f2a10e9685ad7298526df8f7665
+2026 Jul 21 16:40:35 blueteammanager-VirtualBox->df -P ossec: output: 'df -P': overlay           40584544 33645052   5062280      87% /var/lib/docker/rootfs/overlayfs/93ab2e19f32a76357baf8dc50a86d8583785912dd98c199c8fc97f916474e020
+2026 Jul 21 16:40:35 blueteammanager-VirtualBox->last -n 20 ossec: output: 'last -n 20':
+blueteam :0           :0               Tue Jul 21 14:58   still logged in
+reboot   system boot  6.8.0-124-generi Tue Jul 21 14:58   still running
+blueteam :0           :0               Tue Jul 21 14:54 - crash  (00:04)
+reboot   system boot  6.8.0-124-generi Tue Jul 21 14:54   still running
+blueteam :0           :0               Tue Jul 21 11:54 - crash  (02:59)
+reboot   system boot  6.8.0-124-generi Tue Jul 21 11:54   still running
+blueteam :0           :0               Mon Jul 20 16:31 - crash  (19:23)
+reboot   system boot  6.8.0-124-generi Mon Jul 20 16:30   still running
+blueteam :0           :0               Mon Jul 20 13:07 - down   (03:23)
+reboot   system boot  6.8.0-124-generi Mon Jul 20 13:07 - 16:30  (03:23)
+blueteam :0           :0               Fri Jul 17 18:00 - crash (2+19:06)
+reboot   system boot  6.8.0-124-generi Fri Jul 17 18:00 - 16:30 (2+22:30)
+blueteam :0           :0               Fri Jul 17 15:38 - crash  (02:22)
+reboot   system boot  6.8.0-124-generi Fri Jul 17 15:38 - 16:30 (3+00:52)
+blueteam :0           :0               Thu Jul 16 18:02 - crash  (21:35)
+reboot   system boot  6.8.0-124-generi Thu Jul 16 18:02 - 16:30 (3+22:28)
+blueteam :0           :0               Thu Jul 16 17:34 - crash  (00:27)
+reboot   system boot  6.8.0-124-generi Thu Jul 16 17:34 - 16:30 (3+22:56)
+blueteam :0           :0               Thu Jul 16 15:30 - crash  (02:04)
+reboot   system boot  6.8.0-124-generi Thu Jul 16 15:30 - 16:30 (4+01:00)
+wtmp begins Thu Jun 18 23:44:19 2026
+2026 Jul 21 16:41:11 blueteammanager-VirtualBox->journald Jul 21 08:41:10 blueteammanager-VirtualBox dbus-daemon[2539]: [session uid=1000 pid=2539] Successfully activated service 'org.freedesktop.Tracker3.Miner.Extract'
+2026 Jul 21 16:41:11 blueteammanager-VirtualBox->journald Jul 21 08:41:10 blueteammanager-VirtualBox systemd[2379]: Started Tracker metadata extractor.
+2026 Jul 21 16:41:11 blueteammanager-VirtualBox->journald Jul 21 08:41:10 blueteammanager-VirtualBox systemd[2379]: Starting Tracker metadata extractor...
+2026 Jul 21 16:41:11 blueteammanager-VirtualBox->journald Jul 21 08:41:10 blueteammanager-VirtualBox dbus-daemon[2539]: [session uid=1000 pid=2539] Activating via systemd: service name='org.freedesktop.Tracker3.Miner.Extract' unit='tracker-extract-3.service' requested by ':1.83' (uid=1000 pid=4718 comm="/usr/libexec/tracker-miner-fs-3 " label="unconfined")
