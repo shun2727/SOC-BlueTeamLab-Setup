@@ -70,6 +70,8 @@ mysqllog: 2026-07-20T05:32:51.891173Z    8 Query    SELECT id, name, eid, salary
   <order>data</order>
 </decoder>
 
+
+<!--claude decoder example 4 and final version-->
 <!-- sample output testing -->
 mysqllog: 2026-07-21T08:50:22.685998Z	   16 Query	UPDATE credential SET nickname='',email='',address='',PhoneNumber='123', salary  = 676767 WHERE name = 'Alice' #' where ID=1
 
