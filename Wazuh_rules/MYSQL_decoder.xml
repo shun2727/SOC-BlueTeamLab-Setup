@@ -69,3 +69,9 @@ mysqllog: 2026-07-20T05:32:51.891173Z    8 Query    SELECT id, name, eid, salary
   <regex type="pcre2" offset="after_parent">^\s*(.*)$</regex>
   <order>data</order>
 </decoder>
+
+<!-- sample output testing -->
+mysqllog: 2026-07-21T08:50:22.685998Z	   16 Query	UPDATE credential SET nickname='',email='',address='',PhoneNumber='123', salary  = 676767 WHERE name = 'Alice' #' where ID=1
+
+<!-- sample output testing cont -->
+mysqllog:       WHERE name= 'Alice' #' and Password='da39a3ee5e6b4b0d3255bfef95601890afd80709'
