@@ -75,3 +75,9 @@ mysqllog: 2026-07-21T08:50:22.685998Z	   16 Query	UPDATE credential SET nickname
 
 <!-- sample output testing cont -->
 mysqllog:       WHERE name= 'Alice' #' and Password='da39a3ee5e6b4b0d3255bfef95601890afd80709'
+
+<decoder name="mysql-querylog">
+  <prematch type="pcre2">^mysqllog:</prematch>
+  <regex type="pcre2" offset="after_prematch">^\s*(?:(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d+)Z\s+(\d+)\s+(\w+)\s+)?(.*)$</regex>
+  <order>timestamp, id, _action, data</order>
+</decoder>
