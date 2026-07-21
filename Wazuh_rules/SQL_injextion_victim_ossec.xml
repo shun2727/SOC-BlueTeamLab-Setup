@@ -23,7 +23,7 @@ sql (mysql_logs)
 </localfile>
 
 <localfile>
-    <log_format>apache-errorlog</log_format>
+    <log_format>apache</log_format>
     <location>/home/seed/Downloads/Labsetup/apache-logs/error.log</location>
 </localfile>
 

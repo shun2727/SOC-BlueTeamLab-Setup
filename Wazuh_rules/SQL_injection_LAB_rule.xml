@@ -13,7 +13,7 @@ inflictted and sent towards the hive to reduce amount of noise
 <!-- for naming use rule id 50 onwards -->
 <group name="local,sql_injection,mysql_querylog,">
 
-<!-- i dont remember this ouf -->
+
   <rule id="100050" level="10">
     <decoded_as>mysql-querylog</decoded_as>
     <field name="data" type="pcre2">(?i)WHERE\s+name\s*=\s*'[^']*'\s*(#|--)</field>

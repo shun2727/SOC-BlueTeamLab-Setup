@@ -1,4 +1,4 @@
-<!--claude decoder example 1-->
+<!--claude decoder example 1 [FAILED]-->
 <decoder name="mysql-querylog">
   <prematch>^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}</prematch>
   <regex offset="after_prematch">^\.\d+Z\s+\d+\s+(\w+)\s+(.*)$</regex>
@@ -19,7 +19,7 @@
 **Phase 2: Completed decoding.
 	No decoder matched.
 
-<!--claude decoder example 2-->
+<!--claude decoder example 2 [FAILED]-->
 <decoder name="mysql-querylog">
   <prematch>^\d+\s+\w+</prematch>
   <regex type="pcre2">^(\d+)\s+(\w+)\s+(.*)$</regex>
@@ -46,3 +46,26 @@
 
 <!--Sample output and sample testing -->
 mysqllog: 2026-07-20T05:32:51.891173Z    8 Query    SELECT id, name, eid, salary, birth, ssn, phoneNumber, address, email, nickname, Password FROM credential WHERE name='admin' and Password='da39a3ee5e6b4b0d3255bfef95681890afd80709'
+
+<!-- claude decoder 4-->
+<!-- due to the logs wrapping, need to create custom child decoders -->
+
+<!-- Local Decoders -->
+<!-- MySQL general query log - handles both header lines (with timestamp) 
+     and continuation lines (long queries wrapped across multiple lines) -->
+
+<decoder name="mysql-querylog-parent">
+  <prematch type="pcre2">^mysqllog:</prematch>
+</decoder>
+
+<decoder name="mysql-querylog">
+  <parent>mysql-querylog-parent</parent>
+  <regex type="pcre2" offset="after_parent">^\s*(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d+)Z\s+(\d+)\s+(\w+)\s+(.*)$</regex>
+  <order>timestamp, id, _action, data</order>
+</decoder>
+
+<decoder name="mysql-querylog-cont">
+  <parent>mysql-querylog-parent</parent>
+  <regex type="pcre2" offset="after_parent">^\s*(.*)$</regex>
+  <order>data</order>
+</decoder>
