@@ -37,5 +37,12 @@ sql (mysql_logs)
   <location>/home/seed/Downloads/Labsetup/mysql_logs/query.log</location>
 </localfile>
 
+<!--new, to solve the issue of timestamp removal-->
+<localfile>
+  <log_format>syslog</log_format>
+  <location>/home/seed/Downloads/Labsetup/mysql_logs/query.log</location>
+  <out_format>mysqllog: $(log)</out_format>
+</localfile>
+
 <!-- ensuere that the locaitons that are metioned her ear ecorrect 
 -->
