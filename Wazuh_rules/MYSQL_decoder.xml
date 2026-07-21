@@ -36,3 +36,10 @@
 
 **Phase 2: Completed decoding.
 	No decoder matched.
+
+<!--claude decoder example 3-->
+<decoder name="mysql-querylog">
+  <prematch type="pcre2">^mysqllog:</prematch>
+  <regex type="pcre2" offset="after_prematch">^\s*(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d+)Z\s+(\d+)\s+(\w+)\s+(.*)$</regex>
+  <order>timestamp, id, _action, data</order>
+</decoder>
