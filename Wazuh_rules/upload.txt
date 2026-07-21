@@ -302,3 +302,296 @@ wtmp begins Thu Jun 18 23:44:19 2026
 2026 Jul 21 16:41:11 blueteammanager-VirtualBox->journald Jul 21 08:41:10 blueteammanager-VirtualBox systemd[2379]: Started Tracker metadata extractor.
 2026 Jul 21 16:41:11 blueteammanager-VirtualBox->journald Jul 21 08:41:10 blueteammanager-VirtualBox systemd[2379]: Starting Tracker metadata extractor...
 2026 Jul 21 16:41:11 blueteammanager-VirtualBox->journald Jul 21 08:41:10 blueteammanager-VirtualBox dbus-daemon[2539]: [session uid=1000 pid=2539] Activating via systemd: service name='org.freedesktop.Tracker3.Miner.Extract' unit='tracker-extract-3.service' requested by ':1.83' (uid=1000 pid=4718 comm="/usr/libexec/tracker-miner-fs-3 " label="unconfined")
+2026 Jul 21 16:41:15 blueteammanager-VirtualBox->journald Jul 21 08:41:13 blueteammanager-VirtualBox sudo[165901]: pam_unix(sudo:session): session closed for user root
+2026 Jul 21 16:41:15 blueteammanager-VirtualBox->journald Jul 21 08:41:13 blueteammanager-VirtualBox sudo[165901]: pam_unix(sudo:session): session opened for user root(uid=0) by (uid=1000)
+2026 Jul 21 16:41:15 blueteammanager-VirtualBox->journald Jul 21 08:41:13 blueteammanager-VirtualBox sudo[165901]: blueteammanager : TTY=pts/0 ; PWD=/home/blueteammanager ; USER=root ; COMMAND=/usr/bin/cat /var/ossec/logs/archives/archives.log
+2026 Jul 21 16:41:45 blueteammanager-VirtualBox->journald Jul 21 08:41:43 blueteammanager-VirtualBox /usr/libexec/gdm-x-session[2522]: (EE) event4  - QEMU QEMU USB Tablet: client bug: event processing lagging behind by 22ms, your system is too slow
+2026 Jul 21 16:41:53 blueteammanager-VirtualBox->journald Jul 21 08:41:51 blueteammanager-VirtualBox dbus-daemon[521]: [system] Activating via systemd: service name='org.freedesktop.hostname1' unit='dbus-org.freedesktop.hostname1.service' requested by ':1.82' (uid=1000 pid=4472 comm="/usr/libexec/xdg-desktop-portal-gnome " label="unconfined")
+2026 Jul 21 16:41:53 blueteammanager-VirtualBox->journald Jul 21 08:41:51 blueteammanager-VirtualBox systemd[1]: Starting Hostname Service...
+2026 Jul 21 16:41:53 blueteammanager-VirtualBox->journald Jul 21 08:41:52 blueteammanager-VirtualBox dbus-daemon[521]: [system] Successfully activated service 'org.freedesktop.hostname1'
+2026 Jul 21 16:41:53 blueteammanager-VirtualBox->journald Jul 21 08:41:52 blueteammanager-VirtualBox systemd[1]: Started Hostname Service.
+2026 Jul 21 16:42:23 blueteammanager-VirtualBox->journald Jul 21 08:42:22 blueteammanager-VirtualBox systemd[1]: systemd-hostnamed.service: Deactivated successfully.
+2026 Jul 21 16:43:07 (SeedLabs_SQLInjection) any->df -P ossec: output: 'df -P': Filesystem     1024-blocks     Used Available Capacity Mounted on
+2026 Jul 21 16:43:07 (SeedLabs_SQLInjection) any->df -P ossec: output: 'df -P': tmpfs               403060     1476    401584       1% /run
+2026 Jul 21 16:43:07 (SeedLabs_SQLInjection) any->df -P ossec: output: 'df -P': /dev/sda5         81526200 10300888  67040992      14% /
+2026 Jul 21 16:43:07 (SeedLabs_SQLInjection) any->df -P ossec: output: 'df -P': udev               1986896        0   1986896       0% /dev
+2026 Jul 21 16:43:07 (SeedLabs_SQLInjection) any->df -P ossec: output: 'df -P': tmpfs              2015296    12776   2002520       1% /dev/shm
+2026 Jul 21 16:43:07 (SeedLabs_SQLInjection) any->df -P ossec: output: 'df -P': /dev/loop1           30720    30720         0     100% /snap/snapd/8542
+2026 Jul 21 16:43:07 (SeedLabs_SQLInjection) any->df -P ossec: output: 'df -P': tmpfs                 5120        0      5120       0% /run/lock
+2026 Jul 21 16:43:07 (SeedLabs_SQLInjection) any->df -P ossec: output: 'df -P': /dev/loop3           63616    63616         0     100% /snap/gtk-common-themes/1506
+2026 Jul 21 16:43:07 (SeedLabs_SQLInjection) any->df -P ossec: output: 'df -P': /dev/loop5          223744   223744         0     100% /snap/gnome-3-34-1804/93
+2026 Jul 21 16:43:07 (SeedLabs_SQLInjection) any->df -P ossec: output: 'df -P': /dev/loop0             128      128         0     100% /snap/bare/5
+2026 Jul 21 16:43:07 (SeedLabs_SQLInjection) any->df -P ossec: output: 'df -P': /dev/loop2           56320    56320         0     100% /snap/core18/1880
+2026 Jul 21 16:43:07 (SeedLabs_SQLInjection) any->df -P ossec: output: 'df -P': tmpfs              2015296        0   2015296       0% /sys/fs/cgroup
+2026 Jul 21 16:43:07 (SeedLabs_SQLInjection) any->df -P ossec: output: 'df -P': /dev/loop7           51072    51072         0     100% /snap/snap-store/467
+2026 Jul 21 16:43:07 (SeedLabs_SQLInjection) any->df -P ossec: output: 'df -P': /dev/sda1           523248        4    523244       1% /boot/efi
+2026 Jul 21 16:43:07 (SeedLabs_SQLInjection) any->df -P ossec: output: 'df -P': overlay           81526200 10300888  67040992      14% /var/lib/docker/overlay2/505f5347f9eeabe792f9fe05fdbfc5cae4ff960b4b5dea2fe62622254bb9c233/merged
+2026 Jul 21 16:43:07 (SeedLabs_SQLInjection) any->df -P ossec: output: 'df -P': /dev/loop6          261760   261760         0     100% /snap/gnome-3-34-1804/36
+2026 Jul 21 16:43:07 (SeedLabs_SQLInjection) any->df -P ossec: output: 'df -P': /dev/loop4           93952    93952         0     100% /snap/gtk-common-themes/1535
+2026 Jul 21 16:43:07 (SeedLabs_SQLInjection) any->df -P ossec: output: 'df -P': overlay           81526200 10300888  67040992      14% /var/lib/docker/overlay2/ece447f9c2ced7e634ce4461b81e44b8f96791628ab6c6a279bdbe5dff7774bc/merged
+2026 Jul 21 16:43:07 (SeedLabs_SQLInjection) any->df -P ossec: output: 'df -P': tmpfs               403056       12    403044       1% /run/user/125
+2026 Jul 21 16:43:07 (SeedLabs_SQLInjection) any->df -P ossec: output: 'df -P': tmpfs               403056       24    403032       1% /run/user/1000
+2026 Jul 21 16:43:07 (SeedLabs_SQLInjection) any->last -n 20 ossec: output: 'last -n 20':
+seed     :0           :0               Tue Jul 21 03:24   still logged in
+reboot   system boot  5.4.0-54-generic Tue Jul 21 03:24   still running
+seed     :0           :0               Mon Jul 20 01:31 - crash (1+01:52)
+reboot   system boot  5.4.0-54-generic Mon Jul 20 01:31   still running
+seed     :0           :0               Mon Jul 20 01:08 - down   (00:22)
+reboot   system boot  5.4.0-54-generic Mon Jul 20 01:07 - 01:30  (00:23)
+seed     :0           :0               Fri Jul 17 03:51 - down   (03:11)
+reboot   system boot  5.4.0-54-generic Fri Jul 17 03:39 - 07:03  (03:23)
+seed     :0           :0               Thu Jul 16 03:45 - crash  (23:54)
+reboot   system boot  5.4.0-54-generic Thu Jul 16 03:32 - 07:03 (1+03:30)
+reboot   system boot  5.4.0-54-generic Wed Jul 15 01:10 - 06:30  (05:19)
+seed     :0           :0               Tue Jul 14 03:27 - crash  (21:43)
+reboot   system boot  5.4.0-54-generic Tue Jul 14 03:18 - 06:30 (1+03:11)
+seed     :0           :0               Thu Jul  9 06:50 - crash (4+20:28)
+reboot   system boot  5.4.0-54-generic Thu Jul  9 06:50 - 06:30 (5+23:39)
+seed     :0           :0               Thu Jul  9 00:23 - down   (06:20)
+reboot   system boot  5.4.0-54-generic Thu Jul  9 00:22 - 06:43  (06:20)
+reboot   system boot  5.4.0-54-generic Wed Jul  8 07:00 - 07:01  (00:01)
+seed     :0           :0               Wed Jul  8 06:33 - down   (00:26)
+reboot   system boot  5.4.0-54-generic Wed Jul  8 06:33 - 07:00  (00:26)
+wtmp begins Tue Nov 24 10:38:27 2020
+2026 Jul 21 16:43:07 (SeedLabs_SQLInjection) any->netstat listening ports ossec: output: 'netstat listening ports':
+tcp6 :::21 :::* 683/vsftpd
+tcp 0.0.0.0:22 0.0.0.0:* /usr
+tcp6 :::22 :::* /usr
+tcp 0.0.0.0:23 0.0.0.0:* 911/inetd
+tcp 127.0.0.53:53 0.0.0.0:* 420/systemd-resolve
+udp 127.0.0.53:53 0.0.0.0:* 420/systemd-resolve
+tcp6 :::80 :::* 1760/docker-proxy
+tcp 127.0.0.1:631 0.0.0.0:* 559/cupsd
+tcp6 ::1:631 :::* 559/cupsd
+udp 0.0.0.0:631 0.0.0.0:* 565/cups-browsed
+udp 0.0.0.0:5353 0.0.0.0:* 453/avahi-daemon
+udp6 :::5353 :::* 453/avahi-daemon
+udp6 :::33607 :::* 453/avahi-daemon
+tcp 127.0.0.1:42981 0.0.0.0:* 681/containerd
+udp 0.0.0.0:50331 0.0.0.0:* 453/avahi-daemon
+2026 Jul 21 16:44:27 (SeedLabs_SQLInjection) any->journald Jul 21 08:44:27 VM systemd[1]: Starting Refresh fwupd metadata and update motd...
+2026 Jul 21 16:44:27 (SeedLabs_SQLInjection) any->journald Jul 21 08:44:27 VM systemd[1]: Starting Firmware update daemon...
+2026 Jul 21 16:44:27 (SeedLabs_SQLInjection) any->journald Jul 21 08:44:27 VM dbus-daemon[456]: [system] Activating via systemd: service name='org.freedesktop.fwupd' unit='fwupd.service' requested by ':1.113' (uid=62803 pid=5771 comm="/usr/bin/fwupdmgr refresh --no-metadata-check " label="unconfined")
+2026 Jul 21 16:44:29 (SeedLabs_SQLInjection) any->journald Jul 21 08:44:27 VM dbus-daemon[456]: [system] Successfully activated service 'org.freedesktop.fwupd'
+2026 Jul 21 16:44:29 (SeedLabs_SQLInjection) any->journald Jul 21 08:44:27 VM systemd[1]: Started Firmware update daemon.
+2026 Jul 21 16:44:29 (SeedLabs_SQLInjection) any->journald Jul 21 08:44:27 VM fwupdmgr[5771]: Fetching metadata https://cdn.fwupd.org/downloads/firmware.xml.gz
+2026 Jul 21 16:44:29 (SeedLabs_SQLInjection) any->journald Jul 21 08:44:27 VM fwupdmgr[5771]: Fetching signature https://cdn.fwupd.org/downloads/firmware.xml.gz.asc
+2026 Jul 21 16:44:29 (SeedLabs_SQLInjection) any->journald Jul 21 08:44:27 VM systemd[1]: fwupd-refresh.service: Main process exited, code=exited, status=1/FAILURE
+2026 Jul 21 16:44:29 (SeedLabs_SQLInjection) any->journald Jul 21 08:44:27 VM systemd[1]: fwupd-refresh.service: Failed with result 'exit-code'.
+2026 Jul 21 16:44:29 (SeedLabs_SQLInjection) any->journald Jul 21 08:44:27 VM systemd[1]: Failed to start Refresh fwupd metadata and update motd.
+2026 Jul 21 16:45:01 blueteammanager-VirtualBox->journald Jul 21 08:45:00 blueteammanager-VirtualBox opensearch-dashboards[546]: {"type":"log","@timestamp":"2026-07-21T08:45:00Z","tags":["info","plugins","wazuh","monitoring"],"pid":546,"message":"Bulk data to index wazuh-monitoring-2026.30w for 2 agents completed"}
+2026 Jul 21 16:45:01 blueteammanager-VirtualBox->journald Jul 21 08:45:00 blueteammanager-VirtualBox opensearch-dashboards[546]: {"type":"log","@timestamp":"2026-07-21T08:45:00Z","tags":["info","plugins","wazuh","monitoring"],"pid":546,"message":"Settings added to wazuh-monitoring-2026.30w index"}
+2026 Jul 21 16:46:35 blueteammanager-VirtualBox->df -P ossec: output: 'df -P': tmpfs              9998116       80   9998036       1% /dev/shm
+2026 Jul 21 16:46:35 blueteammanager-VirtualBox->df -P ossec: output: 'df -P': tmpfs              1999620     1648   1997972       1% /run/user/1000
+2026 Jul 21 16:46:35 blueteammanager-VirtualBox->df -P ossec: output: 'df -P': tmpfs                 5120        0      5120       0% /run/lock
+2026 Jul 21 16:46:35 blueteammanager-VirtualBox->df -P ossec: output: 'df -P': /dev/sda2           524252     6232    518020       2% /boot/efi
+2026 Jul 21 16:46:35 blueteammanager-VirtualBox->df -P ossec: output: 'df -P': overlay           40584544 33653696   5053636      87% /var/lib/docker/rootfs/overlayfs/48e29758258800a593f324f89fbe45c9ac0b3f2a10e9685ad7298526df8f7665
+2026 Jul 21 16:46:35 blueteammanager-VirtualBox->df -P ossec: output: 'df -P': /dev/sda3         40584544 33653696   5053636      87% /
+2026 Jul 21 16:46:35 blueteammanager-VirtualBox->df -P ossec: output: 'df -P': overlay           40584544 33653696   5053636      87% /var/lib/docker/rootfs/overlayfs/2899c105a1329ee1d680d0293725fd43387d53998e24d33c1d9a8d5531306f9b
+2026 Jul 21 16:46:35 blueteammanager-VirtualBox->df -P ossec: output: 'df -P': overlay           40584544 33653696   5053636      87% /var/lib/docker/rootfs/overlayfs/ee63ab163267c1cad4cd545af5d5934204e31068b7db6d67e540b7a1233ec476
+2026 Jul 21 16:46:35 blueteammanager-VirtualBox->df -P ossec: output: 'df -P': overlay           40584544 33653696   5053636      87% /var/lib/docker/rootfs/overlayfs/93ab2e19f32a76357baf8dc50a86d8583785912dd98c199c8fc97f916474e020
+2026 Jul 21 16:46:35 blueteammanager-VirtualBox->df -P ossec: output: 'df -P': tmpfs              1999624     2464   1997160       1% /run
+2026 Jul 21 16:46:35 blueteammanager-VirtualBox->df -P ossec: output: 'df -P': Filesystem     1024-blocks     Used Available Capacity Mounted on
+2026 Jul 21 16:46:35 blueteammanager-VirtualBox->last -n 20 ossec: output: 'last -n 20':
+blueteam :0           :0               Tue Jul 21 14:58   still logged in
+reboot   system boot  6.8.0-124-generi Tue Jul 21 14:58   still running
+blueteam :0           :0               Tue Jul 21 14:54 - crash  (00:04)
+reboot   system boot  6.8.0-124-generi Tue Jul 21 14:54   still running
+blueteam :0           :0               Tue Jul 21 11:54 - crash  (02:59)
+reboot   system boot  6.8.0-124-generi Tue Jul 21 11:54   still running
+blueteam :0           :0               Mon Jul 20 16:31 - crash  (19:23)
+reboot   system boot  6.8.0-124-generi Mon Jul 20 16:30   still running
+blueteam :0           :0               Mon Jul 20 13:07 - down   (03:23)
+reboot   system boot  6.8.0-124-generi Mon Jul 20 13:07 - 16:30  (03:23)
+blueteam :0           :0               Fri Jul 17 18:00 - crash (2+19:06)
+reboot   system boot  6.8.0-124-generi Fri Jul 17 18:00 - 16:30 (2+22:30)
+blueteam :0           :0               Fri Jul 17 15:38 - crash  (02:22)
+reboot   system boot  6.8.0-124-generi Fri Jul 17 15:38 - 16:30 (3+00:52)
+blueteam :0           :0               Thu Jul 16 18:02 - crash  (21:35)
+reboot   system boot  6.8.0-124-generi Thu Jul 16 18:02 - 16:30 (3+22:28)
+blueteam :0           :0               Thu Jul 16 17:34 - crash  (00:27)
+reboot   system boot  6.8.0-124-generi Thu Jul 16 17:34 - 16:30 (3+22:56)
+blueteam :0           :0               Thu Jul 16 15:30 - crash  (02:04)
+reboot   system boot  6.8.0-124-generi Thu Jul 16 15:30 - 16:30 (4+01:00)
+wtmp begins Thu Jun 18 23:44:19 2026
+2026 Jul 21 16:49:01 blueteammanager-VirtualBox->journald Jul 21 08:49:00 blueteammanager-VirtualBox sudo[177188]: pam_unix(sudo:session): session opened for user root(uid=0) by (uid=1000)
+2026 Jul 21 16:49:01 blueteammanager-VirtualBox->journald Jul 21 08:49:00 blueteammanager-VirtualBox sudo[177188]: blueteammanager : TTY=pts/0 ; PWD=/home/blueteammanager ; USER=root ; COMMAND=/usr/bin/nano /var/ossec/etc/ossec.conf
+2026 Jul 21 16:49:07 (SeedLabs_SQLInjection) any->df -P ossec: output: 'df -P': Filesystem     1024-blocks     Used Available Capacity Mounted on
+2026 Jul 21 16:49:07 (SeedLabs_SQLInjection) any->df -P ossec: output: 'df -P': tmpfs               403060     1480    401580       1% /run
+2026 Jul 21 16:49:07 (SeedLabs_SQLInjection) any->df -P ossec: output: 'df -P': /dev/sda5         81526200 10300904  67040976      14% /
+2026 Jul 21 16:49:07 (SeedLabs_SQLInjection) any->df -P ossec: output: 'df -P': udev               1986896        0   1986896       0% /dev
+2026 Jul 21 16:49:07 (SeedLabs_SQLInjection) any->df -P ossec: output: 'df -P': tmpfs                 5120        0      5120       0% /run/lock
+2026 Jul 21 16:49:07 (SeedLabs_SQLInjection) any->df -P ossec: output: 'df -P': tmpfs              2015296    12776   2002520       1% /dev/shm
+2026 Jul 21 16:49:07 (SeedLabs_SQLInjection) any->df -P ossec: output: 'df -P': tmpfs              2015296        0   2015296       0% /sys/fs/cgroup
+2026 Jul 21 16:49:07 (SeedLabs_SQLInjection) any->df -P ossec: output: 'df -P': /dev/loop1           30720    30720         0     100% /snap/snapd/8542
+2026 Jul 21 16:49:07 (SeedLabs_SQLInjection) any->df -P ossec: output: 'df -P': /dev/loop0             128      128         0     100% /snap/bare/5
+2026 Jul 21 16:49:07 (SeedLabs_SQLInjection) any->df -P ossec: output: 'df -P': /dev/loop5          223744   223744         0     100% /snap/gnome-3-34-1804/93
+2026 Jul 21 16:49:07 (SeedLabs_SQLInjection) any->df -P ossec: output: 'df -P': /dev/loop3           63616    63616         0     100% /snap/gtk-common-themes/1506
+2026 Jul 21 16:49:07 (SeedLabs_SQLInjection) any->df -P ossec: output: 'df -P': /dev/loop2           56320    56320         0     100% /snap/core18/1880
+2026 Jul 21 16:49:07 (SeedLabs_SQLInjection) any->df -P ossec: output: 'df -P': /dev/loop6          261760   261760         0     100% /snap/gnome-3-34-1804/36
+2026 Jul 21 16:49:07 (SeedLabs_SQLInjection) any->df -P ossec: output: 'df -P': /dev/loop4           93952    93952         0     100% /snap/gtk-common-themes/1535
+2026 Jul 21 16:49:07 (SeedLabs_SQLInjection) any->df -P ossec: output: 'df -P': /dev/sda1           523248        4    523244       1% /boot/efi
+2026 Jul 21 16:49:07 (SeedLabs_SQLInjection) any->df -P ossec: output: 'df -P': /dev/loop7           51072    51072         0     100% /snap/snap-store/467
+2026 Jul 21 16:49:07 (SeedLabs_SQLInjection) any->df -P ossec: output: 'df -P': overlay           81526200 10300904  67040976      14% /var/lib/docker/overlay2/505f5347f9eeabe792f9fe05fdbfc5cae4ff960b4b5dea2fe62622254bb9c233/merged
+2026 Jul 21 16:49:07 (SeedLabs_SQLInjection) any->df -P ossec: output: 'df -P': tmpfs               403056       12    403044       1% /run/user/125
+2026 Jul 21 16:49:07 (SeedLabs_SQLInjection) any->df -P ossec: output: 'df -P': overlay           81526200 10300904  67040976      14% /var/lib/docker/overlay2/ece447f9c2ced7e634ce4461b81e44b8f96791628ab6c6a279bdbe5dff7774bc/merged
+2026 Jul 21 16:49:07 (SeedLabs_SQLInjection) any->df -P ossec: output: 'df -P': tmpfs               403056       24    403032       1% /run/user/1000
+2026 Jul 21 16:49:07 (SeedLabs_SQLInjection) any->last -n 20 ossec: output: 'last -n 20':
+seed     :0           :0               Tue Jul 21 03:24   still logged in
+reboot   system boot  5.4.0-54-generic Tue Jul 21 03:24   still running
+seed     :0           :0               Mon Jul 20 01:31 - crash (1+01:52)
+reboot   system boot  5.4.0-54-generic Mon Jul 20 01:31   still running
+seed     :0           :0               Mon Jul 20 01:08 - down   (00:22)
+reboot   system boot  5.4.0-54-generic Mon Jul 20 01:07 - 01:30  (00:23)
+seed     :0           :0               Fri Jul 17 03:51 - down   (03:11)
+reboot   system boot  5.4.0-54-generic Fri Jul 17 03:39 - 07:03  (03:23)
+seed     :0           :0               Thu Jul 16 03:45 - crash  (23:54)
+reboot   system boot  5.4.0-54-generic Thu Jul 16 03:32 - 07:03 (1+03:30)
+reboot   system boot  5.4.0-54-generic Wed Jul 15 01:10 - 06:30  (05:19)
+seed     :0           :0               Tue Jul 14 03:27 - crash  (21:43)
+reboot   system boot  5.4.0-54-generic Tue Jul 14 03:18 - 06:30 (1+03:11)
+seed     :0           :0               Thu Jul  9 06:50 - crash (4+20:28)
+reboot   system boot  5.4.0-54-generic Thu Jul  9 06:50 - 06:30 (5+23:39)
+seed     :0           :0               Thu Jul  9 00:23 - down   (06:20)
+reboot   system boot  5.4.0-54-generic Thu Jul  9 00:22 - 06:43  (06:20)
+reboot   system boot  5.4.0-54-generic Wed Jul  8 07:00 - 07:01  (00:01)
+seed     :0           :0               Wed Jul  8 06:33 - down   (00:26)
+reboot   system boot  5.4.0-54-generic Wed Jul  8 06:33 - 07:00  (00:26)
+wtmp begins Tue Nov 24 10:38:27 2020
+2026 Jul 21 16:49:07 (SeedLabs_SQLInjection) any->netstat listening ports ossec: output: 'netstat listening ports':
+tcp6 :::21 :::* 683/vsftpd
+tcp 0.0.0.0:22 0.0.0.0:* /usr
+tcp6 :::22 :::* /usr
+tcp 0.0.0.0:23 0.0.0.0:* 911/inetd
+tcp 127.0.0.53:53 0.0.0.0:* 420/systemd-resolve
+udp 127.0.0.53:53 0.0.0.0:* 420/systemd-resolve
+tcp6 :::80 :::* 1760/docker-proxy
+tcp 127.0.0.1:631 0.0.0.0:* 559/cupsd
+tcp6 ::1:631 :::* 559/cupsd
+udp 0.0.0.0:631 0.0.0.0:* 565/cups-browsed
+udp 0.0.0.0:5353 0.0.0.0:* 453/avahi-daemon
+udp6 :::5353 :::* 453/avahi-daemon
+udp6 :::33607 :::* 453/avahi-daemon
+tcp 127.0.0.1:42981 0.0.0.0:* 681/containerd
+udp 0.0.0.0:50331 0.0.0.0:* 453/avahi-daemon
+2026 Jul 21 16:49:09 blueteammanager-VirtualBox->journald Jul 21 08:49:09 blueteammanager-VirtualBox sudo[177188]: pam_unix(sudo:session): session closed for user root
+2026 Jul 21 16:49:17 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/apache-logs/other_vhosts_access.log www.seed-server.com:80 10.9.0.1 - - [21/Jul/2026:08:49:16 +0000] "GET /logoff.php HTTP/1.1" 302 434 "http://www.seed-server.com/unsafe_home.php?username=admin%27+%23&Password=" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:83.0) Gecko/20100101 Firefox/83.0"
+2026 Jul 21 16:49:17 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/apache-logs/other_vhosts_access.log www.seed-server.com:80 10.9.0.1 - - [21/Jul/2026:08:49:16 +0000] "GET /index.html HTTP/1.1" 200 1245 "http://www.seed-server.com/unsafe_home.php?username=admin%27+%23&Password=" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:83.0) Gecko/20100101 Firefox/83.0"
+2026 Jul 21 16:49:17 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/apache-logs/other_vhosts_access.log www.seed-server.com:80 10.9.0.1 - - [21/Jul/2026:08:49:16 +0000] "GET /css/bootstrap.min.css HTTP/1.1" 403 500 "http://www.seed-server.com/index.html" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:83.0) Gecko/20100101 Firefox/83.0"
+2026 Jul 21 16:49:17 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/apache-logs/other_vhosts_access.log www.seed-server.com:80 10.9.0.1 - - [21/Jul/2026:08:49:16 +0000] "GET /css/style_home.css HTTP/1.1" 403 500 "http://www.seed-server.com/index.html" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:83.0) Gecko/20100101 Firefox/83.0"
+2026 Jul 21 16:49:17 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/apache-logs/error.log [Tue Jul 21 08:49:16.643608 2026] [core:error] [pid 35] (13)Permission denied: [client 10.9.0.1:33332] AH00035: access to /css/bootstrap.min.css denied (filesystem path '/var/www/SQL_Injection/css/bootstrap.min.css') because search permissions are missing on a component of the path, referer: http://www.seed-server.com/index.html
+2026 Jul 21 16:49:17 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/apache-logs/error.log [Tue Jul 21 08:49:16.644087 2026] [core:error] [pid 35] (13)Permission denied: [client 10.9.0.1:33332] AH00035: access to /css/style_home.css denied (filesystem path '/var/www/SQL_Injection/css/style_home.css') because search permissions are missing on a component of the path, referer: http://www.seed-server.com/index.html
+2026 Jul 21 16:49:19 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/apache-logs/other_vhosts_access.log www.seed-server.com:80 10.9.0.1 - - [21/Jul/2026:08:49:18 +0000] "GET /unsafe_home.php?username=Alice&Password= HTTP/1.1" 200 1273 "http://www.seed-server.com/index.html" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:83.0) Gecko/20100101 Firefox/83.0"
+2026 Jul 21 16:49:19 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/apache-logs/other_vhosts_access.log www.seed-server.com:80 10.9.0.1 - - [21/Jul/2026:08:49:18 +0000] "GET /css/bootstrap.min.css HTTP/1.1" 403 500 "http://www.seed-server.com/unsafe_home.php?username=Alice&Password=" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:83.0) Gecko/20100101 Firefox/83.0"
+2026 Jul 21 16:49:19 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/apache-logs/other_vhosts_access.log www.seed-server.com:80 10.9.0.1 - - [21/Jul/2026:08:49:18 +0000] "GET /css/style_home.css HTTP/1.1" 403 500 "http://www.seed-server.com/unsafe_home.php?username=Alice&Password=" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:83.0) Gecko/20100101 Firefox/83.0"
+2026 Jul 21 16:49:19 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/apache-logs/error.log [Tue Jul 21 08:49:18.910705 2026] [php7:notice] [pid 35] [client 10.9.0.1:33332] PHP Notice:  Undefined offset: 0 in /var/www/SQL_Injection/unsafe_home.php on line 92, referer: http://www.seed-server.com/index.html
+2026 Jul 21 16:49:19 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/apache-logs/error.log [Tue Jul 21 08:49:18.910730 2026] [php7:notice] [pid 35] [client 10.9.0.1:33332] PHP Notice:  Trying to access array offset on value of type null in /var/www/SQL_Injection/unsafe_home.php on line 92, referer: http://www.seed-server.com/index.html
+2026 Jul 21 16:49:19 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/apache-logs/error.log [Tue Jul 21 08:49:18.910736 2026] [php7:notice] [pid 35] [client 10.9.0.1:33332] PHP Notice:  Undefined offset: 0 in /var/www/SQL_Injection/unsafe_home.php on line 93, referer: http://www.seed-server.com/index.html
+2026 Jul 21 16:49:19 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/apache-logs/error.log [Tue Jul 21 08:49:18.910741 2026] [php7:notice] [pid 35] [client 10.9.0.1:33332] PHP Notice:  Trying to access array offset on value of type null in /var/www/SQL_Injection/unsafe_home.php on line 93, referer: http://www.seed-server.com/index.html
+2026 Jul 21 16:49:19 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/apache-logs/error.log [Tue Jul 21 08:49:18.910746 2026] [php7:notice] [pid 35] [client 10.9.0.1:33332] PHP Notice:  Undefined offset: 0 in /var/www/SQL_Injection/unsafe_home.php on line 94, referer: http://www.seed-server.com/index.html
+2026 Jul 21 16:49:19 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/apache-logs/error.log [Tue Jul 21 08:49:18.910750 2026] [php7:notice] [pid 35] [client 10.9.0.1:33332] PHP Notice:  Trying to access array offset on value of type null in /var/www/SQL_Injection/unsafe_home.php on line 94, referer: http://www.seed-server.com/index.html
+2026 Jul 21 16:49:19 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/apache-logs/error.log [Tue Jul 21 08:49:18.910755 2026] [php7:notice] [pid 35] [client 10.9.0.1:33332] PHP Notice:  Undefined offset: 0 in /var/www/SQL_Injection/unsafe_home.php on line 95, referer: http://www.seed-server.com/index.html
+2026 Jul 21 16:49:19 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/apache-logs/error.log [Tue Jul 21 08:49:18.910759 2026] [php7:notice] [pid 35] [client 10.9.0.1:33332] PHP Notice:  Trying to access array offset on value of type null in /var/www/SQL_Injection/unsafe_home.php on line 95, referer: http://www.seed-server.com/index.html
+2026 Jul 21 16:49:19 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/apache-logs/error.log [Tue Jul 21 08:49:18.910764 2026] [php7:notice] [pid 35] [client 10.9.0.1:33332] PHP Notice:  Undefined offset: 0 in /var/www/SQL_Injection/unsafe_home.php on line 96, referer: http://www.seed-server.com/index.html
+2026 Jul 21 16:49:19 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/apache-logs/error.log [Tue Jul 21 08:49:18.910768 2026] [php7:notice] [pid 35] [client 10.9.0.1:33332] PHP Notice:  Trying to access array offset on value of type null in /var/www/SQL_Injection/unsafe_home.php on line 96, referer: http://www.seed-server.com/index.html
+2026 Jul 21 16:49:19 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/apache-logs/error.log [Tue Jul 21 08:49:18.910773 2026] [php7:notice] [pid 35] [client 10.9.0.1:33332] PHP Notice:  Undefined offset: 0 in /var/www/SQL_Injection/unsafe_home.php on line 97, referer: http://www.seed-server.com/index.html
+2026 Jul 21 16:49:19 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/apache-logs/error.log [Tue Jul 21 08:49:18.910777 2026] [php7:notice] [pid 35] [client 10.9.0.1:33332] PHP Notice:  Trying to access array offset on value of type null in /var/www/SQL_Injection/unsafe_home.php on line 97, referer: http://www.seed-server.com/index.html
+2026 Jul 21 16:49:19 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/apache-logs/error.log [Tue Jul 21 08:49:18.910782 2026] [php7:notice] [pid 35] [client 10.9.0.1:33332] PHP Notice:  Undefined offset: 0 in /var/www/SQL_Injection/unsafe_home.php on line 98, referer: http://www.seed-server.com/index.html
+2026 Jul 21 16:49:19 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/apache-logs/error.log [Tue Jul 21 08:49:18.910786 2026] [php7:notice] [pid 35] [client 10.9.0.1:33332] PHP Notice:  Trying to access array offset on value of type null in /var/www/SQL_Injection/unsafe_home.php on line 98, referer: http://www.seed-server.com/index.html
+2026 Jul 21 16:49:19 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/apache-logs/error.log [Tue Jul 21 08:49:18.910791 2026] [php7:notice] [pid 35] [client 10.9.0.1:33332] PHP Notice:  Undefined offset: 0 in /var/www/SQL_Injection/unsafe_home.php on line 99, referer: http://www.seed-server.com/index.html
+2026 Jul 21 16:49:19 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/apache-logs/error.log [Tue Jul 21 08:49:18.910795 2026] [php7:notice] [pid 35] [client 10.9.0.1:33332] PHP Notice:  Trying to access array offset on value of type null in /var/www/SQL_Injection/unsafe_home.php on line 99, referer: http://www.seed-server.com/index.html
+2026 Jul 21 16:49:19 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/apache-logs/error.log [Tue Jul 21 08:49:18.910807 2026] [php7:notice] [pid 35] [client 10.9.0.1:33332] PHP Notice:  Undefined offset: 0 in /var/www/SQL_Injection/unsafe_home.php on line 100, referer: http://www.seed-server.com/index.html
+2026 Jul 21 16:49:19 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/apache-logs/error.log [Tue Jul 21 08:49:18.910811 2026] [php7:notice] [pid 35] [client 10.9.0.1:33332] PHP Notice:  Trying to access array offset on value of type null in /var/www/SQL_Injection/unsafe_home.php on line 100, referer: http://www.seed-server.com/index.html
+2026 Jul 21 16:49:19 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/apache-logs/error.log [Tue Jul 21 08:49:18.910816 2026] [php7:notice] [pid 35] [client 10.9.0.1:33332] PHP Notice:  Undefined offset: 0 in /var/www/SQL_Injection/unsafe_home.php on line 101, referer: http://www.seed-server.com/index.html
+2026 Jul 21 16:49:19 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/apache-logs/error.log [Tue Jul 21 08:49:18.910821 2026] [php7:notice] [pid 35] [client 10.9.0.1:33332] PHP Notice:  Trying to access array offset on value of type null in /var/www/SQL_Injection/unsafe_home.php on line 101, referer: http://www.seed-server.com/index.html
+2026 Jul 21 16:49:19 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/apache-logs/error.log [Tue Jul 21 08:49:18.910825 2026] [php7:notice] [pid 35] [client 10.9.0.1:33332] PHP Notice:  Undefined offset: 0 in /var/www/SQL_Injection/unsafe_home.php on line 102, referer: http://www.seed-server.com/index.html
+2026 Jul 21 16:49:19 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/apache-logs/error.log [Tue Jul 21 08:49:18.910829 2026] [php7:notice] [pid 35] [client 10.9.0.1:33332] PHP Notice:  Trying to access array offset on value of type null in /var/www/SQL_Injection/unsafe_home.php on line 102, referer: http://www.seed-server.com/index.html
+2026 Jul 21 16:49:19 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/apache-logs/error.log [Tue Jul 21 08:49:18.944103 2026] [core:error] [pid 35] (13)Permission denied: [client 10.9.0.1:33332] AH00035: access to /css/bootstrap.min.css denied (filesystem path '/var/www/SQL_Injection/css/bootstrap.min.css') because search permissions are missing on a component of the path, referer: http://www.seed-server.com/unsafe_home.php?username=Alice&Password=
+2026 Jul 21 16:49:19 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/apache-logs/error.log [Tue Jul 21 08:49:18.944819 2026] [core:error] [pid 35] (13)Permission denied: [client 10.9.0.1:33332] AH00035: access to /css/style_home.css denied (filesystem path '/var/www/SQL_Injection/css/style_home.css') because search permissions are missing on a component of the path, referer: http://www.seed-server.com/unsafe_home.php?username=Alice&Password=
+2026 Jul 21 16:49:19 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/mysql_logs/query.log mysqllog: 2026-07-21T08:49:18.910012Z	   13 Connect	seed@10.9.0.5 on sqllab_users using TCP/IP
+2026 Jul 21 16:49:19 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/mysql_logs/query.log mysqllog: 2026-07-21T08:49:18.910302Z	   13 Query	SELECT id, name, eid, salary, birth, ssn, phoneNumber, address, email,nickname,Password
+2026 Jul 21 16:49:19 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/mysql_logs/query.log mysqllog:       FROM credential
+2026 Jul 21 16:49:19 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/mysql_logs/query.log mysqllog:       WHERE name= 'Alice' and Password='da39a3ee5e6b4b0d3255bfef95601890afd80709'
+2026 Jul 21 16:49:19 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/mysql_logs/query.log mysqllog: 2026-07-21T08:49:18.910882Z	   13 Quit	
+2026 Jul 21 16:49:21 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/apache-logs/other_vhosts_access.log www.seed-server.com:80 10.9.0.1 - - [21/Jul/2026:08:49:20 +0000] "GET /css/bootstrap.min.css HTTP/1.1" 403 500 "http://www.seed-server.com/index.html" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:83.0) Gecko/20100101 Firefox/83.0"
+2026 Jul 21 16:49:21 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/apache-logs/other_vhosts_access.log www.seed-server.com:80 10.9.0.1 - - [21/Jul/2026:08:49:20 +0000] "GET /css/style_home.css HTTP/1.1" 403 500 "http://www.seed-server.com/index.html" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:83.0) Gecko/20100101 Firefox/83.0"
+2026 Jul 21 16:49:21 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/apache-logs/error.log [Tue Jul 21 08:49:20.647202 2026] [core:error] [pid 35] (13)Permission denied: [client 10.9.0.1:33332] AH00035: access to /css/bootstrap.min.css denied (filesystem path '/var/www/SQL_Injection/css/bootstrap.min.css') because search permissions are missing on a component of the path, referer: http://www.seed-server.com/index.html
+2026 Jul 21 16:49:21 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/apache-logs/error.log [Tue Jul 21 08:49:20.647927 2026] [core:error] [pid 35] (13)Permission denied: [client 10.9.0.1:33332] AH00035: access to /css/style_home.css denied (filesystem path '/var/www/SQL_Injection/css/style_home.css') because search permissions are missing on a component of the path, referer: http://www.seed-server.com/index.html
+2026 Jul 21 16:49:27 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/apache-logs/other_vhosts_access.log www.seed-server.com:80 10.9.0.1 - - [21/Jul/2026:08:49:25 +0000] "GET /unsafe_home.php?username=Alice%27+%23&Password= HTTP/1.1" 200 1675 "http://www.seed-server.com/index.html" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:83.0) Gecko/20100101 Firefox/83.0"
+2026 Jul 21 16:49:27 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/apache-logs/error.log [Tue Jul 21 08:49:25.487245 2026] [core:error] [pid 35] (13)Permission denied: [client 10.9.0.1:33332] AH00035: access to /css/bootstrap.min.css denied (filesystem path '/var/www/SQL_Injection/css/bootstrap.min.css') because search permissions are missing on a component of the path, referer: http://www.seed-server.com/unsafe_home.php?username=Alice%27+%23&Password=
+2026 Jul 21 16:49:27 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/apache-logs/error.log [Tue Jul 21 08:49:25.461925 2026] [php7:notice] [pid 35] [client 10.9.0.1:33332] PHP Notice:  session_start(): A session had already been started - ignoring in /var/www/SQL_Injection/unsafe_home.php on line 124, referer: http://www.seed-server.com/index.html
+2026 Jul 21 16:49:27 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/apache-logs/other_vhosts_access.log www.seed-server.com:80 10.9.0.1 - - [21/Jul/2026:08:49:25 +0000] "GET /css/bootstrap.min.css HTTP/1.1" 403 500 "http://www.seed-server.com/unsafe_home.php?username=Alice%27+%23&Password=" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:83.0) Gecko/20100101 Firefox/83.0"
+2026 Jul 21 16:49:27 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/apache-logs/other_vhosts_access.log www.seed-server.com:80 10.9.0.1 - - [21/Jul/2026:08:49:25 +0000] "GET /css/style_home.css HTTP/1.1" 403 500 "http://www.seed-server.com/unsafe_home.php?username=Alice%27+%23&Password=" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:83.0) Gecko/20100101 Firefox/83.0"
+2026 Jul 21 16:49:27 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/apache-logs/error.log [Tue Jul 21 08:49:25.487540 2026] [core:error] [pid 35] (13)Permission denied: [client 10.9.0.1:33332] AH00035: access to /css/style_home.css denied (filesystem path '/var/www/SQL_Injection/css/style_home.css') because search permissions are missing on a component of the path, referer: http://www.seed-server.com/unsafe_home.php?username=Alice%27+%23&Password=
+2026 Jul 21 16:49:27 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/mysql_logs/query.log mysqllog:       FROM credential
+2026 Jul 21 16:49:27 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/mysql_logs/query.log mysqllog: 2026-07-21T08:49:25.460900Z	   14 Connect	seed@10.9.0.5 on sqllab_users using TCP/IP
+2026 Jul 21 16:49:27 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/mysql_logs/query.log mysqllog: 2026-07-21T08:49:25.461270Z	   14 Query	SELECT id, name, eid, salary, birth, ssn, phoneNumber, address, email,nickname,Password
+2026 Jul 21 16:49:27 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/mysql_logs/query.log mysqllog: 2026-07-21T08:49:25.462037Z	   14 Quit	
+2026 Jul 21 16:49:27 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/mysql_logs/query.log mysqllog:       WHERE name= 'Alice' #' and Password='da39a3ee5e6b4b0d3255bfef95601890afd80709'
+2026 Jul 21 16:49:31 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/apache-logs/other_vhosts_access.log www.seed-server.com:80 10.9.0.1 - - [21/Jul/2026:08:49:30 +0000] "GET /unsafe_edit_frontend.php HTTP/1.1" 200 1663 "http://www.seed-server.com/unsafe_home.php?username=Alice%27+%23&Password=" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:83.0) Gecko/20100101 Firefox/83.0"
+2026 Jul 21 16:49:31 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/apache-logs/other_vhosts_access.log www.seed-server.com:80 10.9.0.1 - - [21/Jul/2026:08:49:31 +0000] "GET /css/bootstrap.min.css HTTP/1.1" 403 500 "http://www.seed-server.com/unsafe_edit_frontend.php" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:83.0) Gecko/20100101 Firefox/83.0"
+2026 Jul 21 16:49:31 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/apache-logs/other_vhosts_access.log www.seed-server.com:80 10.9.0.1 - - [21/Jul/2026:08:49:31 +0000] "GET /css/style_home.css HTTP/1.1" 403 500 "http://www.seed-server.com/unsafe_edit_frontend.php" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:83.0) Gecko/20100101 Firefox/83.0"
+2026 Jul 21 16:49:31 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/apache-logs/error.log [Tue Jul 21 08:49:30.973740 2026] [php7:notice] [pid 40] [client 10.9.0.1:33338] PHP Notice:  session_start(): A session had already been started - ignoring in /var/www/SQL_Injection/unsafe_edit_frontend.php on line 93, referer: http://www.seed-server.com/unsafe_home.php?username=Alice%27+%23&Password=
+2026 Jul 21 16:49:31 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/apache-logs/error.log [Tue Jul 21 08:49:31.006941 2026] [core:error] [pid 40] (13)Permission denied: [client 10.9.0.1:33338] AH00035: access to /css/bootstrap.min.css denied (filesystem path '/var/www/SQL_Injection/css/bootstrap.min.css') because search permissions are missing on a component of the path, referer: http://www.seed-server.com/unsafe_edit_frontend.php
+2026 Jul 21 16:49:31 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/apache-logs/error.log [Tue Jul 21 08:49:31.013285 2026] [core:error] [pid 40] (13)Permission denied: [client 10.9.0.1:33338] AH00035: access to /css/style_home.css denied (filesystem path '/var/www/SQL_Injection/css/style_home.css') because search permissions are missing on a component of the path, referer: http://www.seed-server.com/unsafe_edit_frontend.php
+2026 Jul 21 16:49:31 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/mysql_logs/query.log mysqllog: 2026-07-21T08:49:30.973058Z	   15 Connect	seed@10.9.0.5 on sqllab_users using TCP/IP
+2026 Jul 21 16:49:31 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/mysql_logs/query.log mysqllog: 2026-07-21T08:49:30.973377Z	   15 Query	SELECT id, name, eid, salary, birth, ssn, phoneNumber, address, email,nickname,Password
+2026 Jul 21 16:49:31 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/mysql_logs/query.log mysqllog:   FROM credential
+2026 Jul 21 16:49:31 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/mysql_logs/query.log mysqllog:   WHERE name= 'Alice'
+2026 Jul 21 16:49:31 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/mysql_logs/query.log mysqllog: 2026-07-21T08:49:30.974410Z	   15 Quit	
+2026 Jul 21 16:50:23 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/apache-logs/other_vhosts_access.log www.seed-server.com:80 10.9.0.1 - - [21/Jul/2026:08:50:22 +0000] "GET /unsafe_edit_backend.php?NickName=&Email=&Address=&PhoneNumber=123%27%2C+salary++%3D+676767+WHERE+name+%3D+%27Alice%27+%23&Password= HTTP/1.1" 302 692 "http://www.seed-server.com/unsafe_edit_frontend.php" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:83.0) Gecko/20100101 Firefox/83.0"
+2026 Jul 21 16:50:23 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/apache-logs/error.log [Tue Jul 21 08:50:22.698270 2026] [php7:notice] [pid 36] [client 10.9.0.1:33344] PHP Notice:  Undefined index: username in /var/www/SQL_Injection/unsafe_home.php on line 42, referer: http://www.seed-server.com/unsafe_edit_frontend.php
+2026 Jul 21 16:50:23 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/apache-logs/other_vhosts_access.log www.seed-server.com:80 10.9.0.1 - - [21/Jul/2026:08:50:22 +0000] "GET /unsafe_home.php HTTP/1.1" 200 1678 "http://www.seed-server.com/unsafe_edit_frontend.php" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:83.0) Gecko/20100101 Firefox/83.0"
+2026 Jul 21 16:50:23 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/apache-logs/other_vhosts_access.log www.seed-server.com:80 10.9.0.1 - - [21/Jul/2026:08:50:22 +0000] "GET /css/style_home.css HTTP/1.1" 403 500 "http://www.seed-server.com/unsafe_home.php" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:83.0) Gecko/20100101 Firefox/83.0"
+2026 Jul 21 16:50:23 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/apache-logs/other_vhosts_access.log www.seed-server.com:80 10.9.0.1 - - [21/Jul/2026:08:50:22 +0000] "GET /css/bootstrap.min.css HTTP/1.1" 403 500 "http://www.seed-server.com/unsafe_home.php" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:83.0) Gecko/20100101 Firefox/83.0"
+2026 Jul 21 16:50:23 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/apache-logs/error.log [Tue Jul 21 08:50:22.698303 2026] [php7:notice] [pid 36] [client 10.9.0.1:33344] PHP Notice:  Undefined index: Password in /var/www/SQL_Injection/unsafe_home.php on line 43, referer: http://www.seed-server.com/unsafe_edit_frontend.php
+2026 Jul 21 16:50:23 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/apache-logs/error.log [Tue Jul 21 08:50:22.699364 2026] [php7:notice] [pid 36] [client 10.9.0.1:33344] PHP Notice:  session_start(): A session had already been started - ignoring in /var/www/SQL_Injection/unsafe_home.php on line 124, referer: http://www.seed-server.com/unsafe_edit_frontend.php
+2026 Jul 21 16:50:23 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/mysql_logs/query.log mysqllog: 2026-07-21T08:50:22.685683Z	   16 Connect	seed@10.9.0.5 on sqllab_users using TCP/IP
+2026 Jul 21 16:50:23 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/apache-logs/error.log [Tue Jul 21 08:50:22.717493 2026] [core:error] [pid 36] (13)Permission denied: [client 10.9.0.1:33344] AH00035: access to /css/style_home.css denied (filesystem path '/var/www/SQL_Injection/css/style_home.css') because search permissions are missing on a component of the path, referer: http://www.seed-server.com/unsafe_home.php
+2026 Jul 21 16:50:23 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/apache-logs/error.log [Tue Jul 21 08:50:22.716166 2026] [core:error] [pid 36] (13)Permission denied: [client 10.9.0.1:33344] AH00035: access to /css/bootstrap.min.css denied (filesystem path '/var/www/SQL_Injection/css/bootstrap.min.css') because search permissions are missing on a component of the path, referer: http://www.seed-server.com/unsafe_home.php
+2026 Jul 21 16:50:23 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/mysql_logs/query.log mysqllog: 2026-07-21T08:50:22.685998Z	   16 Query	UPDATE credential SET nickname='',email='',address='',PhoneNumber='123', salary  = 676767 WHERE name = 'Alice' #' where ID=1
+2026 Jul 21 16:50:23 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/mysql_logs/query.log mysqllog:       FROM credential
+2026 Jul 21 16:50:23 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/mysql_logs/query.log mysqllog: 2026-07-21T08:50:22.693176Z	   16 Quit	
+2026 Jul 21 16:50:23 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/mysql_logs/query.log mysqllog: 2026-07-21T08:50:22.699022Z	   17 Query	SELECT id, name, eid, salary, birth, ssn, phoneNumber, address, email,nickname,Password
+2026 Jul 21 16:50:23 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/mysql_logs/query.log mysqllog: 2026-07-21T08:50:22.699426Z	   17 Quit	
+2026 Jul 21 16:50:23 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/mysql_logs/query.log mysqllog:       WHERE name= 'Alice' and Password='fdbe918bdae83000aa54747fc95fe0470fff4976'
+2026 Jul 21 16:50:23 (SeedLabs_SQLInjection) any->/home/seed/Downloads/Labsetup/mysql_logs/query.log mysqllog: 2026-07-21T08:50:22.698776Z	   17 Connect	seed@10.9.0.5 on sqllab_users using TCP/IP
+2026 Jul 21 16:50:37 (SeedLabs_SQLInjection) any->journald Jul 21 08:50:35 VM sudo[5851]:     seed : TTY=pts/0 ; PWD=/home/seed/Downloads/Labsetup/apache-logs ; USER=root ; COMMAND=/usr/bin/tail -50 /var/ossec/logs/ossec.log
+2026 Jul 21 16:50:37 (SeedLabs_SQLInjection) any->journald Jul 21 08:50:35 VM sudo[5851]: pam_unix(sudo:session): session opened for user root by (uid=0)
+2026 Jul 21 16:50:37 (SeedLabs_SQLInjection) any->journald Jul 21 08:50:35 VM sudo[5851]: pam_unix(sudo:session): session closed for user root
+2026 Jul 21 16:52:35 blueteammanager-VirtualBox->df -P ossec: output: 'df -P': Filesystem     1024-blocks     Used Available Capacity Mounted on
+2026 Jul 21 16:52:35 blueteammanager-VirtualBox->df -P ossec: output: 'df -P': tmpfs              1999624     2464   1997160       1% /run
+2026 Jul 21 16:52:35 blueteammanager-VirtualBox->df -P ossec: output: 'df -P': /dev/sda3         40584544 33654648   5052684      87% /
+2026 Jul 21 16:52:35 blueteammanager-VirtualBox->df -P ossec: output: 'df -P': tmpfs              9998116       80   9998036       1% /dev/shm
+2026 Jul 21 16:52:35 blueteammanager-VirtualBox->df -P ossec: output: 'df -P': overlay           40584544 33654648   5052684      87% /var/lib/docker/rootfs/overlayfs/48e29758258800a593f324f89fbe45c9ac0b3f2a10e9685ad7298526df8f7665
+2026 Jul 21 16:52:35 blueteammanager-VirtualBox->df -P ossec: output: 'df -P': overlay           40584544 33654648   5052684      87% /var/lib/docker/rootfs/overlayfs/2899c105a1329ee1d680d0293725fd43387d53998e24d33c1d9a8d5531306f9b
+2026 Jul 21 16:52:35 blueteammanager-VirtualBox->df -P ossec: output: 'df -P': overlay           40584544 33654648   5052684      87% /var/lib/docker/rootfs/overlayfs/ee63ab163267c1cad4cd545af5d5934204e31068b7db6d67e540b7a1233ec476
+2026 Jul 21 16:52:35 blueteammanager-VirtualBox->df -P ossec: output: 'df -P': overlay           40584544 33654648   5052684      87% /var/lib/docker/rootfs/overlayfs/93ab2e19f32a76357baf8dc50a86d8583785912dd98c199c8fc97f916474e020
+2026 Jul 21 16:52:35 blueteammanager-VirtualBox->df -P ossec: output: 'df -P': /dev/sda2           524252     6232    518020       2% /boot/efi
+2026 Jul 21 16:52:35 blueteammanager-VirtualBox->df -P ossec: output: 'df -P': tmpfs              1999620     1648   1997972       1% /run/user/1000
+2026 Jul 21 16:52:35 blueteammanager-VirtualBox->df -P ossec: output: 'df -P': tmpfs                 5120        0      5120       0% /run/lock
+2026 Jul 21 16:52:35 blueteammanager-VirtualBox->last -n 20 ossec: output: 'last -n 20':
+blueteam :0           :0               Tue Jul 21 14:58   still logged in
+reboot   system boot  6.8.0-124-generi Tue Jul 21 14:58   still running
+blueteam :0           :0               Tue Jul 21 14:54 - crash  (00:04)
+reboot   system boot  6.8.0-124-generi Tue Jul 21 14:54   still running
+blueteam :0           :0               Tue Jul 21 11:54 - crash  (02:59)
+reboot   system boot  6.8.0-124-generi Tue Jul 21 11:54   still running
+blueteam :0           :0               Mon Jul 20 16:31 - crash  (19:23)
+reboot   system boot  6.8.0-124-generi Mon Jul 20 16:30   still running
+blueteam :0           :0               Mon Jul 20 13:07 - down   (03:23)
+reboot   system boot  6.8.0-124-generi Mon Jul 20 13:07 - 16:30  (03:23)
+blueteam :0           :0               Fri Jul 17 18:00 - crash (2+19:06)
+reboot   system boot  6.8.0-124-generi Fri Jul 17 18:00 - 16:30 (2+22:30)
+blueteam :0           :0               Fri Jul 17 15:38 - crash  (02:22)
+reboot   system boot  6.8.0-124-generi Fri Jul 17 15:38 - 16:30 (3+00:52)
+blueteam :0           :0               Thu Jul 16 18:02 - crash  (21:35)
+reboot   system boot  6.8.0-124-generi Thu Jul 16 18:02 - 16:30 (3+22:28)
+blueteam :0           :0               Thu Jul 16 17:34 - crash  (00:27)
+reboot   system boot  6.8.0-124-generi Thu Jul 16 17:34 - 16:30 (3+22:56)
+blueteam :0           :0               Thu Jul 16 15:30 - crash  (02:04)
+reboot   system boot  6.8.0-124-generi Thu Jul 16 15:30 - 16:30 (4+01:00)
+wtmp begins Thu Jun 18 23:44:19 2026
+2026 Jul 21 16:52:51 (SeedLabs_SQLInjection) any->journald Jul 21 08:52:49 VM sudo[5860]:     seed : TTY=pts/0 ; PWD=/home/seed/Downloads/Labsetup ; USER=root ; COMMAND=/usr/bin/tail -50 /var/ossec/logs/ossec.log
+2026 Jul 21 16:52:51 (SeedLabs_SQLInjection) any->journald Jul 21 08:52:49 VM sudo[5860]: pam_unix(sudo:session): session closed for user root
+2026 Jul 21 16:52:51 (SeedLabs_SQLInjection) any->journald Jul 21 08:52:49 VM sudo[5860]: pam_unix(sudo:session): session opened for user root by (uid=0)
