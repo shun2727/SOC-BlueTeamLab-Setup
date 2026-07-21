@@ -93,3 +93,21 @@ inflictted and sent towards the hive to reduce amount of noise
 
 
 </group>
+
+<!-- temp log test for apache-->
+www.seed-server.com:80 10.9.0.1 - - [21/Jul/2026:08:49:16 +0000] "GET /index.html HTTP/1.1" 200 1245 "http://www.seed-server.com/" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:83.0) Gecko/20100101 Firefox/83.0"
+
+
+
+<!-- new rules starting form scratch -->
+<group name="local,sql_injection,mysql_querylog,">
+
+<rule id="100050" level="10">
+<decoded_as>mysql-querylog</decoded_as>
+<field name="data" type="pcre2">(?i)WHERE\s+name\s*=\s*'[^']*'\s*(#|--)</field>
+<description>Auth bypass via comment injection (4.1.1/4.1.2 pattern): $(data)</description>
+<group>sql_injection,attack,auth_bypass,</group>
+<mitre><id>T1190</id></mitre>
+</rule>
+
+</group>
