@@ -1,95 +1,175 @@
-
 <!--
-Without custom rules, sql injeciton will rely on exisitng wazuh rules 
-/var/ossec/ruleset/rules/0245-web_rules.xml helps to detect sqlinjeciton 
+Without custom rules, sql injeciton will rely on exisitng wazuh rules
+/var/ossec/ruleset/rules/0245-web_rules.xml helps to detect sqlinjeciton
 
-There aleady exists these rules, however upon looking at thier contents, 
-they fire on issues that are minimal, therefore the purpose of custom rules 
-here are to correlate and chain them so that only high severity alerts are 
-inflictted and sent towards the hive to reduce amount of noise 
+Severity design:
+- Individual pattern-match rules (attempt detected) = level 12-14 (High)
+  -> clears the Hive forwarding threshold of 10, but doesn't scream "critical"
+- Correlated rules (Apache request AND matching MySQL query both fired
+  within the same short window) = level 15-16 (Critical)
+  -> these confirm the injection actually reached and executed against
+     the database, and are set critical so students who don't read logs
+     in detail still get an unmissable signal of what happened
 -->
 
+<group name="lab,sql_injection,">
 
-<!-- for naming use rule id 50 onwards -->
-<group name="local,sql_injection,mysql_querylog,">
+    <!-- ============================================================ -->
+    <!-- MYSQL LAYER: checks the actual SQL query text (decoded_as    -->
+    <!-- mysql-querylog, matches against the 'data' field)            -->
+    <!-- ============================================================ -->
 
-<!-- i dont remember this ouf -->
-  <rule id="100050" level="10">
-    <decoded_as>mysql-querylog</decoded_as>
-    <field name="data" type="pcre2">(?i)WHERE\s+name\s*=\s*'[^']*'\s*(#|--)</field>
-    <description>Auth bypass via comment injection (4.1.1/4.1.2 pattern): $(data)</description>
-    <group>sql_injection,attack,auth_bypass,</group>
-    <mitre><id>T1190</id></mitre>
-  </rule>
+    <rule id="100050" level="12">
+        <decoded_as>mysql-querylog</decoded_as>
+        <match type="pcre2">(?i)WHERE\s+name\s*=\s*'[^']*'\s*(#|--)</match>
+        <description>[MySQL] Auth bypass via comment injection (4.1.1/4.1.2 pattern)</description>
+        <group>sql_injection,attack,auth_bypass,</group>
+        <mitre><id>T1190</id></mitre>
+    </rule>
 
-<!-- the indeixng like 4.1.1 is based on the seedlabs injection guides -->
-<!-- 4.1.1 / 4.1.2: Admin' # (comment-only bypass, no OR/UNION keyword) -->
-  <rule id="100051" level="10">
-    <if_sid>31100</if_sid>
-    <url>(?i)('|%27)(\s|%20|\+)*(#|--|%23|%2d%2d)</url>
-    <description>SQL Injection Attempt: quote directly followed by comment (auth bypass via truncation)</description>
-    <mitre>
-      <id>T1190</id>
-    </mitre>
-  </rule>
+    <rule id="100058" level="14">
+        <decoded_as>mysql-querylog</decoded_as>
+        <match type="pcre2">(?i);\s*(drop|delete|update|insert|alter)\s+</match>
+        <description>[MySQL] Stacked query with DML/DDL keyword detected in query</description>
+        <group>sql_injection,attack,data_tampering,</group>
+        <mitre><id>T1190</id></mitre>
+    </rule>
 
- <!-- 4.1.3: Admin'; UPDATE ... / Admin'; DELETE ... (stacked query)-->
-  <rule id="100052" level="14">
-    <if_sid>31100</if_sid>
-    <url>(?i)(;|%3B)(\s|%20|\+)*(drop|delete|update|insert|alter)(\s|%20|\+)+</url>
-    <description>SQL Injection Attempt: stacked query with Data Manipulaiton Language/Data Definition Lanuage keyword</description>
-    <mitre>
-      <id>T1190</id>
-    </mitre>
-  </rule>
+    <rule id="100059" level="14">
+        <decoded_as>mysql-querylog</decoded_as>
+        <match type="pcre2">(?i)UPDATE\s+credential\s+SET.*WHERE\s+name\s*=\s*'[^']*'\s*#</match>
+        <description>[MySQL] Unauthorized field modification via comment truncation (UPDATE hijack)</description>
+        <group>sql_injection,attack,data_tampering,</group>
+        <mitre><id>T1190</id></mitre>
+    </rule>
 
-  <!-- 5.1.1 / 5.1.2 / 5.1.3: 123', salary = 800000 WHERE name = 'Alice' #  (no semicolon needed) -->
-  <rule id="100053" level="12">
-    <if_sid>31100</if_sid>
-    <url>(?i)('|%27)(\s|%20|\+|,|%2c)*[\w.]+(\s|%20|\+)*(=|%3D)(\s|%20|\+)*[\w.'%27]+(\s|%20|\+)+(where|%77here)(\s|%20|\+)+</url>
-    <description>SQL Injection Attempt: injected assignment + WHERE clause (UPDATE hijack, no stacking required)</description>
-    <mitre>
-      <id>T1190</id>
-    </mitre>
-  </rule>
+    <rule id="100060" level="14">
+        <decoded_as>mysql-querylog</decoded_as>
+        <match type="pcre2">(?i)(sha1|md5|concat|substring|benchmark|sleep)\s*\(</match>
+        <description>[MySQL] SQL function call injected via user input</description>
+        <group>sql_injection,attack,data_tampering,</group>
+        <mitre><id>T1190</id></mitre>
+    </rule>
 
-  <!-- 5.1.3 specifically: SQL function call injected as a value, e.g. SHA1('amongus') -->
-  <rule id="100054" level="12">
-    <if_sid>31100</if_sid>
-    <url>(?i)('|%27).*(sha1|md5|concat|substring|benchmark|sleep)(\(|%28)</url>
-    <description>SQL Injection Attempt: SQL function call injected via user input</description>
-    <mitre>
-      <id>T1190</id>
-    </mitre>
-  </rule>
+    <rule id="100061" level="12">
+        <decoded_as>mysql-querylog</decoded_as>
+        <match type="pcre2">(?i)(\bor\b|\band\b)\s*[\d'"]+\s*=\s*[\d'"]+</match>
+        <description>[MySQL] Tautology/boolean bypass (OR 1=1 style) detected in query</description>
+        <group>sql_injection,attack,auth_bypass,</group>
+        <mitre><id>T1190</id></mitre>
+    </rule>
 
-  <!-- existing rules, encoding-fixed -->
-  <rule id="100055" level="10">
-    <if_sid>31100</if_sid>
-    <url>(?i)(\bor\b|\band\b)(\s|%20|\+)*[\d'"]+(\s|%20|\+)*(=|%3D)(\s|%20|\+)*[\d'"]+</url>
-    <description>SQL Injection Attempt: tautology/boolean bypass (OR 1=1 style)</description>
-    <mitre>
-      <id>T1190</id>
-    </mitre>
-  </rule>
+    <rule id="100062" level="14">
+        <decoded_as>mysql-querylog</decoded_as>
+        <match type="pcre2">(?i)union\s+select</match>
+        <description>[MySQL] UNION SELECT detected in query</description>
+        <group>sql_injection,attack,data_exfiltration,</group>
+        <mitre><id>T1190</id></mitre>
+    </rule>
 
-  <rule id="100056" level="12">
-    <if_sid>31100</if_sid>
-    <url>(?i)union(\s|%20|\+)+select</url>
-    <description>SQL Injection Attempt: UNION SELECT</description>
-    <mitre>
-      <id>T1190</id>
-    </mitre>
-  </rule>
+    <rule id="100063" level="12">
+        <decoded_as>mysql-querylog</decoded_as>
+        <match type="pcre2">(?i)'\s*(or|and|union|select)</match>
+        <description>[MySQL] Quote followed by SQL keyword detected in query</description>
+        <group>sql_injection,attack,</group>
+        <mitre><id>T1190</id></mitre>
+    </rule>
 
-  <rule id="100057" level="10">
-    <if_sid>31100</if_sid>
-    <url>(?i)('|%27)(\s|%20|\+)*(or|and|union|select)</url>
-    <description>SQL Injection Attempt: quote followed by SQL keyword</description>
-    <mitre>
-      <id>T1190</id>
-    </mitre>
-  </rule>
 
+    <!-- ============================================================ -->
+    <!-- APACHE LAYER: checks the raw HTTP request URL/query string   -->
+    <!-- (if_sid 31108, matches against the 'url' field) — catches    -->
+    <!-- the attack attempt before it reaches the database            -->
+    <!-- ============================================================ -->
+
+    <rule id="100051" level="12">
+        <if_sid>31108</if_sid>
+        <url>(?i)('|%27)(\s|%20|\+)*(#|--|%23|%2d%2d)</url>
+        <description>[Apache] SQL Injection Attempt: quote directly followed by comment (auth bypass via truncation)</description>
+        <mitre><id>T1190</id></mitre>
+    </rule>
+
+    <rule id="100052" level="14">
+        <if_sid>31108</if_sid>
+        <url>(?i)(;|%3B)(\s|%20|\+)*(drop|delete|update|insert|alter)(\s|%20|\+)+</url>
+        <description>[Apache] SQL Injection Attempt: stacked query with Data Manipulation Language/Data Definition Language keyword</description>
+        <mitre><id>T1190</id></mitre>
+    </rule>
+
+    <rule id="100053" level="14">
+        <if_sid>31108</if_sid>
+        <url>(?i)('|%27)(\s|%20|\+|,|%2c)*[\w.]+(\s|%20|\+)*(=|%3D)(\s|%20|\+)*[\w.'%27]+(\s|%20|\+)+(where|%77here)(\s|%20|\+)+</url>
+        <description>[Apache] SQL Injection Attempt: injected assignment + WHERE clause (UPDATE hijack, no stacking required)</description>
+        <mitre><id>T1190</id></mitre>
+    </rule>
+
+    <rule id="100054" level="14">
+        <if_sid>31108</if_sid>
+        <url>(?i)('|%27).*(sha1|md5|concat|substring|benchmark|sleep)(\(|%28)</url>
+        <description>[Apache] SQL Injection Attempt: SQL function call injected via user input</description>
+        <mitre><id>T1190</id></mitre>
+    </rule>
+
+    <rule id="100055" level="12">
+        <if_sid>31108</if_sid>
+        <url>(?i)(\bor\b|\band\b)(\s|%20|\+)*[\d'"]+(\s|%20|\+)*(=|%3D)(\s|%20|\+)*[\d'"]+</url>
+        <description>[Apache] SQL Injection Attempt: tautology/boolean bypass (OR 1=1 style)</description>
+        <mitre><id>T1190</id></mitre>
+    </rule>
+
+    <rule id="100056" level="14">
+        <if_sid>31108</if_sid>
+        <url>(?i)union(\s|%20|\+)+select</url>
+        <description>[Apache] SQL Injection Attempt: UNION SELECT</description>
+        <mitre><id>T1190</id></mitre>
+    </rule>
+
+    <rule id="100057" level="12">
+        <if_sid>31108</if_sid>
+        <url>(?i)('|%27)(\s|%20|\+)*(or|and|union|select)</url>
+        <description>[Apache] SQL Injection Attempt: quote followed by SQL keyword</description>
+        <mitre><id>T1190</id></mitre>
+    </rule>
+
+
+    <!-- ============================================================ -->
+    <!-- CORRELATION LAYER: fires CRITICAL (15-16) only when BOTH the -->
+    <!-- Apache request AND the matching MySQL query were detected    -->
+    <!-- within a short window — confirming the injection actually   -->
+    <!-- reached and executed against the database, not just an      -->
+    <!-- attempt. This is the signal students should look for first.  -->
+    <!-- ============================================================ -->
+
+    <rule id="100070" level="16" frequency="2" timeframe="10">
+        <if_matched_sid>100051</if_matched_sid>
+        <if_matched_sid>100050</if_matched_sid>
+        <description>[CONFIRMED] Auth bypass injection reached the database - HTTP request and matching query both detected</description>
+        <group>sql_injection,attack,confirmed,critical,</group>
+        <mitre><id>T1190</id></mitre>
+    </rule>
+
+    <rule id="100071" level="16" frequency="2" timeframe="10">
+        <if_matched_sid>100052</if_matched_sid>
+        <if_matched_sid>100058</if_matched_sid>
+        <description>[CONFIRMED] Stacked query attack reached the database - HTTP request and matching query both detected</description>
+        <group>sql_injection,attack,confirmed,critical,data_tampering,</group>
+        <mitre><id>T1190</id></mitre>
+    </rule>
+
+    <rule id="100072" level="16" frequency="2" timeframe="10">
+        <if_matched_sid>100053</if_matched_sid>
+        <if_matched_sid>100059</if_matched_sid>
+        <description>[CONFIRMED] UPDATE hijack reached the database - unauthorized data modification executed</description>
+        <group>sql_injection,attack,confirmed,critical,data_tampering,</group>
+        <mitre><id>T1190</id></mitre>
+    </rule>
+
+    <rule id="100073" level="16" frequency="2" timeframe="10">
+        <if_matched_sid>100056</if_matched_sid>
+        <if_matched_sid>100062</if_matched_sid>
+        <description>[CONFIRMED] UNION SELECT reached the database - data exfiltration executed</description>
+        <group>sql_injection,attack,confirmed,critical,data_exfiltration,</group>
+        <mitre><id>T1190</id></mitre>
+    </rule>
 
 </group>
