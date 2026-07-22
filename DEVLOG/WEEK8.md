@@ -107,6 +107,7 @@ soution : added pcre2 to the regex
  To do : 
 1. create the rules to detect 
 - created rules for both apache and mysql (first for injeciton and malicious activity but not for succeful attempts)
+
 | Scenario | Apache sees it? | MySQL sees it? |
 |----------|------------------|----------------|
 | GET-based injection | Yes | Yes (usually) |
@@ -116,6 +117,7 @@ soution : added pcre2 to the regex
 - 
 
 - confrim the alert levels in wazuh :
+
 | Lab Section | Attack Description | MySQL Rule | Apache Rule | Correlated (Critical) |
 |-------------|--------------------|------------|-------------|-----------------------|
 | 4.1.1 / 4.1.2 | Login page comment bypass: entering `Admin' #` as username truncates the password check (`WHERE name='Admin' #and Password=...`), logging in without a valid password. Same attack reproduced via curl with `%23` for `#`. | 100050 | 100051 | 100070 |
@@ -125,6 +127,8 @@ soution : added pcre2 to the regex
 | Bonus | Classic tautology bypass: `' OR 1=1 --` style payloads that make the WHERE clause always evaluate true, bypassing authentication without needing to know a valid username. | 100061 | 100055 | 100075 |
 | Bonus | UNION SELECT: appending `UNION SELECT ...` to pull data from other tables/columns beyond what the query was designed to expose. | 100062 | 100056 | 100073 |
 | Bonus | Generic catch-all: any quote immediately followed by OR, AND, UNION, or SELECT — broad fallback for injection variants not covered by the more specific rules above. | 100063 | 100057 | Intentionally uncorrelated — broad fallback |
+
+2. login to the hive and check current status 
 
 
  - confirm all the possible attacks 
