@@ -116,7 +116,15 @@ soution : added pcre2 to the regex
 - 
 
 - confrim the alert levels in wazuh :
-
+| Lab Section | Attack Description | MySQL Rule | Apache Rule | Correlated (Critical) |
+|-------------|--------------------|------------|-------------|-----------------------|
+| 4.1.1 / 4.1.2 | Login page comment bypass: entering `Admin' #` as username truncates the password check (`WHERE name='Admin' #and Password=...`), logging in without a valid password. Same attack reproduced via curl with `%23` for `#`. | 100050 | 100051 | 100070 |
+| 4.1.3 | Stacked query via login field: `Admin'; UPDATE credential SET Name = 'bingus' WHERE Name = 'Alice';#` attempts to run a second UPDATE statement in the same request, modifying another user's record while only authenticating as Admin. Requires `mysqli::multi_query()` to succeed (blocked by default query API). | 100058 | 100052 | 100071 |
+| 5.1.1 / 5.1.2 | Profile edit field hijack: injecting `123', salary = 800000 WHERE name = 'Alice' #` (or targeting another user, e.g. `WHERE name = 'Boby' #`) into an editable profile field abuses the single-query UPDATE to modify salary/fields for any user, not just the logged-in one. | 100059 | 100053 | 100072 |
+| 5.1.3 | Password tampering via SQL function: injecting `Value', Password = SHA1('amongus') WHERE Name='Boby' #` sets another user's password using the same SHA1 hashing the application expects, making the account log-in-able with a chosen password. | 100060 | 100054 | 100074 |
+| Bonus | Classic tautology bypass: `' OR 1=1 --` style payloads that make the WHERE clause always evaluate true, bypassing authentication without needing to know a valid username. | 100061 | 100055 | 100075 |
+| Bonus | UNION SELECT: appending `UNION SELECT ...` to pull data from other tables/columns beyond what the query was designed to expose. | 100062 | 100056 | 100073 |
+| Bonus | Generic catch-all: any quote immediately followed by OR, AND, UNION, or SELECT — broad fallback for injection variants not covered by the more specific rules above. | 100063 | 100057 | Intentionally uncorrelated — broad fallback |
 
 
  - confirm all the possible attacks 

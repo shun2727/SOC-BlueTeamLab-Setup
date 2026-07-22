@@ -2,11 +2,16 @@
 Without custom rules, sql injeciton will rely on exisitng wazuh rules
 /var/ossec/ruleset/rules/0245-web_rules.xml helps to detect sqlinjeciton
 
+There aleady exists these rules, however upon looking at thier contents,
+they fire on issues that are minimal, therefore the purpose of custom rules
+here are to correlate and chain them so that only high severity alerts are
+inflictted and sent towards the hive to reduce amount of noise
+
 Severity design:
 - Individual pattern-match rules (attempt detected) = level 12-14 (High)
   -> clears the Hive forwarding threshold of 10, but doesn't scream "critical"
 - Correlated rules (Apache request AND matching MySQL query both fired
-  within the same short window) = level 15-16 (Critical)
+  within the same short window) = level 16 (Critical)
   -> these confirm the injection actually reached and executed against
      the database, and are set critical so students who don't read logs
      in detail still get an unmissable signal of what happened
@@ -19,58 +24,85 @@ Severity design:
     <!-- mysql-querylog, matches against the 'data' field)            -->
     <!-- ============================================================ -->
 
+    <!-- 4.1.1/4.1.2: Login page comment bypass - "Admin' #" as username
+         truncates the password check (WHERE name='Admin' #and Password=...),
+         logging in without a valid password. Same attack reproduced via
+         curl with %23 for #. -->
     <rule id="100050" level="12">
         <decoded_as>mysql-querylog</decoded_as>
         <match type="pcre2">(?i)WHERE\s+name\s*=\s*'[^']*'\s*(#|--)</match>
-        <description>[MySQL] Auth bypass via comment injection (4.1.1/4.1.2 pattern)</description>
+        <description>[MySQL] 4.1.1/4.1.2: Login comment bypass - "Admin' #" truncates password check in WHERE clause</description>
         <group>sql_injection,attack,auth_bypass,</group>
         <mitre><id>T1190</id></mitre>
     </rule>
 
+    <!-- 4.1.3: Stacked query via login field - Admin'; UPDATE credential
+         SET Name = 'x' WHERE Name = 'Alice';# attempts to run a second
+         UPDATE statement in the same request, modifying another user's
+         record while only authenticating as Admin. Requires
+         mysqli::multi_query() to succeed (blocked by default query() API). -->
     <rule id="100058" level="14">
         <decoded_as>mysql-querylog</decoded_as>
         <match type="pcre2">(?i);\s*(drop|delete|update|insert|alter)\s+</match>
-        <description>[MySQL] Stacked query with DML/DDL keyword detected in query</description>
+        <description>[MySQL] 4.1.3: Stacked query - second statement (UPDATE/DELETE) chained after login field via semicolon (Admin'; UPDATE credential SET Name=... pattern)</description>
         <group>sql_injection,attack,data_tampering,</group>
         <mitre><id>T1190</id></mitre>
     </rule>
 
+    <!-- 5.1.1/5.1.2: Profile edit field hijack - injecting
+         123', salary = 800000 WHERE name = 'Alice' # (or targeting another
+         user, e.g. WHERE name = 'Boby' #) into any editable profile field
+         abuses the single-query UPDATE to modify salary/fields for any
+         user, not just the logged-in one. -->
     <rule id="100059" level="14">
         <decoded_as>mysql-querylog</decoded_as>
         <match type="pcre2">(?i)UPDATE\s+credential\s+SET.*WHERE\s+name\s*=\s*'[^']*'\s*#</match>
-        <description>[MySQL] Unauthorized field modification via comment truncation (UPDATE hijack)</description>
+        <description>[MySQL] 5.1.1/5.1.2: Profile edit field hijack - injected assignment + WHERE clause modifies salary/fields for any user (123', salary = X WHERE name = 'Alice' # pattern)</description>
         <group>sql_injection,attack,data_tampering,</group>
         <mitre><id>T1190</id></mitre>
     </rule>
 
+    <!-- 5.1.3: Password tampering via SQL function - injecting
+         Value', Password = SHA1('x') WHERE Name='Boby' # sets another
+         user's password using the same SHA1 hashing the app expects,
+         making the account log-in-able with a chosen password. -->
     <rule id="100060" level="14">
         <decoded_as>mysql-querylog</decoded_as>
         <match type="pcre2">(?i)(sha1|md5|concat|substring|benchmark|sleep)\s*\(</match>
-        <description>[MySQL] SQL function call injected via user input</description>
+        <description>[MySQL] 5.1.3: Password tampering via SQL function - SHA1()/MD5() etc. injected as a value to set another user's password (Password = SHA1('amongus') pattern)</description>
         <group>sql_injection,attack,data_tampering,</group>
         <mitre><id>T1190</id></mitre>
     </rule>
+
+    <!-- Bonus: classic tautology bypass - ' OR 1=1 - -  style payloads that
+         make the WHERE clause always evaluate true, bypassing
+         authentication without needing to know a valid username. -->
 
     <rule id="100061" level="12">
         <decoded_as>mysql-querylog</decoded_as>
         <match type="pcre2">(?i)(\bor\b|\band\b)\s*[\d'"]+\s*=\s*[\d'"]+</match>
-        <description>[MySQL] Tautology/boolean bypass (OR 1=1 style) detected in query</description>
+        <description>[MySQL] Tautology/boolean bypass - OR 1=1 style condition detected in query, always-true WHERE clause</description>
         <group>sql_injection,attack,auth_bypass,</group>
         <mitre><id>T1190</id></mitre>
     </rule>
 
+    <!-- Bonus: UNION SELECT - appending UNION SELECT ... to pull data from
+         other tables/columns beyond what the query was designed to expose. -->
     <rule id="100062" level="14">
         <decoded_as>mysql-querylog</decoded_as>
         <match type="pcre2">(?i)union\s+select</match>
-        <description>[MySQL] UNION SELECT detected in query</description>
+        <description>[MySQL] UNION SELECT detected in query - possible data exfiltration from other tables/columns</description>
         <group>sql_injection,attack,data_exfiltration,</group>
         <mitre><id>T1190</id></mitre>
     </rule>
 
+    <!-- Bonus: generic catch-all - any quote immediately followed by OR,
+         AND, UNION, or SELECT - broad fallback for injection variants not
+         covered by the more specific rules above. -->
     <rule id="100063" level="12">
         <decoded_as>mysql-querylog</decoded_as>
         <match type="pcre2">(?i)'\s*(or|and|union|select)</match>
-        <description>[MySQL] Quote followed by SQL keyword detected in query</description>
+        <description>[MySQL] Generic catch-all - quote followed by SQL keyword detected in query (unclassified injection variant)</description>
         <group>sql_injection,attack,</group>
         <mitre><id>T1190</id></mitre>
     </rule>
@@ -85,73 +117,74 @@ Severity design:
     <rule id="100051" level="12">
         <if_sid>31108</if_sid>
         <url>(?i)('|%27)(\s|%20|\+)*(#|--|%23|%2d%2d)</url>
-        <description>[Apache] SQL Injection Attempt: quote directly followed by comment (auth bypass via truncation)</description>
+        <description>[Apache] 4.1.1/4.1.2: Login comment bypass attempt - quote followed by comment in HTTP request (username=Admin%27+%23 pattern)</description>
         <mitre><id>T1190</id></mitre>
     </rule>
 
     <rule id="100052" level="14">
         <if_sid>31108</if_sid>
         <url>(?i)(;|%3B)(\s|%20|\+)*(drop|delete|update|insert|alter)(\s|%20|\+)+</url>
-        <description>[Apache] SQL Injection Attempt: stacked query with Data Manipulation Language/Data Definition Language keyword</description>
+        <description>[Apache] 4.1.3: Stacked query attempt - semicolon followed by DML/DDL keyword in HTTP request (Admin'; UPDATE... pattern)</description>
         <mitre><id>T1190</id></mitre>
     </rule>
 
     <rule id="100053" level="14">
         <if_sid>31108</if_sid>
         <url>(?i)('|%27)(\s|%20|\+|,|%2c)*[\w.]+(\s|%20|\+)*(=|%3D)(\s|%20|\+)*[\w.'%27]+(\s|%20|\+)+(where|%77here)(\s|%20|\+)+</url>
-        <description>[Apache] SQL Injection Attempt: injected assignment + WHERE clause (UPDATE hijack, no stacking required)</description>
+        <description>[Apache] 5.1.1/5.1.2: Profile edit field hijack attempt - injected assignment + WHERE clause in HTTP request (unauthorized UPDATE, no stacking required)</description>
         <mitre><id>T1190</id></mitre>
     </rule>
 
     <rule id="100054" level="14">
         <if_sid>31108</if_sid>
         <url>(?i)('|%27).*(sha1|md5|concat|substring|benchmark|sleep)(\(|%28)</url>
-        <description>[Apache] SQL Injection Attempt: SQL function call injected via user input</description>
+        <description>[Apache] 5.1.3: Password tampering attempt - SQL function call injected via user input in HTTP request</description>
         <mitre><id>T1190</id></mitre>
     </rule>
 
     <rule id="100055" level="12">
         <if_sid>31108</if_sid>
         <url>(?i)(\bor\b|\band\b)(\s|%20|\+)*[\d'"]+(\s|%20|\+)*(=|%3D)(\s|%20|\+)*[\d'"]+</url>
-        <description>[Apache] SQL Injection Attempt: tautology/boolean bypass (OR 1=1 style)</description>
+        <description>[Apache] Tautology/boolean bypass attempt - OR 1=1 style condition in HTTP request</description>
         <mitre><id>T1190</id></mitre>
     </rule>
 
     <rule id="100056" level="14">
         <if_sid>31108</if_sid>
         <url>(?i)union(\s|%20|\+)+select</url>
-        <description>[Apache] SQL Injection Attempt: UNION SELECT</description>
+        <description>[Apache] UNION SELECT attempt in HTTP request - possible data exfiltration attempt</description>
         <mitre><id>T1190</id></mitre>
     </rule>
 
     <rule id="100057" level="12">
         <if_sid>31108</if_sid>
         <url>(?i)('|%27)(\s|%20|\+)*(or|and|union|select)</url>
-        <description>[Apache] SQL Injection Attempt: quote followed by SQL keyword</description>
+        <description>[Apache] Generic catch-all - quote followed by SQL keyword in HTTP request (unclassified injection variant)</description>
         <mitre><id>T1190</id></mitre>
     </rule>
 
 
     <!-- ============================================================ -->
-    <!-- CORRELATION LAYER: fires CRITICAL (15-16) only when BOTH the -->
-    <!-- Apache request AND the matching MySQL query were detected    -->
-    <!-- within a short window — confirming the injection actually   -->
-    <!-- reached and executed against the database, not just an      -->
-    <!-- attempt. This is the signal students should look for first.  -->
+    <!-- CORRELATION LAYER: fires CRITICAL (level 16) only when BOTH  -->
+    <!-- the Apache request AND the matching MySQL query were         -->
+    <!-- detected within a short window — confirming the injection    -->
+    <!-- actually reached and executed against the database, not      -->
+    <!-- just an attempt. This is the signal students should look     -->
+    <!-- for first.                                                    -->
     <!-- ============================================================ -->
 
     <rule id="100070" level="16" frequency="2" timeframe="10">
         <if_matched_sid>100051</if_matched_sid>
         <if_matched_sid>100050</if_matched_sid>
-        <description>[CONFIRMED] Auth bypass injection reached the database - HTTP request and matching query both detected</description>
-        <group>sql_injection,attack,confirmed,critical,</group>
+        <description>[CONFIRMED] 4.1.1/4.1.2: Login comment bypass reached the database - attacker logged in without valid credentials</description>
+        <group>sql_injection,attack,confirmed,critical,auth_bypass,</group>
         <mitre><id>T1190</id></mitre>
     </rule>
 
     <rule id="100071" level="16" frequency="2" timeframe="10">
         <if_matched_sid>100052</if_matched_sid>
         <if_matched_sid>100058</if_matched_sid>
-        <description>[CONFIRMED] Stacked query attack reached the database - HTTP request and matching query both detected</description>
+        <description>[CONFIRMED] 4.1.3: Stacked query executed - unauthorized UPDATE/DELETE ran alongside login query</description>
         <group>sql_injection,attack,confirmed,critical,data_tampering,</group>
         <mitre><id>T1190</id></mitre>
     </rule>
@@ -159,7 +192,7 @@ Severity design:
     <rule id="100072" level="16" frequency="2" timeframe="10">
         <if_matched_sid>100053</if_matched_sid>
         <if_matched_sid>100059</if_matched_sid>
-        <description>[CONFIRMED] UPDATE hijack reached the database - unauthorized data modification executed</description>
+        <description>[CONFIRMED] 5.1.1/5.1.2: Profile edit hijack executed - salary/field of another user was modified without authorization</description>
         <group>sql_injection,attack,confirmed,critical,data_tampering,</group>
         <mitre><id>T1190</id></mitre>
     </rule>
@@ -167,8 +200,24 @@ Severity design:
     <rule id="100073" level="16" frequency="2" timeframe="10">
         <if_matched_sid>100056</if_matched_sid>
         <if_matched_sid>100062</if_matched_sid>
-        <description>[CONFIRMED] UNION SELECT reached the database - data exfiltration executed</description>
+        <description>[CONFIRMED] UNION SELECT executed - data was exfiltrated from unauthorized tables/columns</description>
         <group>sql_injection,attack,confirmed,critical,data_exfiltration,</group>
+        <mitre><id>T1190</id></mitre>
+    </rule>
+
+    <rule id="100074" level="16" frequency="2" timeframe="10">
+        <if_matched_sid>100054</if_matched_sid>
+        <if_matched_sid>100060</if_matched_sid>
+        <description>[CONFIRMED] 5.1.3: Password tampering executed - another user's password was overwritten via injected SHA1() function</description>
+        <group>sql_injection,attack,confirmed,critical,data_tampering,</group>
+        <mitre><id>T1190</id></mitre>
+    </rule>
+
+    <rule id="100075" level="16" frequency="2" timeframe="10">
+        <if_matched_sid>100055</if_matched_sid>
+        <if_matched_sid>100061</if_matched_sid>
+        <description>[CONFIRMED] Tautology bypass executed - authentication was bypassed via always-true condition</description>
+        <group>sql_injection,attack,confirmed,critical,auth_bypass,</group>
         <mitre><id>T1190</id></mitre>
     </rule>
 
