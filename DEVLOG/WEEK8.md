@@ -131,6 +131,101 @@ soution : added pcre2 to the regex
 2. login to the hive and check current status 
 
 
+What went wrong:
+
+Cassandra failed to start because one of its commit log files was corrupted:
+
+```
+CommitLog-7-1784694545966.log
+```
+
+Commit logs are temporary write-ahead logs used by Cassandra for crash recovery. They do **not** directly store TheHive cases, tasks, users, or alerts. The actual TheHive data is stored in Cassandra tables (`edgestore`, `graphindex`, `janusgraph_ids`, etc.).
+
+How we diagnosed it:
+
+1. Checked Cassandra logs:
+
+```bash
+docker logs cassandra --tail 100
+```
+
+2. Found the error:
+
+```
+CommitLogReadException:
+Could not read commit log descriptor
+```
+
+3. Confirmed Cassandra data was still present because the logs showed:
+
+```
+Initializing thehive.edgestore
+Initializing thehive.graphindex
+Initializing thehive.janusgraph_ids
+Initializing thehive.systemlog
+Initializing thehive.txlog
+```
+
+4. Moved the corrupted commit log files aside instead of deleting them immediately:
+
+```
+commitlog → commitlog.bad
+```
+
+5. Restarted the containers.
+
+Recovery:
+
+```bash
+docker compose down
+```
+
+Move the bad commit logs:
+
+```bash
+mv cassandra/data/commitlog cassandra/data/commitlog.bad
+```
+
+Create a fresh commitlog directory:
+
+```bash
+mkdir cassandra/data/commitlog
+```
+
+Start everything:
+
+```bash
+docker compose up -d
+```
+
+Verify:
+
+```bash
+docker compose ps
+```
+
+Successful recovery was confirmed when:
+
+```
+cassandra     Up (healthy)
+elasticsearch Up (healthy)
+thehive       Up
+```
+
+and TheHive logs showed:
+
+```
+Listening for HTTP on ...:9000
+```
+
+After confirming everything worked, the backup folder could be removed:
+
+```bash
+sudo rm -rf cassandra/data/commitlog.bad
+```
+
+The recovery worked because the corrupted files were only unfinished Cassandra write logs. The actual TheHive data remained intact.
+
  - confirm all the possible attacks 
  - create the cases and the 
  - create scripts to delete to blank lsat e
