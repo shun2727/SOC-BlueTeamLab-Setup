@@ -227,6 +227,12 @@ sudo rm -rf cassandra/data/commitlog.bad
 The recovery worked because the corrupted files were only unfinished Cassandra write logs. The actual TheHive data remained intact.
 
  - confirm all the possible attacks 
+	- while confirmin the ppossible attacks apache's rules arent firing, upon further tetsing its due to the uid dependncy reaking the usgae 
+	
  - create the cases and the 
  - create scripts to delete to blank lsat e
+
+ ## 23 July 2026
+ ---
+ 1. while
 

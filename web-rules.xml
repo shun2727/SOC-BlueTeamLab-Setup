@@ -314,7 +314,7 @@
     Code: 2xx, 3xx
   -->
   <rule id="31168" level="15">
-    <if_sid>31108</if_sid>
+    <if_sid>31100</if_sid>
     <regex>"\(\)\s*{\s*\w*:;\s*}\s*;|"\(\)\s*{\s*\w*;\s*}\s*;</regex>
     <description>Shellshock attack detected</description>
     <mitre>
@@ -327,7 +327,7 @@
   </rule>
 
   <rule id="31169" level="15">
-    <if_sid>31108</if_sid>
+    <if_sid>31100</if_sid>
     <regex>"\(\)\s*{\s*_;\.*}\s*>_[\$\(\$\(\)\)]\s*{</regex>
     <description>Shellshock attack detected</description>
     <mitre>

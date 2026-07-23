@@ -115,49 +115,49 @@ Severity design:
     <!-- ============================================================ -->
 
     <rule id="100051" level="12">
-        <if_sid>31108</if_sid>
+        <if_sid>31100</if_sid>
         <url>(?i)('|%27)(\s|%20|\+)*(#|--|%23|%2d%2d)</url>
         <description>[Apache] 4.1.1/4.1.2: Login comment bypass attempt - quote followed by comment in HTTP request (username=Admin%27+%23 pattern)</description>
         <mitre><id>T1190</id></mitre>
     </rule>
 
     <rule id="100052" level="14">
-        <if_sid>31108</if_sid>
+        <if_sid>31100</if_sid>
         <url>(?i)(;|%3B)(\s|%20|\+)*(drop|delete|update|insert|alter)(\s|%20|\+)+</url>
         <description>[Apache] 4.1.3: Stacked query attempt - semicolon followed by DML/DDL keyword in HTTP request (Admin'; UPDATE... pattern)</description>
         <mitre><id>T1190</id></mitre>
     </rule>
 
     <rule id="100053" level="14">
-        <if_sid>31108</if_sid>
+        <if_sid>31100</if_sid>
         <url>(?i)('|%27)(\s|%20|\+|,|%2c)*[\w.]+(\s|%20|\+)*(=|%3D)(\s|%20|\+)*[\w.'%27]+(\s|%20|\+)+(where|%77here)(\s|%20|\+)+</url>
         <description>[Apache] 5.1.1/5.1.2: Profile edit field hijack attempt - injected assignment + WHERE clause in HTTP request (unauthorized UPDATE, no stacking required)</description>
         <mitre><id>T1190</id></mitre>
     </rule>
 
     <rule id="100054" level="14">
-        <if_sid>31108</if_sid>
+        <if_sid>31100</if_sid>
         <url>(?i)('|%27).*(sha1|md5|concat|substring|benchmark|sleep)(\(|%28)</url>
         <description>[Apache] 5.1.3: Password tampering attempt - SQL function call injected via user input in HTTP request</description>
         <mitre><id>T1190</id></mitre>
     </rule>
 
     <rule id="100055" level="12">
-        <if_sid>31108</if_sid>
+        <if_sid>31100</if_sid>
         <url>(?i)(\bor\b|\band\b)(\s|%20|\+)*[\d'"]+(\s|%20|\+)*(=|%3D)(\s|%20|\+)*[\d'"]+</url>
         <description>[Apache] Tautology/boolean bypass attempt - OR 1=1 style condition in HTTP request</description>
         <mitre><id>T1190</id></mitre>
     </rule>
 
     <rule id="100056" level="14">
-        <if_sid>31108</if_sid>
+        <if_sid>31100</if_sid>
         <url>(?i)union(\s|%20|\+)+select</url>
         <description>[Apache] UNION SELECT attempt in HTTP request - possible data exfiltration attempt</description>
         <mitre><id>T1190</id></mitre>
     </rule>
 
     <rule id="100057" level="12">
-        <if_sid>31108</if_sid>
+        <if_sid>31100</if_sid>
         <url>(?i)('|%27)(\s|%20|\+)*(or|and|union|select)</url>
         <description>[Apache] Generic catch-all - quote followed by SQL keyword in HTTP request (unclassified injection variant)</description>
         <mitre><id>T1190</id></mitre>
