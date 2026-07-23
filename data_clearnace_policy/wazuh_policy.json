@@ -1,5 +1,3 @@
-
-//STEP 1 : CREATE POLICY
 PUT _plugins/_ism/policies/wazuh-alerts-retention
 {
   "policy": {
@@ -21,126 +19,10 @@ PUT _plugins/_ism/policies/wazuh-alerts-retention
         "actions": [{ "delete": {} }],
         "transitions": []
       }
-    ]
+    ],
+    "ism_template": {
+      "index_patterns": ["wazuh-alerts-4.x-*"],
+      "priority": 100
+    }
   }
 }
-
-//STEP 2 : ATTACH TO INDICES
-
-
-//policy with comments
-PUT _plugins/_ism/policies/wazuh-alerts-retention
-{
-  "policy": {
-    "description": "Delete wazuh-alerts indices after 2 days",
-    // Human-readable note about what this policy does
-
-    "default_state": "hot",
-    // Every new index starts in the "hot" state (normal, actively used)
-
-    "states": [
-      {
-        "name": "hot",
-        // The starting state - no special actions happen here,
-        // it just waits and checks the transition condition below
-
-        "actions": [],
-        // No actions performed while in "hot" state
-
-        "transitions": [
-          {
-            "state_name": "delete",
-            // Where to move the index once the condition is met
-
-            "conditions": { "min_index_age": "2d" }
-            // The condition: once an index is 3 days old
-            // (based on its creation date, e.g. wazuh-alerts-4.x-2026.07.20
-            // created on 07.20 turns 3 days old on 07.23), move it to
-            // the "delete" state
-          }
-        ]
-      },
-      {
-        "name": "delete",
-        // The final state - this is where deletion actually happens
-
-        "actions": [{ "delete": {} }],
-        // The actual delete action - removes the index permanently
-
-        "transitions": []
-        // No further transitions - this is the end of the lifecycle
-      }
-    ]
-  }
-}
-
-//Wazuh Dashboard → Index Management → State Management Policies (or via Dev Tools
-
-//content are stored on the indexer so you cant necessarity check on the device as is 
-GET _plugins/_ism/policies/wazuh-alerts-retention
-
-//cheatsheat
-## Check existing policies
-
-- **List all ISM policies:**
-  ```
-  GET _plugins/_ism/policies
-  ```
-
-- **Check a specific policy by name:**
-  ```
-  GET _plugins/_ism/policies/wazuh-alerts-retention
-  ```
-
-- **Check which indices have a policy attached, and their current state:**
-  ```
-  GET _plugins/_ism/explain/wazuh-alerts-4.x-*
-  ```
-
-## Create / update a policy
-
-- **Create or overwrite a policy (same name = update):**
-  ```
-  PUT _plugins/_ism/policies/wazuh-alerts-retention
-  { ...policy JSON body... }
-  ```
-
-- **Attach a policy to matching indices:**
-  ```
-  POST _plugins/_ism/add/wazuh-alerts-4.x-*
-  { "policy_id": "wazuh-alerts-retention" }
-  ```
-
-## Remove a policy
-
-- **Detach the policy from indices first (recommended before deleting):**
-  ```
-  POST _plugins/_ism/remove/wazuh-alerts-4.x-*
-  ```
-
-- **Delete the policy definition itself:**
-  ```
-  DELETE _plugins/_ism/policies/wazuh-alerts-retention
-  ```
-
-- **Confirm it's gone:**
-  ```
-  GET _plugins/_ism/policies
-  ```
-
-## Manual index deletion (no policy involved, immediate)
-
-- **View all current indices:**
-  ```
-  GET _cat/indices/wazuh-alerts-*?v
-  ```
-
-- **Delete a specific day's index:**
-  ```
-  DELETE wazuh-alerts-4.x-2026.07.20
-  ```
-
-- **Delete a range using a wildcard:**
-  ```
-  DELETE wazuh-alerts-4.x-2026.06.*
-  ```
